@@ -50,7 +50,7 @@ int maxArea(int hist[]){
 }
 ```
 
-Running Time: $O(n)$
+Running Time: `$O(n)$`
 
 ### References
 
