@@ -10,18 +10,18 @@ When we reach an operator, its operands will be top two elements on stack.
 We pop these 2 elements, apply the operator and push the result into stack.
 
 ```java
-int evaluate(char postFix[]){
-    Stack operandStack = new Stack();
-    for(char symbol: postfix){
-       if(isDigit(symbol))
-          operandStack.push(toDigit(symbol));
-       else{
-          int operand2 = operandStack.pop();
-          int operand1 = operandStack.pop();
+int evaluate(char postFix[]) {
+    Stack operands = new Stack();
+    for(char symbol: postfix) {
+       if(isDigit(symbol)) {
+          operands.push(toDigit(symbol));
+       } else {
+          int operand2 = operands.pop();
+          int operand1 = operands.pop();
           int value = evaluate(symbol, operand1, operand2);
-          operandStack.push(value);
+          operands.push(value);
        }
     }
-    return operandStack.pop();
+    return operands.pop();
 }
 ```
