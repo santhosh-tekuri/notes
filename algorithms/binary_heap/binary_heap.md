@@ -12,20 +12,20 @@ Binary Heap is a binary tree with two additional constraints
 Heaps are commonly implemented using arrays with `A[0]` as root
 
 ```java
-int left(int i){
-    return 2*i+1;
+int left(int i) {
+    return 2*i + 1;
 }
 
-int right(int i){
-    return 2*i+2;
+int right(int i) {
+    return 2*i + 2;
 }
 
 // note: parent(0) returns 0
-int parent(int i){
+int parent(int i) {
     return Math.floor((i-1)/2);
 }
 
-int height(int n){
+int height(int n) {
     return Math.floor(log2(n));
 }
 ```
