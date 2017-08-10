@@ -6,18 +6,18 @@
 * keep moving it up until it is larger than its parent
 
 ```java
-void add(int a[], int size, int v){
+void add(int a[], int size, int v) {
     a[size] = v;
     siftUp(a, size);
 }
 
-void siftUp(int a[], int i){
-    while(i>0){
+void siftUp(int a[], int i) {
+    while(i>0) {
         int ip = parent(i);
-        if(a[ip]<a[i]){
+        if(a[ip]<a[i]) {
             swap(a, ip, i);
             i = ip;
-        }else
+        } else
             return;
     }
 }
@@ -35,13 +35,13 @@ Time Complexity: `$O(\log_2 n)$`
 * keep moving down until it is smaller than its children
 
 ```java
-void delete(int a[], int size, int i){
+void delete(int a[], int size, int i) {
     a[i] = a[size-1];
     siftDown(a, size-1, i);
 }
 
-void siftDown(int a[], int size, int i){
-    while(left(i)<size){ // i is not leaf
+void siftDown(int a[], int size, int i) {
+    while(left(i)<size) { // i is not leaf
         int max = i;
 
         int left = left(i);
@@ -52,10 +52,10 @@ void siftDown(int a[], int size, int i){
         if(right<size && a[right]>a[max]) // right child exists and it is bigger
             max = right;
 
-        if(max!=root){
+        if(max!=root) {
             swap(a, i, max);
             i = max;
-        }else
+        } else
             break;
     }
 }
@@ -76,7 +76,7 @@ if new element is less than element being replaced do `siftDown`, otherwise do `
 
 ```java
 // replace a[i] with v
-void replace(int a[], int size, int i, int v){
+void replace(int a[], int size, int i, int v) {
     int oldV = a[i];
     a[i] = v;
     if(v<oldV)
