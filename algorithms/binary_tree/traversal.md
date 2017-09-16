@@ -1,5 +1,7 @@
 # Binary Tree Traveral
 
+## Depth-First
+
 while doing depth-first traversal:
 
 ### Pre-Order
@@ -70,7 +72,7 @@ void dfs(Node n, List preorder, List inorder, List postorder) {
 
     List lists[] = { preorder, inorder, postorder };
     int action = VISIT_LEFT; // tells the action to be taken an path.peek()
-    while(true){
+    while(true) {
         n = path.peek();
         lists[action].add(n);
 		switch(action) {
@@ -81,10 +83,10 @@ void dfs(Node n, List preorder, List inorder, List postorder) {
                 action = VISIT_RIGHT
             break;
         case VISIT_RIGHT:
-            if(n.right!=null){
+            if(n.right!=null) {
                 path.push(n.right);
                 action = VISIT_LEFT;
-            }else
+            } else
                 action = VISIT_FINISHED
             break
         case VISIT_FINISHED: 
@@ -93,6 +95,30 @@ void dfs(Node n, List preorder, List inorder, List postorder) {
                 break;
             if(path.peek().left==n)
                 action = VISIT_RIGHT;
+        }
+    }
+}
+```
+
+## Breadth-First
+
+```java
+void bfs(Node n) {
+    Queue q;
+    q.enqueue(n);
+    int level = 0;
+    int count = 1; // i.e q.size();
+    while(!q.isEmpty()) {
+        n = q.dequeue();
+        println(level, n);
+        if(n.left!=null)
+            q.enqueue(n.left);
+        if(n.right!=null)
+            q.enqueue(n.right);
+        count--;
+        if(count==0) {
+            level++;
+            count = q.size();
         }
     }
 }
