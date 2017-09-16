@@ -5,3 +5,4 @@
 * [Binary Heap](binary_heap/index.md)
 * [Sorting](sorting/index.md)
 * [Binary Tree](binary_tree/index.md)
+* [Miscellaneous](miscellaneous/index.md)
