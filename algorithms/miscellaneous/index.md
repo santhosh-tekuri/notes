@@ -4,3 +4,4 @@
 * [Longest non-repeating substring](longest_non_repeating_substring.md)
 * [Is array consecutive?](is_array_consecutive.md)
 * [Is Palindrome Number?](is_palindrome_number.md)
+* [Minimum and Maximum](minimum_maximum.md)
