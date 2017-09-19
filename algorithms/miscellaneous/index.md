@@ -9,3 +9,4 @@
 * [Majority Element](majority_element.md)
 * [Equilibrium Index](equilibrium_index.md)
 * [Leaders in Array](leaders.md)
+* [First non-repeating character](first_non_repeating_character.md)
