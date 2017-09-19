@@ -9,4 +9,7 @@
 * [Majority Element](majority_element.md)
 * [Equilibrium Index](equilibrium_index.md)
 * [Leaders in Array](leaders.md)
+* [Product Array without Division](product_array.md)
+* [Reverse words inline](reverse_words.md)
 * [First non-repeating character](first_non_repeating_character.md)
+* [Smallest Window with all characters in given string](smallest_window_with_all_characters_in_given_string.md)
