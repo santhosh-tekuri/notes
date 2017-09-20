@@ -6,4 +6,5 @@
 * [Binary Tree from Inorder and Preorder](binary_tree_from_inorder_and_preorder.md)
 * [Inorder, Preorder => Postorder](inorder_preorder_2_postorder.md)
 * [Preorder, Postorder => Full Binary Tree](preorder_postorder_2_full_binary_tree.md)
-* [Local Minimum in Binary Tree](local_minimum.md)
+* [Local Minimum](local_minimum.md)
+* [Diameter and Center](diameter_and_center.md)
