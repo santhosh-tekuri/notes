@@ -23,7 +23,7 @@ window                           |  max
 ---
 
 * use a double-ended queue to represent current window
-* store dequeu elements in decreasing order, to fetch max easily
+* store dequeue elements in decreasing order, to fetch max easily
 
 consider sliding window `[5, 3, 6]`  
 as we move current window to right, 5 and 3 will never be chosen as max  
