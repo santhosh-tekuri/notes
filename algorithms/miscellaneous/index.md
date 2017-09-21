@@ -12,6 +12,7 @@
 * [Product Array without Division](product_array.md)
 * [Reverse words inline](reverse_words.md)
 * [First non-repeating character](first_non_repeating_character.md)
+* [#Anagrams of word in given text](anagrams_in_text.md)
 * [Smallest Window with all characters in given string](smallest_window_with_all_characters_in_given_string.md)
 * [Subarray with given Sum](subarray_with_given_sum.md)
 * [Sliding Window Maximum](sliding_window_maximum.md)
