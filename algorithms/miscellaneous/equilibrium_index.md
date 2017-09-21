@@ -19,10 +19,8 @@ scan array and update left and right sum, until they are equal
 
 ```java
 int equilibriumIndex(int a[]) {
-    int sum = sum(a);
-
     int leftSum = 0;
-    int rightSum = sum;
+    int rightSum = sum(a);
     for(int i=0; i<a.length; i++){
         rightSum -= a[i];
         if(leftSum==rightSum)
