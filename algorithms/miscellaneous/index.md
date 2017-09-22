@@ -6,6 +6,8 @@
 * [Longest non-repeating substring](longest_non_repeating_substring.md)
 * [Is array consecutive?](is_array_consecutive.md)
 * [Is Palindrome Number?](is_palindrome_number.md)
+* [Stable Marriage Problem](stable_marriage_problem.md)
+* [Min Length Unsorted Subarray](min_length_unsorted_subarray.md)
 * [Minimum and Maximum](minimum_maximum.md)
 * [Longest Bitonic Subarray](longest_bitonic_subarray.md)
 * [Majority Element](majority_element.md)
