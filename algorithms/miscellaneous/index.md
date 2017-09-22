@@ -3,6 +3,7 @@
 * [Move Zeroes to end of array](move_zeros_to_end_of_array.md)
 * [Dutch National Flag](dutch_national_flag.md)
 * [Run-Length Encoding](run_length_encoding.md)
+* [Find in Step Array](find_in_step_array.md)
 * [Longest non-repeating substring](longest_non_repeating_substring.md)
 * [Is array consecutive?](is_array_consecutive.md)
 * [Is Palindrome Number?](is_palindrome_number.md)
