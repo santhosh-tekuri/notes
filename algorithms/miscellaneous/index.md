@@ -20,4 +20,5 @@
 * [Smallest Window with all characters in given string](smallest_window_with_all_characters_in_given_string.md)
 * [Subarray with given Sum](subarray_with_given_sum.md)
 * [Sliding Window Maximum](sliding_window_maximum.md)
+* [Subset where every pair has sum >= k](subset_where_every_pair_has_sum_greater_k.md)
 * [Apply Permutation](apply_permutation.md)
