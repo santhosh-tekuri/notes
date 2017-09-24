@@ -4,6 +4,7 @@
 * [Dutch National Flag](dutch_national_flag.md)
 * [Run-Length Encoding](run_length_encoding.md)
 * [Find in Step Array](find_in_step_array.md)
+* [Modify Boolean Matrix](modify_boolean_matrix.md)
 * [Longest non-repeating substring](longest_non_repeating_substring.md)
 * [Is array consecutive?](is_array_consecutive.md)
 * [Is Palindrome Number?](is_palindrome_number.md)
