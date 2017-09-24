@@ -1,5 +1,13 @@
 # Longest non-repeating substring
 
+Given a string, find longest substring without repeating characters.
+
+```bash
+"ABDEFGABEF" => "BDEFGA" and "DEFGAB", with length 6
+"BBBB" => "B"
+"GEEKSFORGEEKS" => "EKSFORG" and "KSFORGE"
+```
+
 ```java
 // returns first and last index
 int[] longestSubstringWithoutRepeating(char a[]){
