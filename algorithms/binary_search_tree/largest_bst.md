@@ -18,9 +18,9 @@ if left are right subtrees of a node `n` are BST, then node `n` is BST, if follo
 * all nodes in right subtree are `>=n.data`
     * i.e `smallest(n.right)>=n.data`
 
-to handle empty subtrees smoothly, we say in empty tree
-* largest(null) = -∞
-* smallest(null) = +∞
+to handle empty subtrees smoothly, for empty tree consider:
+* largest = -∞
+* smallest = +∞
 
 ---
 
