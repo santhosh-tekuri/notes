@@ -2,3 +2,4 @@
 
 * [Searching](searching.md)
 * [Is BST ?](is_bst.md)
+* [Least Common Ancestor](lca.md)
