@@ -58,6 +58,58 @@ boolean isSearchSequence(int a[]) {
 
 ---
 
+## Is Strand ?
+
+<http://www.geeksforgeeks.org/check-if-each-internal-node-of-a-bst-has-exactly-one-child/>
+
+Given Preorder of a BST, check whether each internal node has exactly only one child. Assume that the BST contains unique entries.
+
+```bash
+pre = {20, 10, 11, 13, 12}
+
+   20
+  /
+10
+  \
+   11
+     \
+      13
+     /
+   12
+```
+
+we can actually use `isSearchSequence()` to solve this.
+
+because the input says that, it is valid preorder (i.e there exists a BST with that preorder)
+we can implement it differently: **take advantage that preorder visits left subtree before right subtree**
+
+take `$a[i], a[i+1], \dots, a[last]$`.
+
+* if `a[i]` has two children:
+    * `a[i+1]` must be in left subtree and `a[last]` must be in right subtree
+    * i.e `a[i+1] < a[i] < a[last]`
+* if `a[i]` has single child:
+    * if `a[i]` has just left child, both `a[i+1]` and `a[last]` must be `<a[i]`
+    * if `a[i]` has just right child, both `a[i+1]` and `a[last]` must be `>a[i]`
+
+```java
+boolean hasOnlyOneChild(int pre[]) {
+    for(int i=0; i<pre.length-1; i++){
+        int nextDiff = pre[i]-pre[i+1];
+        int lastDiff = pre[i]-pre[pre.length-1];
+        if(nextDiff*lastDiff<0)
+            return false
+    }
+    return true;
+}
+```
+
+**NOTE:** above algorithm returns true for preorder: `911, 240, 912, 245`  
+but no BST exists with the above preorder.
+
+
+---
+
 ## Closest to `k`
 
 Find a node in binary search tree whose value is closest to given value `k`?
