@@ -112,13 +112,14 @@ Given n integers in the range `0` to `k`, describe an algorithm that preprocesse
 and then answers any query about how many of the `n` integers fall into a range `[a..b]` in `$O(1)$` time ?
 Your algorithm should use `$\theta(n + k)$` preprocessing time.
 
-The algorithm uses up to second for loop of counting sort as *preprocessing step*.
+The algorithm uses up to second for loop of counting sort as *preprocessing step*. After preprocessing
+`count[i]` contains #elements `<=i`
 
 ```java
 int CountInRange(int a, int b) {
     if(a==0)
-        return c[b];
+        return count[b];
     else
-        return c[b] - c[a-1];
+        return count[b] - count[a-1];
 }
 ```
