@@ -64,6 +64,13 @@ boolean nextPermutation(int a[]) {
 }
 ```
 
+## Similar Problem
+
+<http://www.spoj.com/problems/JNEXT/>
+
+Given an array of digits which is forming a number currently (will be called as given number).
+Find the just next greater number which can be formed using digits of given number.
+
 ---
 
 ## Previous Permutation ?
