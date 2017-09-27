@@ -15,6 +15,7 @@ void reverseWords(char s[]) {
         reverse(s, i, j);
         i = j+2;
     }
+    reverse(s, 0, s.length-1);
 }
 
 void reverse(char s[], int begin, int end) {
