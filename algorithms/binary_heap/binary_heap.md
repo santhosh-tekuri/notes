@@ -2,12 +2,11 @@
 
 Binary Heap is a binary tree with two additional constraints
 
-* shape property
+**1. shape property**  
+the tree nearly complete binary tree. *i.e all levels are completely filled except possibly the lowest, which is filled from left up to a point*
 
-  the tree nearly complete binary tree. *i.e all levels are completely filled except possibly the lowest, which is filled from left up to a point*
-* heap property
-
-  the nodes are either `>=` *(max-heap)* or `<=` *(min-heap)* each of its children
+**2. heap property**  
+the nodes are either `>=` *(max-heap)* or `<=` *(min-heap)* each of its children
 
 Heaps are commonly implemented using arrays with `A[0]` as root
 
