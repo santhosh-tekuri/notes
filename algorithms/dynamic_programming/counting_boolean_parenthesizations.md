@@ -63,7 +63,7 @@ int countParenthesizations(boolean opd[], char opr[]) {
         for(int j=0; j<n; j++) {
             if(i==j) {
                 t[i][j] = opd[i] ? 1 : 0;
-                f[i][j] = opd[i] ? 0 : 0;
+                f[i][j] = opd[i] ? 0 : 1;
             } else {
                 for(int k=i; k<=j; k++) {
                     switch(opr[i]) {
