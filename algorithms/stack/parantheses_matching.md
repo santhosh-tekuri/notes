@@ -6,21 +6,21 @@
 A+B(    - nested incorrectly
 ```
 
-### If expression contains only one type of parantheses
+### If expression contains only one type of paranthesis
 
 * scan expression from left to right:
-    * when left parentheses encountered increment `depth`
-    * when right parentheses encountered decrement `depth`
+    * when left parenthesis encountered increment `depth`
+    * when right parenthesis encountered decrement `depth`
         * if `depth<0`, it is not balanced.
 * at end of expression if `depth!=0`, it is not balanced.
 
 ```java
-boolean isNestedCorrectly(String expr){
+boolean isNestedCorrectly(String expr) {
     int depth = 0;
-    for(char ch: expr){
-        if(isLeftParentheses(ch))
+    for(char ch: expr) {
+        if(isLeftParenthesis(ch))
             depth++;
-        else if(isRightParentheses(ch)){
+        else if(isRightParenthesis(ch)) {
             depth--;
             if(depth<0)
                 return false;
@@ -30,24 +30,24 @@ boolean isNestedCorrectly(String expr){
 }
 ```
 
-### If expression contain more than one type of parentheses
+### If expression contain more than one type of parenthesis
 
 * scan expression from left to right:
-    * when left parentheses encountered, push into stack.
-    * when right parentheses encountered, pop from stack and check that the parentheses match.
+    * when left parenthesis encountered, push into stack.
+    * when right parenthesis encountered, pop from stack and check that the parenthesis match.
 * at end of expression stack should be empty.
 
 ```java
-boolean isNestedCorrectly(String expr){
+boolean isNestedCorrectly(String expr) {
     Stack stack = new Stack();
 
-    for(char ch: expr){
-        if(isLeftParentheses(ch))
+    for(char ch: expr) {
+        if(isLeftParenthesis(ch))
             stack.push(ch);
-        if(isRightParentheses(ch)){
+        if(isRightParenthesis(ch)) {
             if(stack.isEmpty())
                 return false;
-            else if(getRightParentheses(stack.pop())!=ch)
+            else if(getRightParenthesis(stack.pop())!=ch)
                 return false;
         }
     }
