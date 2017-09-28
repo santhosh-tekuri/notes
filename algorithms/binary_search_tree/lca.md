@@ -16,8 +16,8 @@ Note that we allow a node to be descendant of it self.
 ---
 
 * recursively traverse BST
-    * if node's value is greater than `n1` and `n2`, LCA lies in left side of node
-    * if node's value is less than `n1` and `n2`, LCA lies in right side of node
+    * if node's value is greater than `n1` and `n2`, LCA lies in left-subtree of node
+    * if node's value is less than `n1` and `n2`, LCA lies in right-subtree of node
     * otherwise current node is LCA
 
 
@@ -35,7 +35,7 @@ int lca(Node n, int n1, int n2) {
 }
 ```
 
-**NOTE:** we are assuming that n1 and n2 indeed exist in BST
+**NOTE:** we are assuming that `n1` and `n2` indeed exist in BST
 
 ---
 
