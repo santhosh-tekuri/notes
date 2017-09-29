@@ -4,36 +4,43 @@ Given linked list where each node has two pointers next and arbit, where arbit c
 
 ![list_arbit.jpeg](files/list_arbit.jpeg)
 
----
-
-**Step 1:**
-
-insert copy of node1 between node1 and node2  
-insert copy of node2 between node2 and node3  
-and so on
-
-**Step 2:**
-
-copy arbit pointers
-
 ```java
-original = head;
-while(original!=null){
-    orignal.next.arbit = original.arbit.next;
-    original = original.next;
-}
-```
+Node copy(Node head) {
+    if(head==null)
+        return null;
 
-**Step3:**
+    // insert copy of node1 between node1 and node2  
+    // insert copy of node2 between node2 and node3  
+    // and so on
+    Node cur = head;
+    do {
+        Node copy = new Node(cur.data);
+        copy.next = cur.next;
+        cur.next = copy;
+        cur = cur.next.next;
+    } while(cur!=null)
 
-restore original and cloned linked lists
+    // copy arbit pointers
+    cur = head;
+    do {
+        if(cur.arbit!=null)
+            cur.next.arbit = cur.arbit.next;
+        cur = cur.next.next;
+    } while(cur!=null)
 
-```java
-original = head;
-copy = head.next;
-while(original!=null){
-    original.next = original.next.next;
-    copy.next = copy.next.next;
+    // restore original and cloned linked lists
+    final Node clone = head.next;
+    cur = head;
+    Node copy = clone;
+    while(true) {
+        cur.next = copy.next;
+        cur = cur.next;
+        if(cur==null)
+            break;
+        copy.next = cur.next;
+    }
+
+    return clone;
 }
 ```
 
