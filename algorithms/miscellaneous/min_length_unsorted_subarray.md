@@ -1,6 +1,6 @@
 # Min Length Unsorted Subarray
 
-Given unsorted array `a`, find minimum length subarray such that sorting that subarray makes the whole array sorted
+Given unsorted array `a[]`, find minimum length subarray such that sorting that subarray makes the whole array sorted
 
 `$\{10, 12, 20, \color{red}{30, 25, 40, 32, 31, 35}, 50, 60\}$`
 
