@@ -2,12 +2,13 @@
 
 Given unsorted array `a`, find minimum length subarray such that sorting that subarray makes the whole array sorted
 
-{10, 12, 20, **30, 25, 40, 32, 31, 35**, 50, 60}  
-{0, 1, **15, 25, 6, 7**, 30, 40, 50}
+`$\{10, 12, 20, \color{red}{30, 25, 40, 32, 31, 35}, 50, 60\}$`
+
+`$\{0, 1, \color{red}{15, 25, 6, 7}, 30, 40, 50\}$`
 
 ---
 
-**step1: find the candidate of unsorted subarray**
+### step1: find the candidate of unsorted subarray
 
 `s` = smallest index such that `a[s]>a[s+1]`  
 note that no such `s` exists if `a` is already sorted
@@ -20,7 +21,7 @@ note that `s<e` always holds
   {10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60}
 ```
 
-**step2: grow it to find answer if necessary**
+### step2: grow it to find answer if necessary
 
 min = min in `a[s...e]` // 25  
 max = max in `a[s...e]` // 40
@@ -56,7 +57,9 @@ int[] minLengthUnsoredSubarray(int a[]) {
 }
 ```
 
-running-time: `$O(n)$`
+Running Time: `$O(n)$`
+
+---
 
 ### References
 
