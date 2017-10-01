@@ -26,11 +26,15 @@ String toPostfix(String prefix) {
 }
 ```
 
-**What about Postfix to Prefix ?**
+---
+
+## Postfix to Prefix
 
 same algorithm can be used, but scan input from left to right
 
-**TIP:** always scan in direction of operands to operator
+:bulb: always scan in direction of operands to operator
+
+---
 
 ### References
 
