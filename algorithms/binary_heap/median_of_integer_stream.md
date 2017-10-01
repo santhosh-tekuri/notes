@@ -1,21 +1,24 @@
 # Median of Integer Stream
 
-**median** is the middle element in an odd length sorted array, and in case of even length it’s the average of the middle elements.
+*Median* is the middle element in an odd length sorted array, and in case of even length it’s the average of the middle elements.
 
 Given a stream of unsorted integers, find the median element in sorted order at any given time ?
 
-## Logic
+---
 
 use 2 heaps simultaneously, a max-heap and a min-heap with following invariants
 
-**order invariant:**
+### order invariant:
 * max-heap contains the smallest half of the numbers and min-heap contains the largest half
 * so the numbers in max-heap are always less than or equal to the numbers in min-heap
 
-**size invariant:**
-* #elements in max-heap is either equal to or 1 more than #elements in the min-heap
-* so if we received `2N` elements (even) up to now, max-heap and min-heap will both contain `N` elements.
-* if we have received `2N+1` elements (odd), max-heap will contain `N+1` and min-heap `N`
+### size invariant:
+* #elements in max-heap is either equal to or `1` more than #elements in the min-heap
+* so if we received `2N` elements (even) up to now:
+    * max-heap and min-heap will both contain `N` elements.
+* if we have received `2N+1` elements (odd):
+    * max-heap will contain `N+1` elements
+    * min-heap will contain `N` elements
 
 ```java
 class IntStream {
@@ -56,6 +59,8 @@ class IntStream {
 	}
 }
 ```
+
+---
 
 ### References
 
