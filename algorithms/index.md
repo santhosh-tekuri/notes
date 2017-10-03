@@ -10,4 +10,5 @@
 * [Bit Magic](bit_magic/index.md)
 * [Permutations & Combinations](permutations_combinations/index.md)
 * [Dynamic Programming](dynamic_programming/index.md)
+* [Graphs](graphs/index.md)
 * [Miscellaneous](miscellaneous/index.md)
