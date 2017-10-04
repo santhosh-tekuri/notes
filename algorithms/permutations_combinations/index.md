@@ -1,4 +1,4 @@
-# Permutations & Combinations
+# [Permutations & Combinations](permutations_combinations.md)
 
 * [Print Permutations](print_permutations.md)
 * [Next Permutation](next_permutation.md)
