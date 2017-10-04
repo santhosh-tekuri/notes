@@ -32,7 +32,7 @@ let `$Z = z_1, z_2, \dots, z_k$` be any LCS of `$X$` and `$Y$`
 let `$c[i,j]$` is length of LCS of `$X_i$` and `$Y_j$`
 
 `$c[i,j]=\begin{cases}
-1 & \text{ if } i=0 \;or\;  j=0\\ 
+0 & \text{ if } i=0 \;or\;  j=0\\ 
 c[i-1,j-1]+1 & \text{ if } i,j>0 \;and\;x_i=y_j \\
 max(c[i,j-1]\;,\;c[i-1,j]) & \text{ if } i,j>0 \;and\;x_i\neq y_j
 \end{cases}$`
