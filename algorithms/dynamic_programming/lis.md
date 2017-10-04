@@ -67,7 +67,7 @@ int LIS(int x[]) {
     for(int i=x.length-1; i>=0; i--) {
         L[i] = 0;
         b[i] = -1;
-        for(int k=i+1; k<L.length; k++) {
+        for(int k=i+1; k<x.length; k++) {
             if(x[k]>x[i] && L[k]>L[i]){
                 L[i] = L[k];
                 b[i] = k;
@@ -136,3 +136,77 @@ Output:
 Solution:
 * sort people by heights. if heights are same sort them by weight
 * answer = Longest weight increasing subsequence
+
+---
+
+## Longest Bitonic Subsequence
+
+<http://www.geeksforgeeks.org/dynamic-programming-set-15-longest-bitonic-subsequence/>
+
+A sequence is called bitonic, if it is first increasing and then decreasing  
+A sequence in increasing order is bitonic with decreasing part as empty  
+A sequence in decreasing order is bitonic with increasing part as empty
+
+### Examples:
+`$
+[\color{red}{1}, 11, \color{red}{2, 10, 4}, 5, \color{red}{2, 1}] \\
+[\color{red}{12, 11}, 40, \color{red}{5, 3, 1}] \\
+[\color{red}{80, 60, 30}, 40, \color{red}{20, 10}]
+$`
+
+Let:
+* `lis[i]` is longest increasing subsequence ending at position `i`  
+* `lds[i]` is longest decreasing subsequence starting at position `i`
+
+then length of longest bitonic subsequence is: `max(lis[k]+lds[k]-1)` where `k` is from `1` to `n`
+
+```java
+int LBS(int x[]) {
+    int lis[x.length], lisB[x.length];
+    lis[0] = 1;
+    lisB[0] = -1;
+    for(int i=0; i<x.length; i++){
+        lis[i] = 0;
+        lisB[i] = -1;
+        for(int k=0; k<i; k++){
+            if(x[k]<x[i] && lis[k]>lis[i]){
+                lis[i] = lis[k];
+                lisB[i] = k;
+            }
+        }
+        lis[i]++;
+    }
+
+    int lds[x.length], ldsB[x.length];
+    for(int i=x.length-1; i>=0; i--){
+        lds[i] = 0;
+        ldsB[i] = -1;
+        for(int k=i+1; k>x.length; k++){
+            if(x[k]<x[i] && lds[k]>lds[i]){
+                lds[i] = lds[k];
+                ldsB[i] = k;
+            }
+        }
+        lds[i]++;
+    }
+
+    int maxIndex = 0;
+    for(int k=1; k<x.length; k++){
+        if(lis[k]+lds[k]>lis[maxIndex]+lds[maxIndex])
+            maxIndex = k;
+    }
+
+    printLBS(x, lisB, ldsB, maxIndex);
+    return lis[maxIndex]+lds[maxIndex]-1;
+}
+
+void printLBS(int x[], int lisB[], int ldsB[], int i){
+    printLIS(x, lisB, i);
+
+    i = ldsB[i];
+    while(i!=-1){
+        print(x[i]);
+        i = ldsB[i];
+    }
+}
+```
