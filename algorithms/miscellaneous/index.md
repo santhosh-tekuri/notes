@@ -25,3 +25,4 @@
 * [Subset where every pair has sum >= k](subset_where_every_pair_has_sum_greater_k.md)
 * [Distance Maximizing increasing Pair](distance_maximizing_increasing_pair.md)
 * [Regular Expression Matching](regular_expression_matching.md)
+* [Longest ZigZag Subsequence](lzs.md)

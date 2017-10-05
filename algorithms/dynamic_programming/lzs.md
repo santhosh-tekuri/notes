@@ -68,6 +68,8 @@ int LZS(int x[]) {
 
 Runnting Time: `$O(n^2)$`
 
+:bulb: this problem can be solved in [linear time](../miscellaneous/lzs.md)
+
 ---
 
 ### References
