@@ -5,3 +5,4 @@
 * [Lucky Numbers](lucky_numbers.md)
 * [Longest Common Subsequence](lcs.md)
 * [Longest Increasing Subsequence](lis.md)
+* [Longest ZigZag Subsequence](lzs.md)
