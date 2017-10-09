@@ -7,6 +7,7 @@
 * [Modify Boolean Matrix](modify_boolean_matrix.md)
 * [Longest non-repeating substring](longest_non_repeating_substring.md)
 * [Is array consecutive?](is_array_consecutive.md)
+* [Most Repeating Number](most_repeating_number.md)
 * [Is Palindrome Number?](is_palindrome_number.md)
 * [Stable Marriage Problem](stable_marriage_problem.md)
 * [Min Length Unsorted Subarray](min_length_unsorted_subarray.md)
