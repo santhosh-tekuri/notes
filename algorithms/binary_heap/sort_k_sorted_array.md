@@ -5,8 +5,8 @@ i.e `$i^{th}$` element in sorted array, is in `$a[i-k...i+k]$`
 
 ## Option 1:
 
-we can use modified Insertion Sort, where the inner loop runs at most k times.  
-then running-time: `$O(nk)$`
+we can use [Insertion Sort](../sorting/insertion_sort.md). The inner while loop runs at most k times.  
+so running-time: `$O(nk)$`
 
 ## Option 2:
 
@@ -35,7 +35,7 @@ void sort(int a[], int k){
 so running-time: `$O(n\log_2 k)$`  
 auxiliary-space: `$O(k)$`
 
-**another way to frame same problem:**
+### another way to frame same problem
 
 Consider a situation where your data is almost sortedr. for example, 
 you are receiving timestamped stock quotes and earlier quotes may arrive 
