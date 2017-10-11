@@ -1,4 +1,4 @@
-# Sorted Numbers -> Height-Balanced BST
+# Sorted Numbers → Height-Balanced BST
 
 ## Given Sorted Array
 
