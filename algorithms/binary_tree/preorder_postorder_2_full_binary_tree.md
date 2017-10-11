@@ -1,4 +1,4 @@
-# Preorder, Postorder => Full Binary Tree
+# Preorder, Postorder → Full Binary Tree
 
 A *Full Binary Tree* is a binary tree where every node has either 0 or 2 children.
 

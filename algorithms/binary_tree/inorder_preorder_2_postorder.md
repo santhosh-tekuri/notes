@@ -1,4 +1,4 @@
-# Inorder, Preorder => Postorder
+# Inorder, Preorder → Postorder
 
 ```bash
 Inorder = {4, 2, 5, 1, 3, 6}
