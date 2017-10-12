@@ -20,11 +20,15 @@ Node findIntersection(Node node1, Node node2) {
 
     int diff = Math.abs(len1-len2);
     if(len1>len2) {
-        while(diff>0)
+        while(diff>0) {
             node1 = node1.next;
+            diff--;
+        }
     } else {
-        while(diff>0)
+        while(diff>0) {
             node2 = node2.next;
+            diff--;
+        }
     }
 
     while(node1!=node2) {
@@ -43,7 +47,3 @@ int length(Node node) {
     return len;
 }
 ```
-
-### References
-
-* <http://www.tekpool.com/node/2699>
