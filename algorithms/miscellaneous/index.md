@@ -27,3 +27,4 @@
 * [Distance Maximizing increasing Pair](distance_maximizing_increasing_pair.md)
 * [Regular Expression Matching](regular_expression_matching.md)
 * [Longest ZigZag Subsequence](lzs.md)
+* [Sorted Subsequence of size 3](sorted_subsequence_size3.md)
