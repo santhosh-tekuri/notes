@@ -7,3 +7,4 @@
 * [Longest Increasing Subsequence](lis.md)
 * [Longest ZigZag Subsequence](lzs.md)
 * [Wildcard Pattern Matching](wildcard_pattern_matching.md)
+* [Regex Pattern Matching](regex_pattern_matching.md)
