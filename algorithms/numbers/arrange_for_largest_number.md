@@ -5,10 +5,10 @@
 Given array of non-negative numbers, arrange them to form largest possible number.
 
 ```bash
-[3, 1, 4, 2] => [4, 3, 2, 1] => 43211  
-[54, 546, 548, 60] => [60, 548, 546, 54] => 6054854654
-[1, 34, 3, 98, 9, 76, 45, 4] => [9, 98, 76, 45, 4, 34, 3, 1] => 998764543431
-[123, 124, 56, 90] => [90, 56, 124, 123] => 9056124123
+[3, 1, 4, 2] ➜ [4, 3, 2, 1] ➜ 43211  
+[54, 546, 548, 60] ➜ [60, 548, 546, 54] ➜ 6054854654
+[1, 34, 3, 98, 9, 76, 45, 4] ➜ [9, 98, 76, 45, 4, 34, 3, 1] ➜ 998764543431
+[123, 124, 56, 90] ➜ [90, 56, 124, 123] ➜ 9056124123
 ```
 
 ---
@@ -19,12 +19,12 @@ Arranging numbers in decreasing order:
 * it works if all numbers have same number of digits
 
 Sort numbers by their first digit:
-* `[12, 3]` => `[3, 12]` => `312`
+* `[12, 3] ➜ [3, 12] ➜ 312`
 
 What if first digits are same:
 * example: `[126, 14]`
 * sort them by second digit
-* `[126, 14]` => `[14, 126]` => `14126`
+* `[126, 14] ➜ [14, 126] ➜ 14126`
 
 What if all digits are same:
 * example: `[11, 112]` or `[33, 332]`
