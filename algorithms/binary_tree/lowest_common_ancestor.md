@@ -62,7 +62,7 @@ Node LCA(Node n, Node p, Node q) {
 
     Node l = LCA(n.left, p, q);
     Node r = LCA(n.right, q, q);
-    if(l!=null && r!=nul)
+    if(l!=null && r!=null)
         return n;
     return l!=null? l : r; // return non-null
 }
