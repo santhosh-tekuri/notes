@@ -230,9 +230,24 @@ Running Time: `$O(m\log_2 n)$`
                 ci=cm+1; cj--; // right half
             }
             continue;
-       }
+        }
 
-        // TODO
+        // check bottom neighbor
+        if(mi+1<=rj && a[mi+1][mj]>a[mi][mj] {
+            // TODO
+        }
+
+        // check left neighbor
+        if(mj-1>=ci && a[mi][mj-1]>a[mi][mj]) {
+            // TODO
+        }
+
+        // check right neighbor
+        if(mj+1<=cj && a[mi][mj+1]>a[mi][mj]) {
+            // TODO
+        }
+
+        return (mi, mj);
     }
 }
 ```
