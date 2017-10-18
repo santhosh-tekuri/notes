@@ -23,8 +23,9 @@ in worst case, each element `a[i]` is compared with all elements before it. i.e,
 so #comparisons = `$O(n^2)$`  
 similarly #swaps = `$O(n^2)$`
 
-### Tip
+---
+
+## Binary Insertion Sort
 
 we can decrease #comparisons by using binary search to find correct slot for `$a[i]$` in sorted sequence `$a[0...i-1]$`  
 this reduces #comparisons to `$O(n\log_2 n)$`, but #swaps remains same  
-this is called *binary insertion sort*
