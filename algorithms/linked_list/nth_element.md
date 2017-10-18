@@ -1,4 +1,4 @@
-# Find `$n^{th}$` element from end of linked list
+# Find n<sup>th</sup> element from end of linked list
 
 `$5 \to 6 \to \color{red}7 \to 1 \to 2$`
 
@@ -9,7 +9,7 @@
 * take two pointers `p` and `q` both pointing to head
 * move `q` by `n` steps
 * move both `p` and `q` by one step, until `q==null`
-* `p` will be `$n^{th}$` element from end
+* `p` will be `n`<sup>th</sup> element from end
 
 ```java
 Node nthFromEnd(Node head, int n) {
