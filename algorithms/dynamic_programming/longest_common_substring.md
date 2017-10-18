@@ -22,7 +22,7 @@ int longestSubstring(char x[], char y[]) {
     int L[x.length+1][y.length+1]
     for(int i=1; i<=x.length; i++) {
         for(int j=1; j<=y.length; j++) {
-            if(x[i]==y[j]) {
+            if(x[i-1]==y[j-1]) {
                 L[i][j] = L[i-1][j-1]+1;
                 ans = max(ans, L[i][j]);
             }
