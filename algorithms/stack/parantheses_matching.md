@@ -30,7 +30,7 @@ boolean isNestedCorrectly(String expr) {
 }
 ```
 
-### If expression contain more than one type of parenthesis
+### If expression contains more than one type of parenthesis
 
 * scan expression from left to right:
     * when left parenthesis encountered, push into stack.
