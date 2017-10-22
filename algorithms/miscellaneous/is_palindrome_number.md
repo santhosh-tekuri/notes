@@ -26,7 +26,7 @@ int reverse(int n) {
 
 ## Approach 2
 
-chop of one digit from both ends until they are same.
+chop off one digit from both ends until they are same.
 if there are no more digits left then it is palindrome;
 
 ```java
