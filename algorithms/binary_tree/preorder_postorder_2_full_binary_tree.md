@@ -35,24 +35,24 @@ Node constructTree(int pre[], int post[]) {
     return constructTree(pre, post, 0, 0, pre.length);
 }
 
-Node constructTree(int pre[], int post[], int postStart, int postEnd, int preIndex) {
-    if(postStart>postIndex)
+Node constructTree(int pre[], int post[], int preStart, int postStart, int len) {
+    if(len==0)
         return null;
-    Node node = new Node(pre[preIndex]);
-    if(postStart!=postEnd) {
-        int index = search(post, int value, postStart, postEnd);
-        node.left = constructTree(pre, postOrder, postStart, index, preIndex+1);
-        node.right = constructTree(preOrder, inOrder, index+1, postEnd-1, preIndex+(index-postStart)+1);
+    Node node = new Node(pre[preStart]);
+    if(len>1) {
+        int index = search(post, pre[preStart+1], postStart);
+        int lcount = index-postStart+1;
+        int rcount = len-lcount-1;
+        node.left = constructTree(pre, post, preStart+1, postStart, lcount);
+        node.right = constructTree(pre, post, preStart+1+lcount, postStart+lcount, rcount);
     }
     return node;
 }
 
-int search(int array[], int value, int start, int end) {
-    for(int i=start; i<=end; i++) {
-        if(array[i]==value)
-            return i;
-    }
-    return -1;
+int search(int array[], int value, int from) {
+    while(a[from]!=value)
+        from++;
+    return from;
 }
 ```
 
