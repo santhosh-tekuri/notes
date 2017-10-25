@@ -10,4 +10,6 @@
 * [Distinct Subsequences](distinct_subsequences.md)
 * [Wildcard Pattern Matching](wildcard_pattern_matching.md)
 * [Regex Pattern Matching](regex_pattern_matching.md)
+* [Fair Workload](fair_workload.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
+
