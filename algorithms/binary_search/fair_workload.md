@@ -1,5 +1,8 @@
 # Fair Wordload
 
+<https://community.topcoder.com/stat?c=problem_statement&pm=1901&rd=4650>  
+<https://articles.leetcode.com/the-painters-partition-problem-part-ii/>
+
 We have to paint `n` boards of length `$A_1, A_2,\dots ,A_n$`. There are `k` painters
 available and you are also given how much time a painter takes to paint `1` unit of board.
 You have to get this job done as soon as possible under the constraints that 
@@ -112,14 +115,23 @@ check another [solution](../dynamic_programming/fair_workload.md) using Dynamic 
 
 ---
 
-### Similar Problem
+### Allocate minimum #pages
 
-Dive an array of non-negative integers `a[]` into `k` or fewer partitions,
-such that the maximum sum over all the partitions is minimized
+<http://www.cdn.geeksforgeeks.org/allocate-minimum-number-pages/>
+
+Given number of pages in `n` different books and `m` students.
+The books are arranged in ascending order of number of pages. 
+Every student is assigned to read some consecutive books. The task 
+is to assign books in such a way that the maximum number of pages 
+assigned to a student is minimum.
+
+```bash
+m=2, 12 34 67 | 90 ➜ answer=113
+```
 
 ---
 
-### References
+### Problem Essence
 
-* <https://community.topcoder.com/stat?c=problem_statement&pm=1901&rd=4650>
-* <https://articles.leetcode.com/the-painters-partition-problem-part-ii/>
+Divide an array of non-negative integers `a[]` into `k` or fewer partitions,
+such that the maximum sum over all the partitions is minimized
