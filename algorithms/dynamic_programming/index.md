@@ -2,6 +2,7 @@
 
 * [Matrix-chain multiplication](matrix_chain_multiplication.md)
 * [Counting Boolean Parenthesizations](counting_boolean_parenthesizations.md)
+* [Mixtures](mixtures.md)
 * [Lucky Numbers](lucky_numbers.md)
 * [Longest Common Subsequence](lcs.md)
 * [Longest Common Substring](longest_common_substring.md)
