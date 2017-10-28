@@ -14,5 +14,6 @@
 * [Fair Workload](fair_workload.md)
 * [Counting](counting.md)
 * [Cutting Rod](cutting_rod.md)
+* [Cutting Sticks](cutting_sticks.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
