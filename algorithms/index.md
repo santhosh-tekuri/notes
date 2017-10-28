@@ -11,6 +11,7 @@
 * [Numbers](numbers/index.md)
 * [Bit Magic](bit_magic/index.md)
 * [Permutations & Combinations](permutations_combinations/index.md)
+* [Greedy Algorithms](greedy_algorithms/index.md)
 * [Dynamic Programming](dynamic_programming/index.md)
 * [Graphs](graphs/index.md)
 * [Miscellaneous](miscellaneous/index.md)
