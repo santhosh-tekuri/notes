@@ -28,3 +28,4 @@
 * [Regular Expression Matching](regular_expression_matching.md)
 * [Longest ZigZag Subsequence](lzs.md)
 * [Sorted Subsequence of size 3](sorted_subsequence_size3.md)
+* [Merge Overlapping Intervals](merge_overlapping_intervals.md)
