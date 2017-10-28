@@ -57,7 +57,7 @@ we can actually merge last two `for` loops to avoid `greater[]`:
 
 ```java
 int maxIndex = a.length-1;
-for(int i=a.length-1; i>=0; i--) {
+for(int i=a.length-2; i>=0; i--) {
     if(a[i]>=a[maxIndex])
         maxIndex = i;
     else if(smaller[i]!=-1)
