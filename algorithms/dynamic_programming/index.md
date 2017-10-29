@@ -17,5 +17,6 @@
 * [Cutting Sticks](cutting_sticks.md)
 * [Maximum Product Cutting](maximum_product_cutting.md)
 * [Avoid Roads](avoid_roads.md)
+* [Coin Change](coin_change.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
