@@ -15,6 +15,7 @@
 * [Counting](counting.md)
 * [Cutting Rod](cutting_rod.md)
 * [Cutting Sticks](cutting_sticks.md)
+* [Maximum Product Cutting](maximum_product_cutting.md)
 * [Avoid Roads](avoid_roads.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
