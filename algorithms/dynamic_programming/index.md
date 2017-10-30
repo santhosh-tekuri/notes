@@ -18,6 +18,7 @@
 * [Maximum Product Cutting](maximum_product_cutting.md)
 * [Avoid Roads](avoid_roads.md)
 * [Coin Change](coin_change.md)
+* [Coin Selection Strategy](coin_selection_strategy.md)
 * [Restaurants Profit](restaurants_profit.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
