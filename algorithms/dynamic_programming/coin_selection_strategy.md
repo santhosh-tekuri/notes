@@ -18,7 +18,7 @@ Determine the maximum possible amount of money we can definitely win if we move 
 
 ---
 
-Why Greedy doesn't work ?
+### Why Greedy doesn't work ?
 
 chose max value coin in each turn
 
