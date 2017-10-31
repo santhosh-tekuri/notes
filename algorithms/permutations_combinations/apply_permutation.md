@@ -84,17 +84,16 @@ without modifying `p` and no additional space:
 
 ```java
 void permute(int a[], int p[]){
-    for(int curIndex=0; curIndex<a.length; curIndex++){
-        int swapIndex = p[curIndex];
-        while(swapIndex!=curIndex)
+    for(int i=0; i<a.length; i++){
+        int swapIndex = p[i];
+        while(swapIndex<i)
             swapIndex = p[swapIndex];
-        if(curIndex!=swapIndex)
-            swap(a, curIndex, swapIndex);
+        a[i] ⬌ a[swapIndex];
     }
 }
 ```
 
-Runnting Time: `$O(n^2)$`
+Runnting Time: `$O(n^{1.3})$`
 
 ---
 
