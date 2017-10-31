@@ -3,3 +3,4 @@
 * [Print Permutations](print_permutations.md)
 * [Next Permutation](next_permutation.md)
 * [Apply Permutation](apply_permutation.md)
+* [Convert Array](convert_array.md)
