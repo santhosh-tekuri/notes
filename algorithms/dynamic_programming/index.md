@@ -1,5 +1,6 @@
 # [Dynamic Programming](dynamic_programming.md)
 
+* [Knapsack Problem](knapsack_problem.md)
 * [Matrix-chain multiplication](matrix_chain_multiplication.md)
 * [Counting Boolean Parenthesizations](counting_boolean_parenthesizations.md)
 * [Mixtures](mixtures.md)
