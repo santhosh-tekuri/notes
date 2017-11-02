@@ -8,6 +8,12 @@ amount of money the piggy bank guaranteed to contain, given:
 * `p[]` = value of coins
 * `w[]` = weight of coins
 
+```bash
+E=10 F=110 p={1, 30} w={1, 50} ➜ 60
+E=10 F=110 p={1, 50} w={1, 30} ➜ 100
+E=1  F=6   p={10, 20} w={3, 4} ➜ -1 (impossible)
+```
+
 ---
 
 :bulb: this is small variation to **knapsack with repetition** where knapsack capacity is `F-E`
@@ -35,7 +41,7 @@ int minAmount(int E, int F, int p[], int w[]) {
                 m[k] = min(m[k], m[k-w[i]]+p[i]);
         }
     }
-    return m[m.length-1];
+    return m[m.length-1] == ∞ ? -1 : m[m.length-1];
 }
 ```
 
