@@ -2,6 +2,7 @@
 
 * [Knapsack Problem](knapsack_problem.md)
 * [Piggy Bank](piggy_bank.md)
+* [Assembly-line Scheduling](assembly_line_scheduling.md)
 * [Matrix-chain multiplication](matrix_chain_multiplication.md)
 * [Counting Boolean Parenthesizations](counting_boolean_parenthesizations.md)
 * [Mixtures](mixtures.md)
