@@ -25,5 +25,6 @@
 * [Restaurants Profit](restaurants_profit.md)
 * [Three-coloring of Binary Trees](three_coloring_of_binary_trees.md)
 * [Max Profit Job Scheduling](max_profit_job_scheduling.md)
+* [Moving on a Checkerboard](moving_on_a_checkerboard.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
