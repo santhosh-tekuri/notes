@@ -24,5 +24,6 @@
 * [Coin Selection Strategy](coin_selection_strategy.md)
 * [Restaurants Profit](restaurants_profit.md)
 * [Three-coloring of Binary Trees](three_coloring_of_binary_trees.md)
+* [Max Profit Job Scheduling](max_profit_job_scheduling.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
