@@ -23,5 +23,6 @@
 * [Coin Change](coin_change.md)
 * [Coin Selection Strategy](coin_selection_strategy.md)
 * [Restaurants Profit](restaurants_profit.md)
+* [Three-coloring of Binary Trees](three_coloring_of_binary_trees.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
