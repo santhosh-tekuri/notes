@@ -32,7 +32,7 @@ let `m[i][t]` is maximum profit achievable from scheduling projects `$a_1, a_2, 
 0 & \text{if $i=0$ or $t=0$} \\
 max( \\
 \;\;\;m[i-1][t], & \text{// $a_i$ is not taken} \\
-\;\;\;m[i-1][t-t_i]+p_i \;\;\; \text{if $t<t_i$} & \text{// $a_i$ is taken, also note that $t_i<=d_i$} \\
+\;\;\;m[i-1][min(t,d_i)-t_i]+p_i \;\;\; \text{if $t_i \leq min(t,d_i)$} & \text{// $a_i$ is taken} \\
 )
 \end{cases}$`
 
@@ -55,12 +55,29 @@ int maxProfit(int t[n], int d[n]) {
                 m[(i,t)] = t<t[0] ? 0 : p[0];
             else {
                 int v = get(i-1, t);
-                if(t<d[i])
-                    v = max(v, get(i-1, t-t[i]);
+                int tnew =  min(t, d[i])-t[i];
+                if(tnew>=0)
+                    v = max(v, get(i-1, tnew);
                 m[(i,t)] = v;
             }
         }
         return m[(i,t)];
+    }
+    
+    int profit = m[(n-1, d[n-1]);
+    printSchedule(t, d, m, n-1, d[n-1]);
+    return profit;
+}
+
+void printSchedule(int t[], int d[], Hashtable m, int i, int t) {
+    if(i>=0) {
+        if(m[(i,t)]==m[(i-1,t))
+            printSchedule(m, i-1, t);
+        else{
+            t = min(t, d[i])-t[i];
+            printSchedule(m, i-1, t);
+            println("schedule job", i, "at", t);
+        }
     }
 }
 ```
@@ -71,3 +88,4 @@ int maxProfit(int t[n], int d[n]) {
 
 * Problem 15-7 from [CLRS Second Edition](https://isbnsearch.org/isbn/0262032937)
 * <https://pdfs.semanticscholar.org/82e2/528e2f906e8812b410699ff390775faeddc4.pdf>
+* <http://www.cs.mun.ca/~kol/courses/2711-f13/dynprog.pdf>

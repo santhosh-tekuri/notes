@@ -27,5 +27,6 @@
 * [Max Profit Job Scheduling](max_profit_job_scheduling.md)
 * [Moving on a Checkerboard](moving_on_a_checkerboard.md)
 * [Colorful Road](colorful_road.md)
+* [Min Jumps to reach End](min_jumps_to_reach_end.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
