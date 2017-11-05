@@ -13,6 +13,7 @@
 * [Longest ZigZag Subsequence](lzs.md)
 * [Longest Arithmetic Progression](lap.md)
 * [Distinct Subsequences](distinct_subsequences.md)
+* [Maximum Sum Subarray](maximum_sum_subarray.md)
 * [Wildcard Pattern Matching](wildcard_pattern_matching.md)
 * [Regex Pattern Matching](regex_pattern_matching.md)
 * [Fair Workload](fair_workload.md)
