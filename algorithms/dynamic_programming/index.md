@@ -11,6 +11,7 @@
 * [Longest Common Substring](longest_common_substring.md)
 * [Longest Increasing Subsequence](lis.md)
 * [Longest ZigZag Subsequence](lzs.md)
+* [Longest Arithmetic Progression](lap.md)
 * [Distinct Subsequences](distinct_subsequences.md)
 * [Wildcard Pattern Matching](wildcard_pattern_matching.md)
 * [Regex Pattern Matching](regex_pattern_matching.md)
