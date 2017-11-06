@@ -1,9 +1,9 @@
 # Parantheses Matching
 
 ```
-(A+B)*C - nested correctly
-)A+B(*C - nested incorrectly
-A+B(    - nested incorrectly
+() - nested correctly
+)( - nested incorrectly
+(  - nested incorrectly
 ```
 
 ### If expression contains only one type of paranthesis
@@ -20,7 +20,7 @@ boolean isNestedCorrectly(String expr) {
     for(char ch: expr) {
         if(isLeftParenthesis(ch))
             depth++;
-        else if(isRightParenthesis(ch)) {
+        else {
             depth--;
             if(depth<0)
                 return false;
@@ -44,7 +44,7 @@ boolean isNestedCorrectly(String expr) {
     for(char ch: expr) {
         if(isLeftParenthesis(ch))
             stack.push(ch);
-        if(isRightParenthesis(ch)) {
+        else {
             if(stack.isEmpty())
                 return false;
             else if(getRightParenthesis(stack.pop())!=ch)
