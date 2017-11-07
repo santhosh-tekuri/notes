@@ -5,6 +5,7 @@
 * [Sort](sort.md)
 * [Decimal to Binary](decimal_to_binary.md)
 * [Parantheses Matching](parantheses_matching.md)
+* [Longest Parantheses Matching](longest_parantheses_matching.md)
 * [Postfix Evaluation](postfix_evaluation.md)
 * [Prefix to Postfix](prefix_to_postfix.md)
 * [Infix to Postfix (Shunting-yard algorithm)](infix_to_postfix.md)
