@@ -30,3 +30,4 @@
 * [Sorted Subsequence of size 3](sorted_subsequence_size3.md)
 * [Arithmetic Progression of size 3](arithmetic_progression_of_size3.md)
 * [Merge Overlapping Intervals](merge_overlapping_intervals.md)
+* [Theme Park](theme_park.md)
