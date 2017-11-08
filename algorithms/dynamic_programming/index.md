@@ -26,6 +26,7 @@
 * [Coin Change](coin_change.md)
 * [Coin Selection Strategy](coin_selection_strategy.md)
 * [Restaurants Profit](restaurants_profit.md)
+* [Largest Independent Set of Binary Tree](largest_independent_set_of_binary_tree.md)
 * [Three-coloring of Binary Trees](three_coloring_of_binary_trees.md)
 * [Max Profit Job Scheduling](max_profit_job_scheduling.md)
 * [Moving on a Checkerboard](moving_on_a_checkerboard.md)
