@@ -18,25 +18,6 @@ Given a binary tree, find size of largest independent set in it ?
 
 ### Why greedy does not work ?
 
-Heaviest-First Greedy Approach:
-
-```bash
-while(some node remains in graph){
-    pick node n with maximum weight
-    remove n and its neighbors
-}
-```
-
-```bash
-2
- \     greedy: {3}
-  3    optimal: {2, 2}
- /
-2
-```
-
-Alternate Greedy Approach:
-
 * S<sub>odd</sub> is set containing nodes at odd level
 * S<sub>even</sub> is set containing nodes at even level
 * answer is largest(S<sub>odd</sub>, S<sub>even</sub>)
