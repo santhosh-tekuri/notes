@@ -115,7 +115,7 @@ Running Time: `$O(n)$`
 
 ### Minimum Sum Subarray
 
-simply invert sign of each element and run above algorithm
+simply invert sign of each element and run above algorithm. do not forget to negate the original answer
 
 ```java
 int minSumSubarray(int x[n]) {
@@ -124,7 +124,7 @@ int minSumSubarray(int x[n]) {
         m = max(m-x[j], -x[j]);
         ans = max(ans, m);
     }
-    return ans;
+    return -ans;
 }
 ```
 
