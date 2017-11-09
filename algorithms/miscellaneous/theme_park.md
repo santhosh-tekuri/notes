@@ -13,11 +13,15 @@ full or not. Once the ride is over, all of its passengers re-queue in the same o
 The roller coaster will run `R` times in a day
 
 Input: 
-* `R` times
-* `k` capacity
-* `g[n]` groups, where `1<=g[i]<=k`
+* `$R$` times
+* `$k$` capacity
+* `$g[n]$` groups, where `$1\leq g[i] \leq k$`
 
-NOTE: input can be very large
+note that, input can be very large:
+* `$1 \leq R \leq 10^8$`
+* `$1 \leq k \leq 10^9$`
+* `$1 \leq n \leq 1000$`
+* `$1 \leq g[i] \leq 10^7$`
 
 ```bash
 R=4 k=6 g={1, 4, 2, 1}
@@ -102,7 +106,7 @@ long findMoney(long R, long k, long g[n]) {
     long people[n];
     int newHead[n];
     for(int head=0; head<n; head++)
-        people[head], newHead[head] = doRide(k, g, head);
+        (people[head], newHead[head]) = doRide(k, g, head);
 
     // main-computation
     long money = 0;
@@ -131,7 +135,7 @@ long people[n];
 int newHead[n];
 for(int head=0; head<n; head++) {
     long space = head==0 ? k : k-(people[head-1]-g[head-1]);
-    int hNext = head=0 ? head : newHead[head-1];
+    int hNext = head==0 ? head : newHead[head-1];
     do {
         if(space-g[hNext]>=0) {
             space -= g[hNext];
@@ -174,7 +178,7 @@ for `R=102`:
 * `101` rounds = `33` cycles + `101-33*3=1` round
 * money earned in per cycle: `6+4+6=16`
 * so total money = money earned in before cycle + (#cycles * money per cycle) + money earning last remaining rounds
-* money = `5 + 33*16 +6 = 539`
+* money = `5 + 33*16 + (6+4) = 543`
 
 ```java
 int findCycleHead(int newHead[n]) {
@@ -196,10 +200,10 @@ int cycleHead = findCycleHead(newHead);
 
 long r = 0;
 long money = 0;
-long head = 0;
+int head = 0;
 
 // ride until cycle reaches
-while(r<R & head!=cycleHead) {
+while(r<R && head!=cycleHead) {
     money += people[head];
     head = newHead[head];
     r++;
@@ -217,12 +221,60 @@ while(r<R) {
 
     head = newHead[head];
     r++;
+    ridesInCycle++;
     if(head==cycleHead)
         break;
 }
 if(r==R)
     return money;
 assert head==cycleHead;
+
+// finish cycles in remaining rounds
+long cycles = (R-r)/ridesInCycle;
+r += cycles*ridesInCycle;
+money += cycles*moneyInCycle;
+
+// finish remaining rides, if any
+while(r<R) {
+    money += people[head];
+    head = newHead[head];
+    r++;
+}
+
+return money;
+```
+
+we can merge all the following into single loop:
+* finding cycle
+* riding until cycle reaches
+* ride one cycle to compute `ridesInCycle` and `moneyInCycle`
+
+```java
+// main-computation
+long r = 0;
+long money = 0;
+int head = 0;
+
+// ride until cycle detected
+boolean visited[n];
+long moneyBeforeRound[n];
+int ridesBeforeRound[n];
+while(r<R && !visited[head]) {
+    visited[head] = true;
+    moneyBeforeRound[(int)r] = money;
+    ridesBeforeRound[head] = (int)r;
+
+    money += people[head];
+    head = newHead[head];
+    r++;
+}
+if(r==R)
+	return money;
+
+int cycleHead = head;
+int ridesBeforeCycle = ridesBeforeRound[cycleHead];
+long ridesInCycle = r - ridesBeforeCycle;
+long moneyInCycle = money - moneyBeforeRound[ridesBeforeCycle];
 
 // finish cycles in remaining rounds
 long cycles = (R-r)/ridesInCycle;
