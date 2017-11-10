@@ -228,6 +228,9 @@ for\color{red}{geeksskeeg}for \\
 \color{red}{abcbabcba}bcba
 $`
 
+Why `LCS(s, reverse(s))` does not work ?  
+`LCS("abxyba", "abyxba")` returns `ab` or `ba`. neither of them are palindromes
+
 compute `p[][]` as in above problem.  
 answer is `max(j-i+1) where p[i][j]=true`
 
