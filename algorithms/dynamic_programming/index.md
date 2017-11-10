@@ -32,6 +32,7 @@
 * [Moving on a Checkerboard](moving_on_a_checkerboard.md)
 * [Colorful Road](colorful_road.md)
 * [Min Jumps to reach End](min_jumps_to_reach_end.md)
+* [Word Break](word_break.md)
 * [Word Wrap](word_wrap.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
