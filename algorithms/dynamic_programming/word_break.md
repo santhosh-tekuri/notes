@@ -159,8 +159,8 @@ boolean[][] preprocess(char s[n]) {
     boolean p[n][n];
     for(int i=0; i<n; i++)
         p[i][i] = true;
-    for(int len=2; len<n; len++) {
-        for(int i=0; i<n-len; i++) {
+    for(int len=2; len<=n; len++) {
+        for(int i=0; i<=n-len; i++) {
             int j = i+len-1;
             p[i][j] = s[i]==s[j];
             if(len>2)
@@ -214,3 +214,81 @@ List listPartitions(char s[n]) {
     return get(n-1);
 }
 ```
+
+---
+
+### Longest Palindromic Substring
+
+<http://www.geeksforgeeks.org/longest-palindrome-substring-set-1/>  
+http://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
+
+`$
+for\color{red}{geeksskeeg}for \\
+\color{red}{abaaba} \\
+\color{red}{abcbabcba}bcba
+$`
+
+compute `p[][]` as in above problem.  
+answer is `max(j-i+1) where p[i][j]=true`
+
+```java
+int[2] lps(char s[n]) {
+    boolean p[n][n];
+    int mi=0, mj=0;
+    for(int i=0; i<n; i++)
+        p[i][j] = true;
+    for(int len=2; len<=n; len++) {
+        for(int i=0; i<=n-len; i++) {
+            int j = i+len-1;
+            p[i][j] = s[i]==s[j];
+            if(len>2)
+                p[i][j] &&= p[i+1][j-1];
+            if(p[i][j] && j-i>mj-mi) {
+                mi = i;
+                mj = j;
+            }
+        }
+    }
+    return new int[]{mi, mj};
+}
+```
+
+Time Complexity: `$O(n^2)$`  
+Space Complexity: `$O(n^2)$`
+
+if you notice carefully, you notice that `p[i][j]` is only used in `p[i-1][j+1]`  
+* i.e. there are no recurring problems. thus we can avoid space
+* base cases to start are:
+    * `p[i][i] for i=0 to n-1`
+        * we are fixing center to `i`, and computing all palindromes of odd length with center `i`
+    * `p[i][i+1] for i=0 to n-2`
+        * we are fixing center to `(i,i+1)`, and computing all palindromes of even length with center `(i,i+1)`
+* notice that, once `p[i][j]` becomes `false`, all subproblems using it also compute to `false`
+
+```java
+int[2] lps(char s[n]) {
+    int mi=0, mj=0;
+    for(int c=0; c<n; c++) {
+        for(int i=c,j=c; i>=0 && j<n && s[i]==s[j]; i--, j++) {
+            if(j-i>mj-mi) {
+                mi = i;
+                mj = j;
+            }
+        }
+        for(int i=c,j=c+1; i>=0 && j<n && s[i]==s[j]; i--, j++) {
+            if(j-i>mj-mi) {
+                mi = i;
+                mj = j;
+            }
+        }
+    }
+    return new int[]{mi, mj};
+}
+```
+
+Time Complexity: `$O(n^2)$`  
+Space Complexity: `$O(1)$`
+
+
+this problem can be solved in linear time using [Manacher's Algorithm](../miscellaneous/longest_palindromic_substring.md)
+             
