@@ -9,6 +9,7 @@
 * [Lucky Numbers](lucky_numbers.md)
 * [Longest Common Subsequence](lcs.md)
 * [Longest Common Substring](longest_common_substring.md)
+* [Longest Palindromic Subsequence](longest_palindromic_subsequence.md)
 * [Longest Increasing Subsequence](lis.md)
 * [Longest ZigZag Subsequence](lzs.md)
 * [Longest Arithmetic Progression](lap.md)
