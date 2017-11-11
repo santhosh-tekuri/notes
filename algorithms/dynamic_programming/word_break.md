@@ -220,12 +220,14 @@ List listPartitions(char s[n]) {
 ### Longest Palindromic Substring
 
 <http://www.geeksforgeeks.org/longest-palindrome-substring-set-1/>  
-http://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
+<http://www.geeksforgeeks.org/longest-palindromic-substring-set-2/>
 
 `$
 for\color{red}{geeksskeeg}for \\
 \color{red}{abaaba} \\
-\color{red}{abcbabcba}bcba
+\color{red}{abcbabcbabcba} \\
+ba\color{red}{anana}s \\
+abr\color{red}{aca}dabra
 $`
 
 Why `LCS(s, reverse(s))` does not work ?  

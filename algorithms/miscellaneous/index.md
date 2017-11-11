@@ -31,3 +31,4 @@
 * [Arithmetic Progression of size 3](arithmetic_progression_of_size3.md)
 * [Merge Overlapping Intervals](merge_overlapping_intervals.md)
 * [Theme Park](theme_park.md)
+* [Longest Palindromic Substring](longest_palindromic_substring.md)
