@@ -57,8 +57,8 @@ mirror of index `i`:
 ### Largest Palindrome with Center
 
 ```bash
-      ci              c               cj
-      [---------------|---------------]
+    ci                c                 cj
+    [-----------------|-----------------]
 # c # a # x # b # a # b # a # b # x # a # b # a #
 
 ```
@@ -67,11 +67,11 @@ let us denote largest palindrome with center `c` as p<sub>c</sub>
 its left boundary as `ci`, right boundary as `cj`
 
 ```bash
-      ci              c               cj
-      [---------------|---------------]
+    ci                c                 cj
+    [-----------------|-----------------]
 # d # a # a # b # a # b # a # b # a # a # b # a #
-          [-------|-------]
-                  [-------|-------]
+        [---------|---------]
+                [---------|---------]
 ```
 
 pick any index `x` where `ci<x<cj` and its mirror index `y`  
@@ -83,11 +83,11 @@ note that, if p<sub>x</sub> touches boundary `ci` or `cj`, above two statements 
 for example:
 
 ```bash
-      ci              c               cj
-      [---------------|---------------]
+    ci                c                 cj
+    [-----------------|-----------------]
 # d # b # a # b # a # b # a # b # a # b # a # a #
-      [-----------|-----------]
-          [---------------|---------------]
+    [-------------|-------------]
+        [-----------------|-----------------]
 ```
 
 :bulb: largest palindrome with center always begins and ends with `#`
