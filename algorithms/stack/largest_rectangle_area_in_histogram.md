@@ -1,5 +1,8 @@
 # Largest Rectangle Area in Histogram
 
+<http://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-set-1/>  
+<http://www.geeksforgeeks.org/largest-rectangle-under-histogram/>
+
 In given histogram, find largest rectangle area formed by contiguous bars ?  
 All bars has width 1 unit.
 
@@ -33,10 +36,10 @@ Use stack
             * leftIndex   = top index in stack (-1 if empty)
       
 ```java
-int maxArea(int hist[]){
+int maxArea(int hist[n]){
 	int maxArea = 0;
 	Stack stack;
-	for(int i=0; i<hist.length; i++){
+	for(int i=0; i<n; i++){
 		while(!stack.isEmpty() && hist[stack.peek()]>hist[i]){
 			int minBar = hist[stack.pop()];
 			int leftIndex = stack.isEmpty() ? -1 : stack.peek();
@@ -52,8 +55,52 @@ int maxArea(int hist[]){
 
 Running Time: `$O(n)$`
 
-### References
+---
 
-* <http://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-set-1/>
-* <http://www.geeksforgeeks.org/largest-rectangle-under-histogram/>
+## Largest rectangle with `1`s in binary matrix
 
+<http://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/>
+
+Given a binary matrix, find the largest rectangle with all `1`s
+
+`$\begin{matrix}
+0 & 1 & 1 & 0 \\
+\color{red}1 & \color{red}1 & \color{red}1 & \color{red}1 \\
+\color{red}1 & \color{red}1 & \color{red}1 & \color{red}1 \\
+1 & 1 & 0 & 0
+\end{matrix}$`
+
+notice how previous problem `hist[] = { 6, 2, 5, 4, 5, 1, 6 }` can be visualized as binary matrix:
+
+```bash
+      1 0 0 0 0 0 1
+      1 0 1 0 1 0 1
+      1 0 1 1 1 0 1
+      1 0 1 1 1 0 1
+      1 1 1 1 1 0 1
+      1 1 1 1 1 1 1
+      -------------
+sums: 6 2 5 4 5 1 6
+```
+
+we can transform each row into a histogram, by counting `1`s from current row upwards until we reach `0`
+
+```java
+int maxArea(int m[r][c]) {
+	int hist[r];
+    
+    for(int j=0; j<c; j++)
+        hist[j] = m[0][j];
+    int ans = maxArea(hist);
+
+    for(int i=1; i<r; i++) {
+        for(int j=0; j<c; j++)
+            hist[j] = m[i][j]==1 ? hist[j]+1 : 0;
+        ans = max(ans, maxArea(hist)); 
+    }
+
+    return ans;
+}
+``` 
+
+Running Time: `$O(rc)$`
