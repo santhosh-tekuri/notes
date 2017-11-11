@@ -15,7 +15,7 @@ we can find upper limit as follows:
 * then simply do binary search in range `$(2^{k-1}, 2^k)$`
 
 ```java
-int findFirstPositive(){
+int findTransitionPoint(){
     if(f(0)>0)
         return 0;
 
