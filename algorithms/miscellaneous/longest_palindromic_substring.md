@@ -98,7 +98,22 @@ let `m[i]` is span of largest palindrome with center `i`
 answer is `max(m[])`
 
 trivial computation of `m[]` will be `$O(n^2)$`  
-but we can use above insight, to reduce it to `$O(n)$`
+
+from above insight:
+
+```bash
+                      c                 r
+    [-----------------|-----------------]
+# d # a # a # b # a # b # a # b # a # a # b # a #
+                  j       i
+
+j = 2*c-i;
+if(i+m[j]<r)
+   then m[i] = m[j]
+   else m[i] >= m[j]
+```
+
+this will reduce running time to `$O(n)$`
 
 ```java
 char[] lps(char s[n]) {
