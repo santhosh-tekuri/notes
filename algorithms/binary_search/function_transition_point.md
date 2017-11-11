@@ -19,17 +19,16 @@ int findFirstPositive(){
     if(f(0)>0)
         return 0;
 
-    int k=1;
-    while(f(k)<=0)
-        k *= 2;
+    int x=1;
+    while(f(x)<=0)
+        x *= 2;
 
-    int lo=k/2, hi=k;
+    int lo=x/2, hi=x;
     while(hi-lo>1){
         assert f(lo)<=0 && f(hi)>0;
 
         int m = lo+(hi-lo)/2;
-        int fm = f(m);
-        if(fm>0)
+        if(f(m)>0)
             hi = m;
         else
             lo = m;
@@ -38,7 +37,7 @@ int findFirstPositive(){
 }
 ```
 
-finding `k` takes `$O(\log_2 n)$` and binary search takes `$O(\log_2 n)$`  
+finding range takes `$O(\log_2 n)$` and binary search takes `$O(\log_2 n)$`  
 so running time is `$O(\log_2 n)$`
 
 ---
