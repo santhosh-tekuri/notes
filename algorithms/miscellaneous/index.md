@@ -17,6 +17,7 @@
 * [Equilibrium Index](equilibrium_index.md)
 * [Leaders in Array](leaders.md)
 * [Product Array without Division](product_array.md)
+* [Longest Balanced Subsequence](longest_balanced_subsequence.md)
 * [Reverse words inline](reverse_words.md)
 * [First non-repeating character](first_non_repeating_character.md)
 * [#Anagrams of word in given text](anagrams_in_text.md)

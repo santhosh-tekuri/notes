@@ -13,6 +13,7 @@
 * [Longest Increasing Subsequence](lis.md)
 * [Longest ZigZag Subsequence](lzs.md)
 * [Longest Arithmetic Progression](lap.md)
+* [Longest Balaned Subsequence](longest_balanced_subsequence.md)
 * [Longest Valid Parentheses](longest_valid_parentheses.md)
 * [Distinct Subsequences](distinct_subsequences.md)
 * [Maximum Sum Subarray](maximum_sum_subarray.md)
