@@ -94,3 +94,4 @@ Time Complexity: `$O(n^3)$`
 ### References
 
 * Problem 9 from <https://people.cs.clemson.edu/~bcdean/dp_practice/>
+<https://www.youtube.com/watch?v=oyj9tRZhmis>

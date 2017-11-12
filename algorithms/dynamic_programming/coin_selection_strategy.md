@@ -1,6 +1,6 @@
 # Coin Selection Stragery
 
-Problem 10 in <https://people.cs.clemson.edu/~bcdean/dp_practice/>
+Problem 10 in <https://people.cs.clemson.edu/~bcdean/dp_practice/>  
 
 Consider a row of `n` coins of values `$v_1, v_2, \dots, v_n$`, where `n` is even. 
 We play a game against an opponent by alternating turns. In each turn, a player 
@@ -80,6 +80,8 @@ int maxWin(int v[]) {
 ```
 
 Running Time: `$O(n^2)$`
+
+<https://www.youtube.com/watch?v=3hNuefaICxw>
 
 ---
 
