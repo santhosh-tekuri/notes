@@ -36,5 +36,6 @@
 * [Min Jumps to reach End](min_jumps_to_reach_end.md)
 * [Word Break](word_break.md)
 * [Word Wrap](word_wrap.md)
+* [Tile Stacking](tile_stacking.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
