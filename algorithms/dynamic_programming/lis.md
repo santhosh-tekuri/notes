@@ -139,6 +139,80 @@ Solution:
 
 ---
 
+## Box Stacking
+
+Problem 4 from <https://people.cs.clemson.edu/~bcdean/dp_practice/>  
+<http://www.geeksforgeeks.org/dynamic-programming-set-21-box-stacking-problem/>
+
+You are given a set of `n` types of rectangular 3-D boxes, 
+where the `i`<sup>th</sup> box has height `$h_i$`, width `$w_i$` and depth `$d_i$`. 
+
+You want to create a stack of boxes which is as tall as possible, 
+but you can only stack a box on top of another box if the dimensions of 
+the 2-D base of the lower box are each strictly larger than those of the 
+2-D base of the higher box. Of course, you can rotate a box so that any 
+side functions as its base. It is also allowable to use multiple instances 
+of the same type of box.
+
+box of dimensions `$a \times b \times c$` can be visual as 3 boxes:
+* height `$a$`, base `$b \times c$`
+* height `$b$`, base `$a \times c$`
+* height `$c$`, base `$a \times b$`
+
+this simplification allows us to forget about rotational aspect of the problem, and just focus of
+stacking the boxes
+
+without loss of generality assume `$w_i \leq d_i$`
+
+we can stack box `$i$` on box `$j$` if `$w_i<w_j\text{ and } d_i<d_j$`
+
+* sort the `$3n$` boxes in decreasing order of base area
+* now finding longest decreasing subsequence gives the tallest possible stack
+
+let `H[i]` is tallest stack possible with box `i` on top
+
+`$H[i]=\begin{cases}
+h_i & \text{if $i=1$} \\
+h_i + max(H[k]) & \text{for $k=1$ to $i-1$, if $w_k>w_i$ and $d_k>d_i$}
+\end{cases}$`
+
+answer is `max(H[])`
+
+```java
+class Box {
+    int h,w,d;
+}
+
+int maxHeight(int h[n], int w[n], int d[n]) {
+    Box b[3*n];
+    for(int i=0; i<n; i++) {
+        b[3*i] = new Box(h[i], min(w[i], d[i]), max(w[i], d[i]);
+        b[3*i+1] = new Box(w[i], min(h[i], d[i]), max(h[i], d[i]);
+        b[3*i+2] = new Box(d[i], min(w[i], h[i]), max(w[i], h[i]);
+    }
+
+    sort(b, -Box#w*Box#d);
+
+    int H[3*n];
+    int ans = 0;
+    for(int i=0; i<3*n; i++) {
+        H[i] = 0;
+        for(int k=0; k<i-1; k++) {
+            if(b[k].w>b[i].w && b[k].d>b[i].d)
+                H[i] = max(H[i], H[k]);
+        }
+        H[i] += b[i].h;
+        ans = max(ans, H[i]);
+    }
+
+    return ans;
+}
+```
+
+Running Time: `$O(n^2)$`
+
+---
+
 ## Longest Bitonic Subsequence
 
 <http://www.geeksforgeeks.org/dynamic-programming-set-15-longest-bitonic-subsequence/>
