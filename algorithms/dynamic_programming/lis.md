@@ -48,6 +48,8 @@ void printLIS(int x[], int b[], int i) {
 
 Running Time: `$O(n^2)$`
 
+this problems can be [solved](../miscellaneous/longest_increasing_subsequence.md) in `$O(n\log_2{n})$`
+
 ---
 
 let `$L_i$` is longest increasing subsequence starting at position `$i$`
@@ -137,6 +139,37 @@ Solution:
 * sort people by heights. if heights are same sort them by weight
 * answer = Longest weight increasing subsequence
 
+---
+
+## Longest Chain of Pairs
+
+<http://www.geeksforgeeks.org/dynamic-programming-set-20-maximum-length-chain-of-pairs/>
+
+Given `n` pair of numbers, where first number is always smaller than second number.  
+Chain of pairs is formed with restriction: pair `(c,d)` can follow pair `(a,b)` if `b<c`.  
+find the longest chain of pairs possible ?
+
+`$\{(5, 24), (39, 60), (15, 28), (27, 40), (50, 90)\} \to [(5, 24), (27, 40), (50, 90)]$`
+
+* sort given pairs with first(smallest) element
+* find longest subsequence with restriction
+
+```java
+int longestChain(Pairs p[n]) {
+    int L[n]; // L[i] is longest chain ending with p[i]
+    int ans = 0;
+    for(int i=0; i<n; i++) {
+        L[i] = 0;
+        for(int k=0; k<i; k++) {
+            if(p[k].second<p[i].first)
+                L[i] = max(L[i], L[k]);
+        }
+        L[i]++;
+        ans = max(ans, L[i]);
+    }
+    return ans;
+}
+```
 ---
 
 ## Box Stacking
