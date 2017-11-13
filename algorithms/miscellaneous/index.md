@@ -33,3 +33,4 @@
 * [Merge Overlapping Intervals](merge_overlapping_intervals.md)
 * [Theme Park](theme_park.md)
 * [Longest Palindromic Substring](longest_palindromic_substring.md)
+* [Longest Increasing Subsequence](longest_increasing_subsequence.md)
