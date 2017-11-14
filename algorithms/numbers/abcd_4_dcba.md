@@ -27,8 +27,8 @@ now we have `2BC8*4=8CB2`
 * so B can't be 0, 2, 4
 * so B can be 1 or 3
 
-4C+3 = XB  
-4C = XB-3
+`4*C+3 = XB`  
+`4*C = XB-3`
 
 If B=1 then C is 2 or 7  ==> ABCD can be 2128 or 2178  
 If B=4 then C is 0 or 5  ==> ABCD can be 2408 or 2448
