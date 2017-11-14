@@ -1,6 +1,7 @@
 # Miscellaneous
 
 * [Move Zeroes to end of array](move_zeros_to_end_of_array.md)
+* [Array Manipulation](array_manipulation.md)
 * [Dutch National Flag](dutch_national_flag.md)
 * [Run-Length Encoding](run_length_encoding.md)
 * [Find in Step Array](find_in_step_array.md)
