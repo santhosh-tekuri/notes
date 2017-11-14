@@ -172,6 +172,52 @@ int longestChain(Pairs p[n]) {
 ```
 ---
 
+## Building Bridges
+
+Problem 5 from <https://people.cs.clemson.edu/~bcdean/dp_practice/>  
+<http://www.geeksforgeeks.org/dynamic-programming-building-bridges/>
+
+Consider a 2-D map with a horizontal river passing through its center. There are:
+* `$n$` cities on the northern bank with x-coordinates `$a_1, \dots, a_n$` 
+* `$n$` cities on the southern bank with x-coordinates `$b_1, \dots, b_n$`
+
+You want to connect as many north-south pairs of cities as possible with bridges such that no two bridges cross. i
+When connecting cities, you can only connect city `$i$` on the northern bank to city `$i$` on the southern bank.
+i.e. you can only build bridges between cities at matching indices
+
+```bash
+a=[6, 4, 2, 1] b=[2, 3, 6, 5] ➜ 2 bridges 6⬌2, 1⬌5
+```
+
+![building_bridges.png](files/building_bridges.png)
+
+two bridges `$(a_i, b_i)$` and `$(a_j, b_j)$`:
+* does not cross if: `$\;\text{$(a_i \leq a_j$ and $b_i \leq b_j)$ or $(a_i \geq a_j$ and $b_i \geq b_j)$}$`
+* cross if: `$\;\text{$(a_i < a_j$ and $b_i > b_j)$ or $(a_i > a_j$ and $b_i < b_j)$}$`
+
+it means, if we sort set of non-crossing bridges by their north city, then south cities must be in increasing 
+order
+
+Algorithm:
+* sort input arrays by values in `a[]`
+* find lis(b)
+
+```java
+int maxBridges(int a[n], int b[n]) {
+    int compare(int i, int j) {
+        return a[i]-a[j];
+    }
+    void swap(int i, int j) {
+        a[i] ⬌ a[j];
+        b[i] ⬌ b[j];
+    }
+    sort(n/*size*/, compare, swap);
+    return lis(b);
+}
+```
+
+---
+
 ## Box Stacking
 
 Problem 4 from <https://people.cs.clemson.edu/~bcdean/dp_practice/>  
