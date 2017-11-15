@@ -37,5 +37,6 @@
 * [Word Break](word_break.md)
 * [Word Wrap](word_wrap.md)
 * [Tile Stacking](tile_stacking.md)
+* [Largest Square with 1s](largest_square_with_1s.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
