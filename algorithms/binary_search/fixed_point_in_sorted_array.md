@@ -1,4 +1,4 @@
-# Fixed Point in Array
+# Fixed Point in Sorted Array
 
 If `a[i]=i` then, `i` is called **fixed point**
 
