@@ -1,5 +1,6 @@
 # Numbers
 
+* [Sieve of Eratosthenes](sieve_of_eratosthenes.md)
 * [2 Powers](2_powers.md)
 * [Sum of Two Squares](sum_of_two_squares.md)
 * [Remove duplicates from array of Prime Numbers](remove_duplicate_primes.md)
