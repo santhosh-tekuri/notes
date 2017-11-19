@@ -58,51 +58,26 @@ void printPrimes(int n) {
 
 ### Incremental
 
-this reduces space complexity to `$O(\text{#primes})$`
-
 ```java
-interface Sequence {
-    int next(); // returns 0 to signal end of sequence
-}
-
-class Numbers implements Sequence {
-    int i=1, n;
-    Numbers(int n) { 
-        this.n = n;
-    }
-    public int next() {
-        i++;
-        return i<=n ? i : 0;
-    }
-}
-
-class Filter implements Sequence {
-    Sequence src;
-    int n;
-    Filter(Sequence src, int n) {
-        this.src = src;
-        this.n = n;
-    }
-    public int next() {
-        while(true) {
-            int i = src.next();
-            if(i==0 || i%n!=0)
-                return i;
+void printPrimes(int n) {
+    List primes = [];
+    for(int i=2; i<=n; i++) {
+        boolean composite = false;
+        for(int p: primes) {
+            if(i%p==0) {
+                composite = true;
+                break;
+            }
+        }
+        if(!composite) {
+            println(i);
+            primes.add(i);
         }
     }
 }
-
-void printPrimes(int n) {
-    Sequence seq = new Numbers(n);
-    while(true) {
-        int i = seq.next();
-        if(i==0)
-            return;
-        println(i);
-        seq = new Filter(seq, i);
-    }
-}
 ```
+
+Space Complexity: `$O(\text{#primes})$`
 
 ---
 
