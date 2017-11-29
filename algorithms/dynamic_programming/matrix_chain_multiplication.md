@@ -1,8 +1,8 @@
 # Matrix-chain multiplication
 
-Given a chain $A_1, A_2, \dots, A_n$ of `n` matrices,
-where for $i = 1,2, \dots, n$, matrix $A_i$ has dimension $p_{i-1} \times p_i$.
-Fully parenthesize the product $A_1 A_2 \dots A_n$ in a way that minimizes number of scalar multiplications ?
+Given a chain `$A_1, A_2, \dots, A_n$` of `n` matrices,
+where for `$i = 1,2, \dots, n$`, matrix `$A_i$` has dimension `$p_{i-1} \times p_i$`.
+Fully parenthesize the product `$A_1 A_2 \dots A_n$` in a way that minimizes number of scalar multiplications ?
 
 ---
 
