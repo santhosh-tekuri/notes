@@ -7,7 +7,7 @@ $L[i][j]=\begin{cases}
 2 & \text{if $i+1=j$} \\
 2 + L[i+1][j-1] & \text{otherwise}
 \end{array} 
-\right\} & \text{if $x_i=x_j$} \\
+\right\\} & \text{if $x_i=x_j$} \\
 max(L[i+1][j], \;L[i][j-1]) & \text{otherwise}
 \end{cases}$
 
