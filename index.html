@@ -17,6 +17,9 @@
 		extensions: []
     });
     home = 'https://raw.githubusercontent.com/santhosh-tekuri/notes/master/';
+    if(window.location.protocol=="file:") {
+        home = 'http://localhost:8080/';
+    }
     function onhashchange() {
         var hash = "algorithms/index.md";
         if(window.location.hash)
