@@ -1,5 +1,12 @@
 # TODO
 
+$one_tx_3$  `$x_2$`
+
+$$one_threex_4$$
+
+he**llo** $one_{three}$
+
+
 * <http://www.zrzahid.com/patching-array/>
 * Letter Combinations of a Phone Number
     * <http://letstalkalgorithms.com/letter-combinations-of-a-phone-number/>
