@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet"></link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"></link>
+<link rel="stylesheet" href="theme.css"></link>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="math-code.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+    showdown.setOption('requireSpaceBeforeHeadingText', true);
+    showdown.setOption('tables', true);
+    showdown.setOption('emoji', true);
+    converter = new showdown.Converter({
+		extensions: []
+    });
+    home = 'https://raw.githubusercontent.com/santhosh-tekuri/notes/master/';
+    function onhashchange() {
+        var hash = "algorithms/index.md";
+        if(window.location.hash)
+            hash = window.location.hash.substring(1);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', home+hash, true);
+        xhr.onload = function(e) {
+            document.body.innerHTML = converter.makeHtml(this.response);
+
+			// fix hyperlinks
+			var links = document.getElementsByTagName('a');
+			for(var i=0; i<links.length; i++) {
+				var link = links[i];
+				var href = link.getAttribute("href");
+                if(href.endsWith(".md")) {
+                    link.href = "#"+hash.substring(0, hash.lastIndexOf('/')+1)+href;
+                }
+			}
+
+			// fix images
+			var imgs = document.getElementsByTagName('img');
+			for(var i=0; i<imgs.length; i++) {
+				var img = imgs[i];
+				var src = img.getAttribute("src");
+                if(!src.includes("://")) {
+                    img.src = home+hash.substring(0, hash.lastIndexOf('/')+1)+src;
+                }
+			}
+
+            hljs.initHighlighting.called = false;
+            hljs.initHighlighting();
+
+            mathjaxFix();
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        };
+        xhr.send();
+    }
+    onhashchange();
+</script>
+</head><body onhashchange="onhashchange()"></body></html>
