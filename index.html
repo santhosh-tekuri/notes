@@ -92,6 +92,12 @@ converter = new showdown.Converter({
     extensions: []
 });
 
+function updateTitle() {
+    h1Elements = document.body.getElementsByTagName('h1');
+    if(h1Elements.length>0)
+        document.title = h1Elements[0].innerText;
+}
+
 function joinPaths(p1, p2) {
     while(p2.startsWith("../")) {
         var index = p1.lastIndexOf("/", p1.length-2);
@@ -182,6 +188,7 @@ function renderMarkdown(hash, markdown) {
         hash = hash.substring(0, index);
     }
 
+	updateTitle();
     fixLinks(hash);
     fixImages(hash);
 	fixLatex();
