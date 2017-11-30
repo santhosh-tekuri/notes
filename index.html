@@ -5,8 +5,6 @@
 <link rel="stylesheet" href="theme.css"></link>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="math-code.js"></script>
-<script src="youtube.js"></script>
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -16,77 +14,134 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/contrib/auto-render.min.js" integrity="sha384-cXpztMJlr2xFXyDSIfRWYSMVCXZ9HeGXvzyKTYrn03rsMAlOtIQVzjty5ULbaP8L" crossorigin="anonymous"></script>
 -->
 <script>
-    showdown.setOption('requireSpaceBeforeHeadingText', true);
-    showdown.setOption('tables', true);
-    showdown.setOption('emoji', true);
-    converter = new showdown.Converter({
-		extensions: []
-    });
-    home = 'https://raw.githubusercontent.com/santhosh-tekuri/notes/master/';
-    if(window.location.protocol=="file:") {
-        home = 'http://localhost:8080/';
-    }
-    function onhashchange() {
-        var hash = "algorithms/index.md";
-        if(window.location.hash) {
-            hash = window.location.hash.substring(1);
-            var index = hash.indexOf("#");
-            if(index!=-1) {
-                var anchor = hash.substring(index+1);
-                hash = hash.substring(0, index);
-            }
+defaultPage = 'algorithms/index.md';
+home = 'https://raw.githubusercontent.com/santhosh-tekuri/notes/master/';
+if(window.location.protocol=="file:") {
+    home = 'http://localhost:8080/';
+}
+
+showdown.setOption('requireSpaceBeforeHeadingText', true);
+showdown.setOption('tables', true);
+showdown.setOption('emoji', true);
+converter = new showdown.Converter({
+    extensions: []
+});
+
+function fixLinks(hash) {
+    var links = document.getElementsByTagName('a');
+    var cur = hash.substring(0, hash.lastIndexOf('/')+1);
+    for(var i=0; i<links.length; i++) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if(href.includes("://")) {
+            link.target = "_blank";
+        } else if(href.endsWith(".md") || href.includes(".md#")) {
+            link.href = "#"+cur+href;
+        } else {
+            link.href = home+cur+href;
+            link.target = "_blank";
         }
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', home+hash, true);
-        xhr.onload = function(e) {
-            document.body.innerHTML = converter.makeHtml(this.response);
-
-			// fix hyperlinks
-			var links = document.getElementsByTagName('a');
-            var cur = hash.substring(0, hash.lastIndexOf('/')+1);
-			for(var i=0; i<links.length; i++) {
-				var link = links[i];
-				var href = link.getAttribute("href");
-                if(href.includes("://")) {
-                    link.target = "_blank";
-                } else if(href.endsWith(".md") || href.includes(".md#")) {
-                    link.href = "#"+cur+href;
-                } else {
-                    link.href = home+cur+href;
-                    link.target = "_blank";
-                }
-			}
-
-			// fix images
-			var imgs = document.getElementsByTagName('img');
-			for(var i=0; i<imgs.length; i++) {
-				var img = imgs[i];
-				var src = img.getAttribute("src");
-                if(!src.includes("://")) {
-                    img.src = home+hash.substring(0, hash.lastIndexOf('/')+1)+src;
-                }
-			}
-
-            embedYoutube();
-            hljs.initHighlighting.called = false;
-            hljs.initHighlighting();
-
-            mathjaxFix();
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-            //renderMathInElement(document.body, {
-            //    colorIsTextColor: true
-            //});
-
-            if(anchor)
-                anchor = document.getElementById(anchor);
-            if(anchor)
-                anchor.scrollIntoView();
-            else
-                scroll(0, 0);
-        };
-        xhr.send();
     }
-    onhashchange();
+}
+
+function fixImages(hash) {
+    var imgs = document.getElementsByTagName('img');
+    for(var i=0; i<imgs.length; i++) {
+        var img = imgs[i];
+        var src = img.getAttribute("src");
+        if(!src.includes("://")) {
+            img.src = home+hash.substring(0, hash.lastIndexOf('/')+1)+src;
+        }
+    }
+}
+
+function embedYoutube() {
+    var prefix = "https://www.youtube.com/watch?v=";
+    var links = document.getElementsByTagName('a');
+    var i=0;
+    while(i<links.length) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if(href.startsWith(prefix)) {
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute("width", 560);
+            iframe.setAttribute("height", 315);
+            iframe.setAttribute("src", "https://www.youtube.com/embed/"+href.substring(prefix.length)+"?rel=0");
+            iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute("allowfullscreen", "true");
+            link.parentNode.replaceChild(iframe, link);
+        } else
+           i++;
+    }
+}
+
+// curl -O https://yihui.name/js/math-code.js
+function fixLatex() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+        text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+        code.textContent = text;
+      }
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$(.|\s)+\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+}
+ 
+function renderMarkdown(hash, markdown) {
+    document.body.innerHTML = converter.makeHtml(markdown);
+    
+    var index = hash.indexOf("#");
+    if(index!=-1) {
+        var anchor = hash.substring(index+1);
+        hash = hash.substring(0, index);
+    }
+
+    fixLinks(hash);
+    fixImages(hash);
+	embedYoutube();
+	fixLatex();
+
+	// update code highlighting
+	hljs.initHighlighting.called = false;
+	hljs.initHighlighting();
+
+	// render latex
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+	//renderMathInElement(document.body, {
+	//    colorIsTextColor: true
+	//});
+
+	// update viewport
+	if(anchor)
+		anchor = document.getElementById(anchor);
+	if(anchor)
+		anchor.scrollIntoView();
+	else
+		scroll(0, 0);
+}
+
+function navigate() {
+    var hash = defaultPage;
+    if(window.location.hash)
+        hash = window.location.hash.substring(1);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', home+hash, true);
+    xhr.onload = function(e) {
+        renderMarkdown(hash, this.response);
+    };
+    xhr.send();
+}
+navigate();
 </script>
-</head><body onhashchange="onhashchange()"></body></html>
+</head><body onhashchange="navigate()"></body></html>
