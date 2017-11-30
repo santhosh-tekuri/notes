@@ -2,11 +2,11 @@
 
 Given a sequence `$X=x_1,x_2,…,x_n$`, find longest subsequence that is palindromic ?
 
-`$
+`$\begin{array}{l}
 \color{red}{bbb}a\color{red}b \\
 c\color{red}{bb}d \\
 B\color{red}{BABCB}C\color{red}{AB}
-$`
+\end{array}$`
 
 ---
 
