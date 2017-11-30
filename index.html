@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html><head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet"></link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"></link>
+<style>
+html {
+    background: #C2CAD0;
+    padding-bottom: 100vh; /* allow scrolling past end of page */
+}
+
+body {
+    background: #FFF;
+    font-family: "Open Sans";
+    line-height: 1.6;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 100px;
+    min-height: calc(100vh - 240px);
+    border: 1px solid #acacac;
+    border-radius: 6px;
+    box-shadow: 0px 0px 20px #acacac;
+}
+
+a {
+    color: #4183C4;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 40px;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+li > ul {
+    padding-left: 20;
+}
+p + ul {
+    margin-top: -10;
+}
+li > p {
+    margin-top: 0;
+    margin-bottom: 10;
+}
+
+code {
+    font-family: Consolas, "Lucida Console", Monaco, monospace;
+    font-size: 85%;
+    line-height: 150%;
+    background: #f8f8f8;
+    border-radius: 3px;
+    border: 1px solid #e6e8db;
+    padding: 1px 3px 1px 3px;
+}
+
+hr { 
+    background-color: #fff;
+    border: 0;
+    border-top: 2px dashed #8c8b8b;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/contrib/auto-render.min.js" integrity="sha384-cXpztMJlr2xFXyDSIfRWYSMVCXZ9HeGXvzyKTYrn03rsMAlOtIQVzjty5ULbaP8L" crossorigin="anonymous"></script>
+-->
+<script>
+defaultPage = 'algorithms/index.md';
+home = window.location.href;
+if(home.indexOf("#")!=-1)
+    home = home.substring(0, home.indexOf("#"));
+home = home.substring(0, home.lastIndexOf("/")+1);
+
+showdown.setOption('requireSpaceBeforeHeadingText', true);
+showdown.setOption('tables', true);
+showdown.setOption('emoji', true);
+converter = new showdown.Converter({
+    extensions: []
+});
+
+function joinPaths(p1, p2) {
+    while(p2.startsWith("../")) {
+        var index = p1.lastIndexOf("/", p1.length-2);
+        if(index==-1)
+            break;
+        p1 = p1.substring(0, index+1);
+        p2 = p2.substring(3);
+    }
+    return p1+p2;
+}
+
+function fixLinks(hash) {
+    var links = document.getElementsByTagName('a');
+    var cur = hash.substring(0, hash.lastIndexOf('/')+1);
+    for(var i=0; i<links.length; i++) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if(href.includes("://")) {
+            link.target = "_blank";
+        } else if(href.endsWith(".md") || href.includes(".md#")) {
+            link.href = "#"+joinPaths(cur, href);
+        } else {
+            link.href = joinPaths(home+cur, href);
+            link.target = "_blank";
+        }
+    }
+}
+
+function fixImages(hash) {
+    var imgs = document.getElementsByTagName('img');
+    for(var i=0; i<imgs.length; i++) {
+        var img = imgs[i];
+        var src = img.getAttribute("src");
+        if(!src.includes("://")) {
+            img.src = home+hash.substring(0, hash.lastIndexOf('/')+1)+src;
+        }
+    }
+}
+
+function embedYoutube() {
+    var prefix = "https://www.youtube.com/watch?v=";
+    var links = document.getElementsByTagName('a');
+    var i=0;
+    while(i<links.length) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if(href.startsWith(prefix)) {
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute("width", 560);
+            iframe.setAttribute("height", 315);
+            iframe.setAttribute("src", "https://www.youtube.com/embed/"+href.substring(prefix.length)+"?rel=0");
+            iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute("allowfullscreen", "true");
+            link.parentNode.replaceChild(iframe, link);
+        } else
+           i++;
+    }
+}
+
+// curl -O https://yihui.name/js/math-code.js
+function fixLatex() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+        text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+        code.textContent = text;
+      }
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$(.|\s)+\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+}
+ 
+function renderMarkdown(hash, markdown) {
+    document.body.innerHTML = converter.makeHtml(markdown);
+    
+    var index = hash.indexOf("#");
+    if(index!=-1) {
+        var anchor = hash.substring(index+1);
+        hash = hash.substring(0, index);
+    }
+
+    fixLinks(hash);
+    fixImages(hash);
+	fixLatex();
+	embedYoutube();
+
+	// update code highlighting
+	hljs.initHighlighting.called = false;
+	hljs.initHighlighting();
+
+	// render latex
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+	//renderMathInElement(document.body, {
+	//    colorIsTextColor: true
+	//});
+
+	// update viewport
+	if(anchor)
+		anchor = document.getElementById(anchor);
+	if(anchor)
+		anchor.scrollIntoView();
+	else
+		scroll(0, 0);
+}
+
+function navigate() {
+    var hash = defaultPage;
+    if(window.location.hash)
+        hash = window.location.hash.substring(1);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', home+hash, true);
+    xhr.onload = function(e) {
+        if(this.status==200)
+            renderMarkdown(hash, this.response);
+        else
+            renderMarkdown(hash, "# "+this.status+" "+this.statusText);
+    };
+    xhr.send();
+}
+navigate();
+</script>
+</head><body onhashchange="navigate()"></body></html>
