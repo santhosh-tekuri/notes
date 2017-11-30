@@ -130,6 +130,7 @@ function renderMarkdown(hash, markdown) {
 		scroll(0, 0);
 }
 
+var lastHash = defaultPage;
 function navigate() {
     var hash = defaultPage;
     if(window.location.hash)
@@ -138,7 +139,16 @@ function navigate() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', home+hash, true);
     xhr.onload = function(e) {
-        renderMarkdown(hash, this.response);
+        if(this.status==200) {
+            lastHash = hash;
+            renderMarkdown(hash, this.response);
+        } else {
+            alert("["+this.status+"] "+home+hash);
+            window.onhashchange = function() {
+                window.onhashchange = navigate;
+            }
+            window.location.hash = "#"+lastHash;
+        }
     };
     xhr.send();
 }
