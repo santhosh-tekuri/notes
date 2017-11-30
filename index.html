@@ -28,8 +28,14 @@
     }
     function onhashchange() {
         var hash = "algorithms/index.md";
-        if(window.location.hash)
+        if(window.location.hash) {
             hash = window.location.hash.substring(1);
+            var index = hash.indexOf("#");
+            if(index!=-1) {
+                var anchor = hash.substring(index+1);
+                hash = hash.substring(0, index);
+            }
+        }
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', home+hash, true);
@@ -38,13 +44,17 @@
 
 			// fix hyperlinks
 			var links = document.getElementsByTagName('a');
+            var cur = hash.substring(0, hash.lastIndexOf('/')+1);
 			for(var i=0; i<links.length; i++) {
 				var link = links[i];
 				var href = link.getAttribute("href");
                 if(href.includes("://")) {
                     link.target = "_blank";
-                } else if(href.endsWith(".md")) {
-                    link.href = "#"+hash.substring(0, hash.lastIndexOf('/')+1)+href;
+                } else if(href.endsWith(".md") || href.includes(".md#")) {
+                    link.href = "#"+cur+href;
+                } else {
+                    link.href = home+cur+href;
+                    link.target = "_blank";
                 }
 			}
 
@@ -58,7 +68,6 @@
                 }
 			}
 
-            scroll(0,0);
             embedYoutube();
             hljs.initHighlighting.called = false;
             hljs.initHighlighting();
@@ -68,6 +77,13 @@
             //renderMathInElement(document.body, {
             //    colorIsTextColor: true
             //});
+
+            if(anchor)
+                anchor = document.getElementById(anchor);
+            if(anchor)
+                anchor.scrollIntoView();
+            else
+                scroll(0, 0);
         };
         xhr.send();
     }
