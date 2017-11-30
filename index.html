@@ -130,7 +130,6 @@ function renderMarkdown(hash, markdown) {
 		scroll(0, 0);
 }
 
-var lastHash = defaultPage;
 function navigate() {
     var hash = defaultPage;
     if(window.location.hash)
@@ -139,16 +138,10 @@ function navigate() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', home+hash, true);
     xhr.onload = function(e) {
-        if(this.status==200) {
-            lastHash = hash;
+        if(this.status==200)
             renderMarkdown(hash, this.response);
-        } else {
-            alert("["+this.status+"] "+home+hash);
-            window.onhashchange = function() {
-                window.onhashchange = navigate;
-            }
-            window.location.hash = "#"+lastHash;
-        }
+        else
+            renderMarkdown(hash, "# "+this.status+" "+this.statusText);
     };
     xhr.send();
 }
