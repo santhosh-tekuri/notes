@@ -5,9 +5,7 @@
 <link rel="stylesheet" href="theme.css"></link>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h" crossorigin="anonymous"></script>
@@ -27,6 +25,17 @@ converter = new showdown.Converter({
     extensions: []
 });
 
+function joinPaths(p1, p2) {
+    while(p2.startsWith("../")) {
+        var index = p1.lastIndexOf("/", p1.length-2);
+        if(index==-1)
+            break;
+        p1 = p1.substring(0, index+1);
+        p2 = p2.substring(3);
+    }
+    return p1+p2;
+}
+
 function fixLinks(hash) {
     var links = document.getElementsByTagName('a');
     var cur = hash.substring(0, hash.lastIndexOf('/')+1);
@@ -36,9 +45,9 @@ function fixLinks(hash) {
         if(href.includes("://")) {
             link.target = "_blank";
         } else if(href.endsWith(".md") || href.includes(".md#")) {
-            link.href = "#"+cur+href;
+            link.href = "#"+joinPaths(cur, href);
         } else {
-            link.href = home+cur+href;
+            link.href = joinPaths(home+cur, href);
             link.target = "_blank";
         }
     }
