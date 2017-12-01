@@ -122,6 +122,28 @@ function renderLatex() {
 </script>
 -->
 
+<!--*************************************[ RenderGraphviz ] *************************************-->
+
+<!-- https://github.com/mdaines/viz.js/ -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.0/viz.js"></script>
+<script>
+function renderGraphviz() {
+    var codes = document.getElementsByTagName('code');
+    var i=0;
+    while(i<codes.length) {
+        var code = codes[i];
+        if(code.classList.contains("graphviz")) {
+            var div = document.createElement('div')
+            div.innerHTML = Viz(code.textContent, "svg");
+            var pre = code.parentNode;
+            pre.parentNode.replaceChild(div.getElementsByTagName("svg")[0], pre);
+        } else
+           i++;
+    }
+}
+</script>
+
+<!--*************************************[ Main ] *************************************-->
 
 <script>
 defaultPage = 'algorithms/index.md';
@@ -323,6 +345,7 @@ function renderMarkdown(markdown) {
     fixImages(url);
     fixLatex();
     embedYoutube();
+    renderGraphviz();
     syntaxHighlight();
     renderLatex();
 
