@@ -157,6 +157,73 @@ function embedYoutube() {
     }
 }
 
+function firstIndexOf(str, from, chars) {
+    var r = -1;
+    for(var i=0; i<chars.length; i++) {
+        var index = str.indexOf(chars[i], from);
+        if(r==-1)
+            r = index;
+        else if(index!=-1)
+            r = Math.min(r, index);
+    }
+    return r;
+}
+
+// adapted from https://github.com/Khan/KaTeX/blob/master/contrib/auto-render/splitAtDelimiters.js
+function escapeLatex(text) {
+    var out = "";
+    var from = 0;
+    while(true) {
+        var index = firstIndexOf(text, from, "\\`$");
+        if(index==-1) {
+            out += text.substring(from);
+            break;
+        }
+        switch(text[index]) {
+        case "\\":
+            var to = index+2;
+            out += text.substring(from, to);
+            from = to;
+            break;
+        case "`":
+            if(text.substr(index, 3)=="```") {
+                var end = text.indexOf("```", index+3);
+                var to = end==-1 ? from+3 : end+3;
+                out += text.substring(from, to);
+                from = to;
+            } else {
+                var end = text.indexOf("`", index+1);
+                var to = end==-1 ? from+1 : end+1;
+                out += text.substring(from, to);
+                from = to;
+            }
+            break;
+        case "$":
+            var delimiter = text.substr(index, 2)=="$$" ? "$$" : "$";
+            var end = index+delimiter.length;
+            var depth = 0;
+            console.log("got dollar");
+            while(end<text.length) {
+                var ch = text[end];
+                if(depth==0 && text.slice(end, end+delimiter.length)==delimiter) {
+                    end += delimiter.length;
+                    break;
+                } else if(ch=="\\") {
+                    end++;
+                } else if(ch=="{") {
+                    depth++;
+                } else if(ch=="}") {
+                    depth--;
+                }
+                end++;
+            }
+            out += text.substring(from, index) + "`"+text.substring(index, end)+"`";
+            from = end;
+        }
+    }
+    return out;
+}
+
 // curl -O https://yihui.name/js/math-code.js
 function fixLatex() {
   var i, text, code, codes = document.getElementsByTagName('code');
@@ -180,6 +247,7 @@ function fixLatex() {
 }
  
 function renderMarkdown(hash, markdown) {
+    markdown = escapeLatex(markdown);
     document.body.innerHTML = converter.makeHtml(markdown);
     
     var index = hash.indexOf("#");
