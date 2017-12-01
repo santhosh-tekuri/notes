@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html><head>
+
+<!--*************************************[ Stylesheet ] *************************************-->
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet"></link>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"></link>
 <style>
 html {
     background: #C2CAD0;
@@ -70,21 +72,10 @@ hr {
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<!--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/contrib/auto-render.min.js" integrity="sha384-cXpztMJlr2xFXyDSIfRWYSMVCXZ9HeGXvzyKTYrn03rsMAlOtIQVzjty5ULbaP8L" crossorigin="anonymous"></script>
--->
-<script>
-defaultPage = 'algorithms/index.md';
-home = window.location.href;
-if(home.indexOf("#")!=-1)
-    home = home.substring(0, home.indexOf("#"));
-home = home.substring(0, home.lastIndexOf("/")+1);
+<!--*************************************[ Markdown2HTML ] *************************************-->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
+<script>
 showdown.setOption('requireSpaceBeforeHeadingText', true);
 showdown.setOption('tables', true);
 showdown.setOption('emoji', true);
@@ -92,10 +83,56 @@ converter = new showdown.Converter({
     extensions: []
 });
 
+function markdown2html(markdown) {
+    return converter.makeHtml(markdown);
+}
+</script>
+
+<!--*************************************[ SyntaxHighlight ] *************************************-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"></link>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+function syntaxHighlight() {
+    hljs.initHighlighting.called = false;
+    hljs.initHighlighting();
+}
+</script>
+
+
+<!--*************************************[ RenderLatex ] *************************************-->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+function renderLatex() {
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+}
+</script
+
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/contrib/auto-render.min.js" integrity="sha384-cXpztMJlr2xFXyDSIfRWYSMVCXZ9HeGXvzyKTYrn03rsMAlOtIQVzjty5ULbaP8L" crossorigin="anonymous"></script>
+<script>
+function renderLatex() {
+    renderMathInElement(document.body, {
+        colorIsTextColor: true
+    });
+}
+</script>
+-->
+
+
+<script>
+defaultPage = 'algorithms/index.md';
+home = window.location.href;
+if(home.indexOf("#")!=-1)
+    home = home.substring(0, home.indexOf("#"));
+home = home.substring(0, home.lastIndexOf("/")+1);
+
 function updateTitle() {
     h1Elements = document.body.getElementsByTagName('h1');
-    if(h1Elements.length>0)
-        document.title = h1Elements[0].innerText;
+    document.title = h1Elements.length>0 ? h1Elements[0].innerText : "untitled";
 }
 
 function joinPaths(p1, p2) {
@@ -248,7 +285,7 @@ function fixLatex() {
  
 function renderMarkdown(hash, markdown) {
     markdown = escapeLatex(markdown);
-    document.body.innerHTML = converter.makeHtml(markdown);
+    document.body.innerHTML = markdown2html(markdown);
     
     var index = hash.indexOf("#");
     if(index!=-1) {
@@ -259,26 +296,18 @@ function renderMarkdown(hash, markdown) {
 	updateTitle();
     fixLinks(hash);
     fixImages(hash);
-	fixLatex();
-	embedYoutube();
-
-	// update code highlighting
-	hljs.initHighlighting.called = false;
-	hljs.initHighlighting();
-
-	// render latex
-	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-	//renderMathInElement(document.body, {
-	//    colorIsTextColor: true
-	//});
+    fixLatex();
+    embedYoutube();
+    syntaxHighlight();
+    renderLatex();
 
 	// update viewport
-	if(anchor)
-		anchor = document.getElementById(anchor);
-	if(anchor)
-		anchor.scrollIntoView();
-	else
-		scroll(0, 0);
+    if(anchor)
+        anchor = document.getElementById(anchor);
+    if(anchor)
+        anchor.scrollIntoView();
+    else
+        scroll(0, 0);
 }
 
 function navigate() {
