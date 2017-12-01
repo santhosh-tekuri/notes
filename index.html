@@ -344,8 +344,12 @@ function navigate() {
         else
             renderMarkdown("# "+this.status+" "+this.statusText);
     };
+    xhr.onerror = function(e) {
+        renderMarkdown("# Error");
+    };
     xhr.send();
 }
-navigate();
+window.onload = navigate;
+window.onhashchange = navigate;
 </script>
-</head><body onhashchange="navigate()"></body></html>
+</head><body></body></html>
