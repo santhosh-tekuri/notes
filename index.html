@@ -107,7 +107,7 @@ function syntaxHighlight() {
 function renderLatex() {
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
-</script
+</script>
 
 <!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
@@ -125,17 +125,9 @@ function renderLatex() {
 
 <script>
 defaultPage = 'algorithms/index.md';
-home = window.location.href;
-if(home.indexOf("#")!=-1)
-    home = home.substring(0, home.indexOf("#"));
-home = home.substring(0, home.lastIndexOf("/")+1);
 
-function updateTitle() {
-    h1Elements = document.body.getElementsByTagName('h1');
-    document.title = h1Elements.length>0 ? h1Elements[0].innerText : "untitled";
-}
-
-function joinPaths(p1, p2) {
+function resolve(p1, p2) {
+    p1 = p1.substring(0, p1.lastIndexOf('/')+1)
     while(p2.startsWith("../")) {
         var index = p1.lastIndexOf("/", p1.length-2);
         if(index==-1)
@@ -146,30 +138,68 @@ function joinPaths(p1, p2) {
     return p1+p2;
 }
 
-function fixLinks(hash) {
+function getURL() {
+    var url = {};
+    var href = window.location.href;
+    var hash = href.indexOf("#");
+    if(hash==-1) {
+        url.home = href.substring(0, href.lastIndexOf("/")+1);
+        url.href = url.home+defaultPage;
+    } else {
+        url.home = href.substring(0, href.lastIndexOf("/", hash)+1);
+        href = href.substring(hash+1);
+        hash = href.indexOf("#");
+        if(hash!=-1) {
+            url.anchor = href.substring(hash+1);
+            href = href.substring(0, hash);
+        }
+        url.href = href.includes("://") ? href : url.home+href
+    }
+    url.base = url.href.substring(0, url.href.lastIndexOf('/')+1);
+    url.resolve = function(path, relative) {
+        path = resolve(this.href, path);
+        if(relative)
+            return path.startsWith(this.home) ? path.substring(this.home.length) : path;
+        else
+            return path;
+    }
+    return url;
+}
+
+home = window.location.href;
+if(home.indexOf("#")!=-1)
+    home = home.substring(0, home.indexOf("#"));
+home = home.substring(0, home.lastIndexOf("/")+1);
+
+function updateTitle() {
+    h1Elements = document.body.getElementsByTagName('h1');
+    document.title = h1Elements.length>0 ? h1Elements[0].innerText : "untitled";
+}
+
+
+function fixLinks(url) {
     var links = document.getElementsByTagName('a');
-    var cur = hash.substring(0, hash.lastIndexOf('/')+1);
     for(var i=0; i<links.length; i++) {
         var link = links[i];
         var href = link.getAttribute("href");
         if(href.includes("://")) {
             link.target = "_blank";
         } else if(href.endsWith(".md") || href.includes(".md#")) {
-            link.href = "#"+joinPaths(cur, href);
+            link.href = "#"+url.resolve(href, true);
         } else {
-            link.href = joinPaths(home+cur, href);
+            link.href = url.resolve(href, false);
             link.target = "_blank";
         }
     }
 }
 
-function fixImages(hash) {
+function fixImages(url) {
     var imgs = document.getElementsByTagName('img');
     for(var i=0; i<imgs.length; i++) {
         var img = imgs[i];
         var src = img.getAttribute("src");
         if(!src.includes("://")) {
-            img.src = home+hash.substring(0, hash.lastIndexOf('/')+1)+src;
+            img.src = url.resolve(src, false);
         }
     }
 }
@@ -283,27 +313,22 @@ function fixLatex() {
   }
 }
  
-function renderMarkdown(hash, markdown) {
+function renderMarkdown(markdown) {
     markdown = escapeLatex(markdown);
     document.body.innerHTML = markdown2html(markdown);
     
-    var index = hash.indexOf("#");
-    if(index!=-1) {
-        var anchor = hash.substring(index+1);
-        hash = hash.substring(0, index);
-    }
-
+    var url = getURL();
 	updateTitle();
-    fixLinks(hash);
-    fixImages(hash);
+    fixLinks(url);
+    fixImages(url);
     fixLatex();
     embedYoutube();
     syntaxHighlight();
     renderLatex();
 
 	// update viewport
-    if(anchor)
-        anchor = document.getElementById(anchor);
+    if(url.anchor)
+        var anchor = document.getElementById(url.anchor);
     if(anchor)
         anchor.scrollIntoView();
     else
@@ -311,17 +336,13 @@ function renderMarkdown(hash, markdown) {
 }
 
 function navigate() {
-    var hash = defaultPage;
-    if(window.location.hash)
-        hash = window.location.hash.substring(1);
-
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', home+hash, true);
+    xhr.open('GET', getURL().href, true);
     xhr.onload = function(e) {
         if(this.status==200)
-            renderMarkdown(hash, this.response);
+            renderMarkdown(this.response);
         else
-            renderMarkdown(hash, "# "+this.status+" "+this.statusText);
+            renderMarkdown("# "+this.status+" "+this.statusText);
     };
     xhr.send();
 }
