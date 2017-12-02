@@ -7,7 +7,23 @@
 <script>
 showdown.setOption('requireSpaceBeforeHeadingText', true);
 showdown.setOption('tables', true);
-showdown.setOption('emoji', true);
+
+// github-emoji, font-awesome
+showdown.extension("emoji", function() {
+    return [{
+        type: "lang",
+        regex: /:([\S]+?):/g,
+        replace: function(g0, g1) {
+            if(g1.startsWith("fa-")) {
+                g1 = g1.replace(new RegExp("/", 'g'), " ");
+                return `<i class="fa ${g1}" aria-hidden="true"></i>`;
+            } else if(showdown.helper.emojis.hasOwnProperty(g1))
+                return showdown.helper.emojis[g1];
+            else
+                return g0;
+        }
+    }];
+});
 
 // https://github.com/modosc/showdown-container
 showdown.extension("container", function() {
@@ -31,7 +47,7 @@ showdown.extension("container", function() {
 });
 
 converter = new showdown.Converter({
-    extensions: [ "container" ]
+    extensions: [ "emoji", "container" ]
 });
 
 function markdown2html(markdown) {
@@ -407,10 +423,10 @@ hr {
     border-color: #e66465;
 }
 .warning:before {
-    content: '';
+    content: '\00f06a'; /* fa-exclamation-circle */
 }
 .note:before {
-    content: '';
+    content: '\00f016'; /* fa-file-o */
     transform: scaleY(-.8) scaleX(.8);
 }
 .note {
