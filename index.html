@@ -27,7 +27,9 @@ extension("emoji", function (event, text, options, globals) {
         if(g1.startsWith("fa-")) {
             g1 = g1.replace(new RegExp(",", 'g'), " ");
             return `<i class="fa ${g1}" aria-hidden="true"></i>`;
-        } else
+        } else if(g1.startsWith("icon-"))
+            return `<i class="${g1} fa-lg"></i>`;
+        else
             return emojione.shortnameToImage(g0);
     });
 });
@@ -350,6 +352,7 @@ window.onhashchange = navigate;
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet"></link>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></link>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.css" rel="stylesheet"></link>
 <style>
 html {
     background: #C2CAD0;
@@ -475,6 +478,16 @@ hr {
     margin: -.2ex .15em .2ex;
     line-height: normal;
     vertical-align: middle;
+}
+
+.src {
+    float: right;
+    position: relative;
+    top: -50px;
+    right: 10px;
+}
+.src > a {
+    color: black;
 }
 </style>
 

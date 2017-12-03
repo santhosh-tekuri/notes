@@ -17,8 +17,16 @@ this is a :smile: smile emoji
     click :fa-refresh: to refresh the page.  
     to enable autorefresh after every 5 seconds click :fa-refresh,fa-spin,fa-fw:
 
-click :fa-refresh: to refresh the page.  
+click :fa-refresh: to refresh the page.
 to enable autorefresh after every 5 seconds click :fa-refresh,fa-spin:
+
+---
+
+### [Font Mfizz](http://fizzed.com/oss/font-mfizz)
+
+    :icon-go: :icon-java: :icon-ruby: :icon-apache:
+
+:icon-go: :icon-java: :icon-ruby: :icon-apache:
 
 ---
 

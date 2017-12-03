@@ -1,12 +1,12 @@
 # Longest Parantheses Matching
 
-`$
+$
 (((\color{red}{()} \\
 ))))\color{red}{()} \\
 (()(\color{red}{(())} \\
 \color{red}{()()})(((()) \\
 \color{red}{()()()}
-$`
+$
 
 ---
 
