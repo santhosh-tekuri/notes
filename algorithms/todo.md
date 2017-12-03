@@ -1,23 +1,5 @@
 # TODO
 
-$$L[i][j]=\begin{cases}
-1 & \text{if $i=j$} \\
-\left.
-\begin{array}{l}
-2 & \text{if $i+1=j$} \\
-2 + L[i+1][j-1] & \text{otherwise}
-\end{array} 
-\right\\} & \text{if $x_i=x_j$} \\
-max(L[i+1][j], \;L[i][j-1]) & \text{otherwise}
-\end{cases}$$t
-
-$one_tx_3$  `$x_2$`
-
-$$one_threex_4$$
-
-he**llo** $one_{three}$
-
-
 * <http://www.zrzahid.com/patching-array/>
 * Letter Combinations of a Phone Number
     * <http://letstalkalgorithms.com/letter-combinations-of-a-phone-number/>
