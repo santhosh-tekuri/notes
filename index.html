@@ -3,51 +3,52 @@
 
 <!--*************************************[ Markdown2HTML ] *************************************-->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.3/showdown.min.js"></script>
 <script>
 showdown.setOption('requireSpaceBeforeHeadingText', true);
 showdown.setOption('tables', true);
 
+function extension(name, func) {
+    showdown.extension(name, function() {
+        return [{
+            type: "listener",
+            listeners: {
+                'italicsAndBold.after': func
+            }
+        }]
+    });
+}
+
 // github-emoji, font-awesome
-showdown.extension("emoji", function() {
-    return [{
-        type: "lang",
-        regex: /:([\S]+?):/g,
-        replace: function(g0, g1) {
-            if(g1.startsWith("fa-")) {
-                g1 = g1.replace(new RegExp("/", 'g'), " ");
-                return `<i class="fa ${g1}" aria-hidden="true"></i>`;
-            } else if(showdown.helper.emojis.hasOwnProperty(g1))
-                return showdown.helper.emojis[g1];
-            else
-                return g0;
-        }
-    }];
+extension("emoji", function (event, text, options, globals) {
+    return text.replace(/:([\S]+?):/g, function(g0, g1) {
+        if(g1.startsWith("fa-")) {
+            g1 = g1.replace(new RegExp(",", 'g'), " ");
+            return `<i class="fa ${g1}" aria-hidden="true"></i>`;
+        } else
+            return emojione.shortnameToImage(g0);
+    });
 });
 
 // https://github.com/modosc/showdown-container
-showdown.extension("container", function() {
-    return [{
-        type: "lang",
-        filter: function(text, converter) {
-			// if our last tag isn't closed then close it at the end of our input text
-			var count = (text.match(/:::/g) || []).length;
-			if (count % 2) {
-				text += "\n:::\n";
-			}
-			return text.replace(/:::(.*?)[\r\n]([\s\S]*?):::/mgi, function (match, args, body) {
-				var props = '';
-				if (args) {
-					props = ' class="' + args.trim().split(/\s+/).map(function(a) { return encodeURIComponent(a) }).join(" ") + '"';
-				}
-				return "<div"+ props  + ">\n" + converter.makeHtml(body) + "\n</div>\n";
-			});
+extension("container", function (event, text, options, globals) {
+    // if our last tag isn't closed then close it at the end of our input text
+    var count = (text.match(/:::/g) || []).length;
+    if (count % 2) {
+        text += "\n:::\n";
+    }
+    return text.replace(/:::(.*?)[\r\n]([\s\S]*?):::/mgi, function (match, args, body) {
+        var props = '';
+        if (args) {
+            props = ' class="' + args.trim().split(/\s+/).map(function(a) { return encodeURIComponent(a) }).join(" ") + '"';
         }
-    }];
+        return "<div"+ props  + ">\n" + body + "\n</div>\n";
+    });
 });
 
 converter = new showdown.Converter({
-    extensions: [ "emoji", "container" ]
+    extensions: [ "container", "emoji" ]
 });
 
 function markdown2html(markdown) {
@@ -454,6 +455,17 @@ hr {
 }
 .warning p, .note p {
     margin: 0;
+}
+
+.emojione {
+    font-size: inherit;
+    height: 3ex;
+    width: 3.1ex;
+    min-height: 20px;
+    min-width: 20px;
+    margin: -.2ex .15em .2ex;
+    line-height: normal;
+    vertical-align: middle;
 }
 </style>
 
