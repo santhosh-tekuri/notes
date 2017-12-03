@@ -421,22 +421,7 @@ hr {
     margin-bottom: 30px;
 }
 
-.warning {
-    background-color: #ffe7e8;
-    border-color: #e66465;
-}
-.warning:before {
-    content: '\00f06a'; /* fa-exclamation-circle */
-}
-.note:before {
-    content: '\00f016'; /* fa-file-o */
-    transform: scaleY(-.8) scaleX(.8);
-}
-.note {
-    background: #fff3d4;
-    border-color: #f6b73c;
-}
-.warning, .note {
+.box {
     border-left-style: solid;
     border-left-width: 5px;
     padding: 10px;
@@ -446,7 +431,7 @@ hr {
     overflow: hidden;
     margin-bottom: 20px;
 }
-.warning:before , .note:before {
+.box:before {
     text-align: center;
     font-family: FontAwesome;
     font-size: 22px;
@@ -455,8 +440,30 @@ hr {
     margin: 1px 0 -5px -35px;
     width: 30px;
 }
-.warning p, .note p {
+.box p {
     margin: 0;
+}
+.warning {
+    background-color: #ffe7e8;
+    border-color: #e66465;
+}
+.warning:before {
+    content: '\00f06a'; /* fa-exclamation-circle */
+}
+.note {
+    background: #fff3d4;
+    border-color: #f6b73c;
+}
+.note:before {
+    content: '\00f016'; /* fa-file-o */
+    transform: scaleY(-.8) scaleX(.8);
+}
+.tip {
+    background: #c6e2cc;
+    border-color: #309c40;
+}
+.tip:before {
+    content: '\00f0eb'; /* fa-lightbulb-o */
 }
 
 .emojione {

@@ -16,8 +16,8 @@ String toPostfix(String prefix) {
     for(int i=prefix.length()-1; i>=0; i--) {
         char ch = prefix.charAt(i);
         if(isOperator(ch)) {
-            String op2 = stack.pop();
             String op1 = stack.pop();
+            String op2 = stack.pop();
             stack.push(op1 + op2 + String.valueOf(ch));
         } else
             stack.push(String.valueOf(ch));
@@ -32,7 +32,9 @@ String toPostfix(String prefix) {
 
 same algorithm can be used, but scan input from left to right
 
-:bulb: always scan in direction of operands to operator
+::: tip box
+always scan in direction of operands to operator
+:::
 
 ---
 

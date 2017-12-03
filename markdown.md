@@ -25,19 +25,25 @@ to enable autorefresh after every 5 seconds click :fa-refresh,fa-spin:
 ### Containers
 
 ```
-::: warning
+::: tip box
+this is tip
+:::
+
+::: warning box
 this is warning
 :::
 
-::: note
+::: note box
 this is note
 :::
 ```
-
-::: warning
+::: tip box
+this is tip
+:::
+::: warning box
 this is warning
 :::
-::: note
+::: note box
 this is note
 :::
 
