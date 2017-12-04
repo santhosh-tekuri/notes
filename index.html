@@ -15,7 +15,7 @@ function extension(name, func) {
         return [{
             type: "listener",
             listeners: {
-                'italicsAndBold.after': func
+                'paragraphs.before': func
             }
         }]
     });
@@ -41,7 +41,7 @@ extension("container", function (event, text, options, globals) {
     if (count % 2) {
         text += "\n:::\n";
     }
-    return text.replace(/:::(.*?)[\r\n]([\s\S]*?):::/mgi, function (match, args, body) {
+    return text.replace(/:::(.*?)([\r\n][\s\S]*?):::/mgi, function (match, args, body) {
         var props = '';
         if (args) {
             props = ' class="' + args.trim().split(/\s+/).map(function(a) { return encodeURIComponent(a) }).join(" ") + '"';
@@ -429,7 +429,7 @@ hr {
     border-left-width: 5px;
     padding: 10px;
     padding-left: 40px;
-    max-width: 42rem;
+    min-width: 42rem;
     line-height: 18px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -443,8 +443,14 @@ hr {
     margin: 1px 0 -5px -35px;
     width: 30px;
 }
-.box p {
+.box>p:nth-of-type(1), .box>p:nth-last-of-type(1) {
     margin: 0;
+}
+.box>p:nth-of-type(2) {
+    margin-top: 0;
+}
+.box>p:nth-last-of-type(2) {
+    margin-bottom: 0;
 }
 .warning {
     background-color: #ffe7e8;
@@ -483,10 +489,10 @@ hr {
 .src {
     float: right;
     position: relative;
-    top: -50px;
+    top: -70px;
     right: 10px;
 }
-.src > a {
+.src a {
     color: black;
 }
 </style>
