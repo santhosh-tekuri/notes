@@ -123,6 +123,9 @@ int minJumps(int a[n]) {
     return m;
 }
 ```
+::: src
+[:icon-java:](src/MinJumpsV2.java)
+:::
 
 Time Complexity: `$O(n)$`  
 Space Complexity: `$O(1)$`
