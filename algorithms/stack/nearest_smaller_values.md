@@ -48,9 +48,9 @@ Space Complexity: $O(n)$
 
 ### Without Stack
 
-::: tip box
-all elements between nearest smaller element and current element are not smaller than current element  
-i.e. $\text{$a[j] \ge a[i]$ for $j=b[i]+1$ to $i-1$}$
+::: note box
+if you carefully notice, you will realize that `b[]` is actually recording the peek of the stack at end
+of `for` loop. this menas from `b[]` we can get stack by following chain of peek pointers
 :::
 
 ```java
