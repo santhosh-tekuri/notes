@@ -1,5 +1,6 @@
 # Binary Tree
 
+::: toc
 * [Traversal](traversal.md)
 * [Successor & Predecessor](successor_predecessor.md)
 * [Rotations](rotations.md)
@@ -13,3 +14,5 @@
 * [Local Minimum](local_minimum.md)
 * [Are leaves at same level?](are_leaves_at_same_level.md)
 * [Diameter and Center](diameter_and_center.md)
+
+:::

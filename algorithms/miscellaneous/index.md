@@ -1,5 +1,6 @@
 # Miscellaneous
 
+::: toc
 * [Move Zeroes to end of array](move_zeros_to_end_of_array.md)
 * [#Swaps to sort Binary Array](swaps_to_sort_binary_array.md)
 * [Array Manipulation](array_manipulation.md)
@@ -36,3 +37,5 @@
 * [Theme Park](theme_park.md)
 * [Longest Palindromic Substring](longest_palindromic_substring.md)
 * [Longest Increasing Subsequence](longest_increasing_subsequence.md)
+
+:::

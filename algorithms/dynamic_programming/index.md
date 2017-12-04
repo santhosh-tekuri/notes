@@ -1,5 +1,6 @@
 # [Dynamic Programming](dynamic_programming.md)
 
+::: toc
 * [Knapsack Problem](knapsack_problem.md)
 * [Piggy Bank](piggy_bank.md)
 * [Assembly-line Scheduling](assembly_line_scheduling.md)
@@ -40,3 +41,4 @@
 * [Largest Square with 1s](largest_square_with_1s.md)
 * [Parenthesizing MINUS Expression](parenthesizing_minus_expression.md)
 
+:::

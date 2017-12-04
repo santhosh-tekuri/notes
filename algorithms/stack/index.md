@@ -1,5 +1,6 @@
 # Stack
 
+::: toc
 * [Size](size.md)
 * [Copy](copy.md)
 * [Sort](sort.md)
@@ -15,3 +16,5 @@
 * [Largest Rectangle Area in Histogram](largest_rectangle_area_in_histogram.md)
 * [Stock Span Problem](stock_span_problem.md)
 * [Trapping Rain Water](trapping_rain_water.md)
+
+:::
