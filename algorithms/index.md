@@ -1,5 +1,6 @@
 # Algorithms
 
+::: toc
 * [Stack](stack/index.md)
 * [Linked List](linked_list/index.md)
 * [Binary Heap](binary_heap/index.md)
@@ -15,5 +16,7 @@
 * [Dynamic Programming](dynamic_programming/index.md)
 * [Graphs](graphs/index.md)
 * [Miscellaneous](miscellaneous/index.md)
+
+:::
 
 [TODO](todo.md)
