@@ -8,7 +8,7 @@ public class NearestSmallerValuesV2 {
         int n = a.length;
         int b[] = new int[n];
         for(int i=0; i<n; i++) {
-            int j=i-1;
+            int j = i-1;
             while(j!=-1 && a[j]>=a[i])
                 j = b[j];
             b[i] = j;
