@@ -170,6 +170,17 @@ function updateTitle() {
     document.title = h1Elements.length>0 ? h1Elements[0].innerText : "untitled";
 }
 
+function deleteEmptyParagraphs() {
+    var paragraphs = document.getElementsByTagName('p');
+    var i = 0;
+    while(i<paragraphs.length) {
+        var paragraph = paragraphs[i];
+        if(paragraph.childNodes.length==0)
+            paragraph.parentNode.removeChild(paragraph);
+        else
+            i++;
+    }
+}
 
 function fixLinks(url) {
     var links = document.getElementsByTagName('a');
@@ -313,6 +324,7 @@ function renderMarkdown(markdown) {
     
     var url = getURL();
 	updateTitle();
+    deleteEmptyParagraphs();
     fixLinks(url);
     fixImages(url);
     fixLatex();
@@ -446,13 +458,10 @@ hr {
     margin: 1px 0 -5px -35px;
     width: 30px;
 }
-.box>p:nth-of-type(1), .box>p:nth-last-of-type(1) {
-    margin: 0;
-}
-.box>p:nth-of-type(2) {
+.box>:first-child {
     margin-top: 0;
 }
-.box>p:nth-last-of-type(2) {
+.box>:last-child {
     margin-bottom: 0;
 }
 .warning {
@@ -513,9 +522,6 @@ hr {
 
 p+ul {
     margin-top: -16px;
-}
-.note p+ul {
-    margin-top: 0;
 }
 </style>
 
