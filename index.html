@@ -274,7 +274,6 @@ function escapeLatex(text) {
             var delimiter = text.substr(index, 2)=="$$" ? "$$" : "$";
             var end = index+delimiter.length;
             var depth = 0;
-            console.log("got dollar");
             while(end<text.length) {
                 var ch = text[end];
                 if(depth==0 && text.slice(end, end+delimiter.length)==delimiter) {
@@ -365,7 +364,7 @@ window.onhashchange = navigate;
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet"></link>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></link>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.css" rel="stylesheet"></link>
-<style>
+<style type="text/less">
 html {
     background: #C2CAD0;
     padding-bottom: 100vh; /* allow scrolling past end of page */
@@ -388,9 +387,9 @@ body {
 a {
     color: #4183C4;
     text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 h1 {
@@ -439,52 +438,41 @@ hr {
     margin-bottom: 30px;
 }
 
-.box {
-    border-left-style: solid;
-    border-left-width: 5px;
-    padding: 10px;
-    padding-left: 40px;
-    min-width: 42rem;
-    line-height: 18px;
-    overflow: hidden;
-    margin-bottom: 20px;
+.container(@name, @bg, @border, @content) {
+    .@{name} {
+        border-left-style: solid;
+        border-left-width: 5px;
+        padding: 10px;
+        padding-left: 40px;
+        min-width: 42rem;
+        line-height: 18px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        background-color: @bg;
+        border-color: @border;
+        &:before {
+            text-align: center;
+            font-family: FontAwesome;
+            font-size: 22px;
+            font-weight: bold;
+            float: left;
+            margin: 1px 0 -5px -35px;
+            width: 30px;
+            content: @content;
+        }
+    }
+    .@{name}>:first-child {
+        margin-top: 0;
+    }
+    .@{name}>:last-child {
+        margin-bottom: 0;
+    }
 }
-.box:before {
-    text-align: center;
-    font-family: FontAwesome;
-    font-size: 22px;
-    font-weight: bold;
-    float: left;
-    margin: 1px 0 -5px -35px;
-    width: 30px;
-}
-.box>:first-child {
-    margin-top: 0;
-}
-.box>:last-child {
-    margin-bottom: 0;
-}
-.warning {
-    background-color: #ffe7e8;
-    border-color: #e66465;
-}
-.warning:before {
-    content: '\00f06a'; /* fa-exclamation-circle */
-}
-.note {
-    background: #fff3d4;
-    border-color: #f6b73c;
-}
+.container(warning, #ffe7e8, #e66465, '\00f06a');
+.container(tip, #c6e2cc, #309c40, '\00f0eb');
+.container(note, #fff3d4, #f6b73c, '\00f016');
 .note:before {
-    content: '\00f016'; /* fa-file-o */
     transform: scaleY(-.8) scaleX(.8);
-}
-.tip {
-    background: #c6e2cc;
-    border-color: #309c40;
-}
-.tip:before {
-    content: '\00f0eb'; /* fa-lightbulb-o */
 }
 
 .emojione {
@@ -503,26 +491,27 @@ hr {
     position: relative;
     top: -70px;
     right: 10px;
-}
-.src a {
-    color: black;
+    a {
+        color: black;
+    }
 }
 
-.toc li {
-    list-style-type: none;
-}
 .toc ul {
     padding-left: 0;
-}
-.toc li:before {
-    font-family: 'FontAwesome';
-    content: '\f105';
-    margin:0 10px 0 0px;
+    li {
+        list-style-type: none;
+        &:before {
+            font-family: 'FontAwesome';
+            content: '\f105';
+            margin:0 10px 0 0px;
+        }
+    }
 }
 
 p+ul {
     margin-top: -16px;
 }
 </style>
-
+<script type="text/javascript">less = { env: 'development', errorReporting: 'console' };</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
 </head><body></body></html>
