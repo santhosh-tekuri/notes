@@ -1,5 +1,8 @@
 # TODO
 
+* [Red Black Tree]<binary_search_tree/red_black_tree.md>
+* [Order Statistic Tree]<binary_search_tree/order_statistic_tree.md>
+* [Lexicographic Rank]<binary_search_tree/lexicographic_rank.md>
 * <http://www.zrzahid.com/patching-array/>
 * Letter Combinations of a Phone Number
     * <http://letstalkalgorithms.com/letter-combinations-of-a-phone-number/>

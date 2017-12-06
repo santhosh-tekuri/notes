@@ -1,5 +1,6 @@
 # Binary Search Tree
 
+::: toc
 * [Operations](operations.md)
 * [Searching](searching.md)
 * [Is BST ?](is_bst.md)
@@ -12,3 +13,7 @@
 * [BST → Sorted Circular Doubly Linked List](bst_to_sorted_circular_doubly_linked_list.md)
 * [Recover](recover.md)
 * [Result in Same BST ?](result_in_same_bst.md)
+* [Red-Black Tree](red_black_tree.md)
+* [Order Statistic Tree](order_statistic_tree.md)
+
+:::
