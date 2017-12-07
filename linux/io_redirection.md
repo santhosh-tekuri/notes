@@ -12,6 +12,74 @@ file descritors are not unique across processes. they are just indices of proces
 
 ---
 
+## Here Documents
+
+<http://tldp.org/LDP/abs/html/here-docs.html>
+
+
+```bash
+$ cat test.sh
+cat <<EOF
+hello
+$(date)
+\$(date)
+$USER
+EOF
+$ ./test.sh
+hello
+Thu Dec  7 18:26:33 IST 2017
+$(date)
+santhosh
+```
+
+* the word `EOF` is called limit-string
+* all lines until a line with just limit-string are redirected as input to command
+* limit-string can be any thing, sufficiently unusual that it will not occur anywhere in the content
+* notice that here document supports parameter and command substitution
+    * to turn off this use one of the following:
+        * `<<'EOF'`
+        * `<<"EOF"`
+        * `<<\EOF`
+
+use `<<-` to suppress leading tabs in output. but leading whitespaces are not stripped
+
+```bash
+$ cat test.sh
+if true; then
+    cat <<-EOF
+        hello
+        $(date)
+        $USER
+    EOF
+fi
+$ ./test.sh
+hello
+Thu Dec  7 18:46:15 IST 2017
+santhosh
+```
+
+---
+
+## Here Strings
+
+<http://tldp.org/LDP/abs/html/x17837.html>
+
+a stripped-down form of a here document  
+`COMMAND<<<WORD`: `WORD` is expanded and fed to stdin of `COMMAND`
+
+```bash
+$ cat <<<hello
+hello
+$ cat <<<$USER
+santhosh
+$ cat <<<$(date)
+Thu Dec  7 20:05:19 IST 2017
+```
+
+---
+
+## Redirection
+
 <http://tldp.org/LDP/abs/html/io-redirection.html>
 
 `M>F`
@@ -47,7 +115,7 @@ file descritors are not unique across processes. they are just indices of proces
 * redirect stdout of `cmd1` to stdin of `cmd2`
 
 ::: tip
-multiple instances of input and output redirection and/or pipes
+multiple instances of input and output redirection and/or pipes can be combined in a single command line
 :::
 
 ```bash
@@ -76,6 +144,10 @@ bad_command |& awk '{print $5}'
 ```
 
 ---
+
+## Using exec
+
+<http://tldp.org/LDP/abs/html/x17974.html>
 
 ### redirecting stdin using exec
 
@@ -135,6 +207,4 @@ exec 3>&-                              # Now close it for the remainder of the s
 ```
 
 TODO:
-* [using exec](http://tldp.org/LDP/abs/html/x17974.html)
 * [Redirecting codeblocks](http://tldp.org/LDP/abs/html/redircb.html)
-* [here document](http://tldp.org/LDP/abs/html/here-docs.html)
