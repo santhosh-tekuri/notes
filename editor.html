@@ -55,7 +55,6 @@
         if(this.status==200) {
             editor.setValue(this.response);
             editor.gotoLine(1);
-            run();
         } else
             alert(this.status+" "+this.statusText);
     };
@@ -63,34 +62,6 @@
         alert("Error");
     };
     xhr.send();
-
-    function run() {
-        console.log("running code...")
-        var data = new FormData();
-        data.append("api_key", "hackerrank|2473873-2256|61ffcbe0804d30b4105070cbe5852266f16ace01");
-        data.append("source", editor.getValue());
-        if(href.endsWith(".go"))
-            data.append("lang", 21);
-        else
-            data.append("lang", 3);
-        data.append("testcases", "['']");
-
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://api.hackerrank.com/checker/submission.json', true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.onload = function() {
-            if(this.status==200) {
-                console.log(this.response);
-            } else {
-                console.log(this.response);
-            }
-        }
-        xhr.onerror = function(e) {
-            console.log("Error in submission");
-        };
-        xhr.send(data);
-    }
 </script>
 </body>
 </html>
