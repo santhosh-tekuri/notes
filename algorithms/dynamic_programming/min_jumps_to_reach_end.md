@@ -47,18 +47,20 @@ int minJumps(int a[n]) {
         }
     }
     if(m[0]!=∞)
-        printPath(b, 0);
+        printPath(b);
     return m[0];
 }
 
-void printPath(int b[n], int i) {
+void printPath(int b[n]) {
+    int i = 0;
     while(i!=n-1) {
-        println(i);
+        print(i, " ");
         i = b[i];
     }
-    print(n-1);
+    println(n-1);
 }
 ```
+`@src(src/MinJumpsV1.java)`
 
 Running Time: `$O(n^2)$`
 
@@ -123,9 +125,7 @@ int minJumps(int a[n]) {
     return m;
 }
 ```
-::: src
-[:icon-java:](src/MinJumpsV2.java)
-:::
+`@src(src/MinJumpsV2.java)`
 
 Time Complexity: `$O(n)$`  
 Space Complexity: `$O(1)$`
