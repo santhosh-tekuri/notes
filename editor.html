@@ -54,6 +54,9 @@
     xhr.onload = function(e) {
         if(this.status==200) {
             editor.setValue(this.response);
+            editor.clearSelection();
+            editor.focus();
+            editor.scrollToRow(0);
             editor.gotoLine(1);
         } else
             alert(this.status+" "+this.statusText);

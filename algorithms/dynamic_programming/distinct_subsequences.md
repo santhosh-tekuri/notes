@@ -1,4 +1,4 @@
-# Distinct Subsequence
+# Distinct Subsequences
 
 Given `$X=x_1,x_2,\dots,x_m$` and `$Z=z_1,z_2,\dots,z_k$`, find number of distinct occurences of `Z` in `X` as subsequence
 
@@ -23,10 +23,10 @@ notice that `c[i][j]` is `0` if `i>j`, because subsequence cannot be larger than
 answer is `$c[k][m]$`
 
 ```java
-int countSubsequences(char x[], char z[]) {
-    int c[z.length+1][x.length+1];
-    for(int i=0; i<=z.length; i++) {
-        for(int j=i; j<=x.length; j++) {
+int countSubsequences(char x[m], char z[k]) {
+    int c[k+1][m+1];
+    for(int i=0; i<=k; i++) {
+        for(int j=i; j<=m; j++) {
             if(i==0)
                 c[i][j] = 1;
             else if(j==0)
@@ -38,9 +38,10 @@ int countSubsequences(char x[], char z[]) {
             }
         }
     }
-    return c[z.length][x.length];
+    return c[k][m];
 }
 ```
+`@src(src/DistinctSubsequences.java)`
 
 Time-Complexity: `$O(mk)$`  
 Space-Complexity: `$O(mk)$`
