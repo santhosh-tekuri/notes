@@ -6,23 +6,23 @@ Find minimum number of jumps to reach end of array ?
 
 Note that if element is `0`, you can't move from that element
 
-`$\begin{align}
+$\begin{align}
 {\color{red}1, \color{red}3, 5, \color{red}8, 9, 2, 6, 7, 6, 8, \color{red}9} &\to 3 \\
 {\color{red}5, 4, 1, 1, 1, \color{red}3, \color{red}5} &\to 2
-\end{align}$`
+\end{align}$
 
 ---
 
 let `m[i]` is min jumps to reach end from `i`
 
-`$m[i]=\begin{cases}
+$m[i]=\begin{cases}
 0 & \text{if $i=n-1$} & \text{# already reached end} \\
 \infty & \text{if $a[i]=0$} & \text{# can't move}\\
 1 & \text{if $i+a[i]\geq n-1$} & \text{# jump directly to end}\\
 min(1+m[i+k]) & \text{for $k=1$ to $a[i]$}
-\end{cases}$`
+\end{cases}$
 
-answer is `$\;m[0]$`
+answer is $\;m[0]$
 
 ```java
 int minJumps(int a[n]) {
@@ -62,7 +62,8 @@ void printPath(int b[n]) {
 ```
 `@src(src/MinJumpsV1.java)`
 
-Running Time: `$O(n^2)$`
+Time Complexity: $O(n^2)$  
+Space Complexity: $O(n)$
 
 ---
 
@@ -70,23 +71,23 @@ Running Time: `$O(n^2)$`
 
 let `m[i]` is min jumps from `0` to `i`
 
-`$m[i]=\begin{cases}
+$m[i]=\begin{cases}
 0 & \text{if $i=0$} \\
 min(\\
 \;\;\;\infty, \\
 \;\;\;m[k]+1 & \text{for $k=0$ to $i$, if $k+a[k]>=i$} \\
 )
-\end{cases}$`
+\end{cases}$
 
 let us see example:
 
-`$\begin{array}{r|rr}
+$\begin{array}{r|rr}
 i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
 \hline
 a & 3 & 4 & 2 & 3 & 1 & 2 & 1 & 3 & 5 & \dots \\
 maxReach\;(i+a[i]) & 3 & 5 & 4 & 6 & 5 & 7 & 7 & 10 & 13 & \dots \\
 m & 0 & 1 & 1 & 1 & 2 & 2 & 2 & 3 & 4 & \dots
-\end{array}$`
+\end{array}$
 
 notice that:
 * values in `m[]` are in sorted order
@@ -127,8 +128,8 @@ int minJumps(int a[n]) {
 ```
 `@src(src/MinJumpsV2.java)`
 
-Time Complexity: `$O(n)$`  
-Space Complexity: `$O(1)$`
+Time Complexity: $O(n)$  
+Space Complexity: $O(1)$
 
 ---
 
