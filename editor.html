@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="fonts/fonts.css" rel="stylesheet"></link>
+<title>Editor</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        font-family: 'Go Mono'; 
+        font-size: 16px; 
+        line-height: 150%;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor"></div>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/xcode");
+    editor.setShowPrintMargin(false);
+
+    var href = window.location.href;
+    if(href.endsWith(".go"))
+        editor.getSession().setMode("ace/mode/golang");
+    else
+        editor.getSession().setMode("ace/mode/java");
+    
+    var hash = href.indexOf("#");
+    if(hash==-1) {
+        home = href.substring(0, href.lastIndexOf("/")+1);
+        href = home+defaultPage;
+    } else {
+        home = href.substring(0, href.lastIndexOf("/", hash)+1);
+        href = href.substring(hash+1);
+        hash = href.indexOf("#");
+        if(hash!=-1) {
+            anchor = href.substring(hash+1);
+            href = href.substring(0, hash);
+        }
+        href = href.includes("://") ? href : home+href
+    }
+
+    var slash = href.lastIndexOf('/');
+    document.title = href.substring(slash+1);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', href, true);
+    xhr.onload = function(e) {
+        if(this.status==200) {
+            editor.setValue(this.response);
+            editor.gotoLine(1);
+            run();
+        } else
+            alert(this.status+" "+this.statusText);
+    };
+    xhr.onerror = function(e) {
+        alert("Error");
+    };
+    xhr.send();
+
+    function run() {
+        console.log("running code...")
+        var data = new FormData();
+        data.append("api_key", "hackerrank|2473873-2256|61ffcbe0804d30b4105070cbe5852266f16ace01");
+        data.append("source", editor.getValue());
+        if(href.endsWith(".go"))
+            data.append("lang", 21);
+        else
+            data.append("lang", 3);
+        data.append("testcases", "['']");
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://api.hackerrank.com/checker/submission.json', true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if(this.status==200) {
+                console.log(this.response);
+            } else {
+                console.log(this.response);
+            }
+        }
+        xhr.onerror = function(e) {
+            console.log("Error in submission");
+        };
+        xhr.send(data);
+    }
+</script>
+</body>
+</html>

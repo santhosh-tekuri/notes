@@ -26,10 +26,7 @@ String toPostfix(String prefix) {
 }
 ```
 
-::: src
-[:icon-go:](src/Prefix2Postfix.go)
-[:icon-java:](src/Prefix2Postfix.java)
-:::
+`@src(src/Prefix2Postfix.go, src/Prefix2Postfix.java)`
 
 ---
 

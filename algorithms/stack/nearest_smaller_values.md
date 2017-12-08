@@ -38,9 +38,9 @@ int[] nearestSmallerValues(int a[n]) {
     return b;
 }
 ```
-::: src
-[:icon-java:](src/NearestSmallerValuesV1.java)
-:::
+
+`@src(src/NearestSmallerValuesV1.java)`
+
 each element is pushed once and popped at most once
 
 Time Complexity: $O(n)$  
@@ -68,9 +68,7 @@ int[] nearestSmallerValues(int a[n]) {
 }
 ```
 
-::: src
-[:icon-java:](src/NearestSmallerValuesV2.java)
-:::
+`@src(src/NearestSmallerValuesV2.java)`
 
 Time Complexity: $O(n)$  
 Space Complexity: $O(1)$
@@ -114,8 +112,8 @@ void replaceWithNGE(int a[]) {
 		a[stack.pop()] = -1;
 }
 ```
-::: src
-[:icon-java:](src/ReplaceWithNGE.java)
-:::
+
+`@src(src/ReplaceWithNGE.java)`
+
 
 Every index is pushed once and popped once. So running time is `$O(n)$`

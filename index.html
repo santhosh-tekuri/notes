@@ -316,7 +316,39 @@ function fixLatex() {
     i++;
   }
 }
- 
+
+function evalFunctions(url) {
+    var codes = document.getElementsByTagName('code')
+    var i = 0;
+    while(i<codes.length) {
+        var code = codes[i];
+        if(code.parentNode.tagName!=='PRE') {
+            var text = code.textContent;
+            if(text.startsWith("@")) {
+                var open = text.indexOf('(');
+                var func = text.substring(1, open);
+                var args = text.substring(open+1, text.length-1);
+                if(func=="src") {
+                    var links = "";
+                    var files = args.split(",")
+                    for(var j=0; j<files.length; j++) {
+                        var file = files[j].trim();
+                        var href = url.home + "editor.html#"+url.resolve(file, true);
+                        var lang = file.substring(file.lastIndexOf('.')+1)
+                        links += `<a href="${href}" target="_blank"><i class="icon-${lang} fa-lg"></i></a>`;
+                    }   
+                    var div = document.createElement('div');
+                    div.setAttribute("class", "src");
+                    div.innerHTML = links;
+                    code.parentNode.replaceChild(div, code);
+                    continue;
+                }
+            }
+        }
+        i++;
+    }
+}
+
 function renderMarkdown(markdown) {
     markdown = escapeLatex(markdown);
     document.body.innerHTML = markdown2html(markdown);
@@ -331,6 +363,7 @@ function renderMarkdown(markdown) {
     renderGraphviz();
     syntaxHighlight();
     renderLatex();
+    evalFunctions(url);
 
 	// update viewport
     if(url.anchor)
@@ -489,7 +522,7 @@ hr {
 .src {
     float: right;
     position: relative;
-    top: -70px;
+    top: -50px;
     right: 10px;
     a {
         color: black;
