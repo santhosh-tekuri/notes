@@ -58,12 +58,12 @@ consider:
               child   | parent.children
               of-type | parent.children.filter(child.name=name)
 then:
-       div:first-XXX ➜  if name=='div' & arr[0]=this
-      div:nth-XXX(5) ➜  if name=='div' & arr[4]=this
+       div:first-XXX ➜  if name=='div' & arr[0]==this
+      div:nth-XXX(5) ➜  if name=='div' & arr[4]==this
      div:nth-XXX(5n) ➜  if name=='div' & arr.filter((index+1)%5==0).contains(this)
 
-        div:last-XXX ➜  if name=='div' & arr.reverse()[0]=this
- div:nth-last-XXX(5) ➜  if name=='div' & arr.reverse()[4]=this
+        div:last-XXX ➜  if name=='div' & arr.reverse()[0]==this
+ div:nth-last-XXX(5) ➜  if name=='div' & arr.reverse()[4]==this
 div:nth-last-XXX(5n) ➜  if name=='div' & arr.reverse().filter((index+1)%5==0).contains(this)
 
         div:only-XXX ➜  if name=='div' & arr.length==1 && arr.contains(this)
