@@ -31,16 +31,18 @@ public class LongestNonRepeatingSubstring {
     }
 
     public static void main(String[] args) {
-        String str = "ABDEFGABEF";
+        run("ABDEFGABEF");
+        run("BBBB");
+        run("GEEKSFORGEEKS");
+
+        // Output:
+        // ABDEFG
+        // B
+        // EKSFORG
+    }
+
+    static void run(String str) {
         int index[] = longestSubstringWithoutRepeating(str.toCharArray());
-        System.out.println(str.substring(index[0], index[1]+1));
-
-        str = "BBBB";
-        index = longestSubstringWithoutRepeating(str.toCharArray());
-        System.out.println(str.substring(index[0], index[1]+1));
-
-        str = "GEEKSFORGEEKS";
-        index = longestSubstringWithoutRepeating(str.toCharArray());
         System.out.println(str.substring(index[0], index[1]+1));
     }
 }

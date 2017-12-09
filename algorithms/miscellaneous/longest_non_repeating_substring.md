@@ -38,9 +38,7 @@ int[] longestSubstringWithoutRepeating(char a[n]){
     return new int[]{maxi, maxj-1};
 }
 ```
-::: src
-[:icon-java:](src/LongestNonRepeatingSubstring.java)
-:::
+`@src(src/LongestNonRepeatingSubstring.java)`
 
 Running Time: $O(n)$
 
