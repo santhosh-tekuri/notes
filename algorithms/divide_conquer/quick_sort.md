@@ -115,6 +115,8 @@ int kthSmallest(int a[], int lo, int hi, int k) {
 }
 ```
 
+`@src(src/KthSmallestV1.java)`
+
 Best-case: $T(n) = T({n \over 2}) + O(n) = O(n)$  
 Worst-case: $T(n) = T(n-1) + O(n) = O(n^2)$
 
@@ -140,6 +142,8 @@ int kthSmallest(int a[], int k) {
 }
 ```
 
+`@src(src/KthSmallestV2.java)`
+
 ---
 
 ## k<sup>th</sup> largest element
@@ -153,7 +157,7 @@ int kthLargest(int a[], int k) {
     int lo=0; int hi=a.length-1;
     while(true) {
         if(lo==hi)
-            return a[lo]
+            return a[lo];
         int p = partition(a, lo, hi);
         if(p==pos)
             return a[p];
@@ -164,6 +168,8 @@ int kthLargest(int a[], int k) {
     }
 }
 ```
+
+`@src(src/KthLargest.java)`
 
 ---
 
