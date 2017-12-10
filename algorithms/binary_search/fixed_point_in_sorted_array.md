@@ -30,7 +30,9 @@ int fixedPoint(int a[]) {
 }
 ```
 
-Running Time: `$O(n \log_2 n)$`
+`@src(src/FixedPoint.java)`
+
+Running Time: $O(n \log_2 n)$
 
 ---
 
