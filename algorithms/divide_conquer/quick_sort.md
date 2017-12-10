@@ -15,7 +15,7 @@ void quickSort(int a[], int lo, int hi) {
     if(lo<hi) {
         int p = partition(a, lo, hi);
         quickSort(a, lo, p-1);
-        quickSort(a, p+1, high);
+        quickSort(a, p+1, hi);
     }
 }
 
@@ -27,13 +27,14 @@ int partition(int a[], int lo, int hi) {
         if(a[j]<p){
             i++;
             a[i] ⟷ a[j];
-            swap(a, i, j);
         }
     }
-    a[i+1] ⟷ a[right]; // move pivot to its final place
-    return i+1;
+    a[i+1] ⟷ a[hi]; // move pivot to its final place
+    return i+1; // index of pivot
 }
 ```
+
+`@src(src/QuickSortV1.java)`
 
 to randomize pivot selection:
 
@@ -49,21 +50,21 @@ int randomizedPartition(int a[], int lo, int hi) {
 
 happens when pivot is either smallest or largest element, resulting partitions of sizes `0` and `n-1`
 
-`$\begin{align}
+$\begin{align}
 T(n)&= T(n-1) + T(0) + O(n) \\
     &= T(n-1) + O(n) \\
     &= O(1) + \dots + O(n-1) + O(n) \\
     &= O(n^2) \\
-\end{align}$`
+\end{align}$
 
 ### Best-case:
 
 happens when partitions are nearly equal sizes
 
-`$\begin{align}
+$\begin{align}
 T(n)&= 2T({n \over 2}) + O(n) \\
     &= O(n \log_2 n) \\
-\end{align}$`
+\end{align}$
 
 see [Dutch National Flag Problem](../miscellaneous/dutch_national_flag.md) for various ways of partitioning
 
@@ -86,6 +87,8 @@ void quickSort(int a[]) {
     }
 }
 ```
+
+`@src(src/QuickSortV2.java)`
 
 ---
 
@@ -112,8 +115,8 @@ int kthSmallest(int a[], int lo, int hi, int k) {
 }
 ```
 
-Best-case: `$T(n) = T({n \over 2}) + O(n) = O(n)$`  
-Worst-case: `$T(n) = T(n-1) + O(n) = O(n^2)$`
+Best-case: $T(n) = T({n \over 2}) + O(n) = O(n)$  
+Worst-case: $T(n) = T(n-1) + O(n) = O(n^2)$
 
 ### Iterative Version
 
@@ -203,7 +206,7 @@ two red jugs or two blue jugs.
 ### Naive Implementation:
 
 compare each red jug with each blue jug  
-#comparisons = `$O(n^2)$`
+#comparisons = $O(n^2)$
 
 ### Quicksort approach:
 
@@ -232,8 +235,8 @@ void matchJugs(R, B) {
 }
 ```
 
-#comparisons = `$O(n \log_2 n)$`  
-in worst-case #comparisons = `$O(n^2)$`
+#comparisons = $O(n \log_2 n)$  
+in worst-case #comparisons = $O(n^2)$
 
 ---
 
