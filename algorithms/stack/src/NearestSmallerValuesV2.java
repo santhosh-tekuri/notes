@@ -17,8 +17,17 @@ public class NearestSmallerValuesV2 {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(nearestSmallerValues(new int[]{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15})));
-        System.out.println(Arrays.toString(nearestSmallerValues(new int[]{1, 6, 4, 10, 2, 5})));
-        System.out.println(Arrays.toString(nearestSmallerValues(new int[]{1, 3, 0, 2, 5})));
+        run(new int[]{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15});
+        run(new int[]{1, 6, 4, 10, 2, 5});
+        run(new int[]{1, 3, 0, 2, 5});
+
+        // Output:
+        // [-1, 0, 0, 2, 0, 4, 4, 6, 0, 8, 8, 10, 8, 12, 12, 14]
+        // [-1, 0, 0, 2, 0, 4]
+        // [-1, 0, -1, 2, 3]
+    }
+
+    static void run(int a[]) {
+        System.out.println(Arrays.toString(nearestSmallerValues(a)));
     }
 }
