@@ -93,7 +93,7 @@ we can transform each row into a histogram, by counting `1`s from current row up
 
 ```java
 int maxArea(int m[r][c]) {
-	int hist[r];
+	int hist[c];
     
     for(int j=0; j<c; j++)
         hist[j] = m[0][j];
@@ -108,5 +108,7 @@ int maxArea(int m[r][c]) {
     return ans;
 }
 ``` 
+
+`@src(src/LargestRectangleInBinaryMatrix.java)`
 
 Running Time: $O(rc)$
