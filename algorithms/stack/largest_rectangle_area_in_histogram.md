@@ -25,6 +25,10 @@ For every bar `x`, find largest rectangle formed with `x` as smallest bar in tha
 * then no of bars in rectangle = rightIndex-leftIndex-1 = 3
 * so area = 3\*4 = 12
 
+::: note
+add bar of size `-1` on both ends, to get the logic work for first and last bar
+:::
+
 **How to find leftIndex and rightIndex of each bar efficiently ?**
 
 Use stack
@@ -36,24 +40,26 @@ Use stack
             * leftIndex   = top index in stack (-1 if empty)
       
 ```java
-int maxArea(int hist[n]){
-	int maxArea = 0;
-	Stack stack;
-	for(int i=0; i<n; i++){
-		while(!stack.isEmpty() && hist[stack.peek()]>hist[i]){
-			int minBar = hist[stack.pop()];
-			int leftIndex = stack.isEmpty() ? -1 : stack.peek();
-			int area = minBar*(i-leftIndex-1);
-			if(area>maxArea)
-				maxArea = area;
-		}
-		stack.push(i);
-	}
+int maxArea(int hist[n]) {
+    int maxArea = 0;
+    Stack stack;
+    for(int i=0; i<=n; i++) {
+        while(!stack.isEmpty() && (i==n || hist[stack.peek()]>hist[i])) {
+            int minBar = hist[stack.pop()];
+            int leftIndex = stack.isEmpty() ? -1 : stack.peek();
+            int area = minBar*(i-leftIndex-1);
+            if(area>maxArea)
+                maxArea = area;
+        }
+        stack.push(i);
+    }
 	return maxArea;
 }
 ```
 
-Running Time: `$O(n)$`
+`@src(src/LargestRectangleInHistogram.java)`
+
+Running Time: $O(n)$
 
 ---
 
@@ -63,12 +69,12 @@ Running Time: `$O(n)$`
 
 Given a binary matrix, find the largest rectangle with all `1`s
 
-`$\begin{matrix}
+$\begin{matrix}
 0 & 1 & 1 & 0 \\
 \color{red}1 & \color{red}1 & \color{red}1 & \color{red}1 \\
 \color{red}1 & \color{red}1 & \color{red}1 & \color{red}1 \\
 1 & 1 & 0 & 0
-\end{matrix}$`
+\end{matrix}$
 
 notice how previous problem `hist[] = { 6, 2, 5, 4, 5, 1, 6 }` can be visualized as binary matrix:
 
@@ -103,4 +109,4 @@ int maxArea(int m[r][c]) {
 }
 ``` 
 
-Running Time: `$O(rc)$`
+Running Time: $O(rc)$

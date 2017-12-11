@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Santhosh Kumar Tekuri
@@ -18,11 +17,15 @@ public class ReplaceWithNGE {
     }
 
     public static void main(String[] args) {
-        int a[] = new int[]{4, 5, 2, 25};
-        replaceWithNGE(a);
-        System.out.println(Arrays.toString(a));
+        run(new int[]{4, 5, 2, 25});
+        run(new int[]{13, 7, 6, 12, 15});
 
-        a = new int[]{13, 7, 6, 12, 15};
+        // Output:
+        // [5, 25, 25, -1]
+        // [15, 12, 12, 15, -1]
+    }
+
+    static void run(int a[]) {
         replaceWithNGE(a);
         System.out.println(Arrays.toString(a));
     }
