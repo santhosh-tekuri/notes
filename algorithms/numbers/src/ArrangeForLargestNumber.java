@@ -10,12 +10,6 @@ public class ArrangeForLargestNumber {
             String s2 = String.valueOf(n2);
             return (s2+s1).compareTo(s1+s2);
         });
-
-        // Output:
-        // [4, 3, 2, 1]
-        // [60, 548, 546, 54]
-        // [9, 98, 76, 45, 4, 34, 3, 1]
-        // [90, 56, 124, 123]
     }
 
     public static void main(String[] args) {
@@ -23,6 +17,12 @@ public class ArrangeForLargestNumber {
         run(new int[]{54, 546, 548, 60});
         run(new int[]{1, 34, 3, 98, 9, 76, 45, 4});
         run(new int[]{123, 124, 56, 90});
+
+        // Output:
+        // [4, 3, 2, 1]
+        // [60, 548, 546, 54]
+        // [9, 98, 76, 45, 4, 34, 3, 1]
+        // [90, 56, 124, 123]
     }
 
     static void run(int a[]) {

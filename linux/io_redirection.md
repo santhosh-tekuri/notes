@@ -6,7 +6,7 @@ each open file gets assigned a file descriptor
 * `2` file descriptor for stderr
 * additional opened files are assigned from `3` onwards
 
-file descritors are not unique across processes. they are just indices of process's own file descriptor table
+file descriptors are not unique across processes. they are just indices of process's own file descriptor table
 
 ![filedescriptors.npg](files/filedescriptors.jpg)
 
@@ -92,7 +92,7 @@ Thu Dec  7 20:05:19 IST 2017
 * same as above except appended to file `F`
 
 `M>&N`
-* redirect file descritor `M` to file descriptor `N`
+* redirect file descriptor `M` to file descriptor `N`
 * `M` defaults to `1`
 
 `0<F` or `<F`
@@ -104,11 +104,11 @@ Thu Dec  7 20:05:19 IST 2017
 * assign file descriptor `M` to it
 
 `M<&-`
-* close input descritor `M`
+* close input descriptor `M`
 * `M` defaults to `0`
 
 `M>&-`
-* close output descritor `M`
+* close output descriptor `M`
 * `M` defaults to `1`
 
 `cmd1 | cmd2`
