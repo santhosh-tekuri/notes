@@ -24,7 +24,7 @@ int firstNonRepeating(String str) {
 
 `@src(src/FirstNonRepeatingCharV1.java)`
 
-Running Time: `$O(n)$` where `n` is string.length
+Running Time: $O(n)$ where `n` is string.length
 
 ---
 
@@ -65,7 +65,7 @@ int firstNonRepeating(String str) {
 <http://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/>
 
 **Given a stream of characters**, find the first non-repeating character from stream.
-You need to tell the first non-repeating character in `$O(1)$` time **at any moment**.
+You need to tell the first non-repeating character in $O(1)$ time **at any moment**.
 
 ```java
 class Stream {
