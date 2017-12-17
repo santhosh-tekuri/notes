@@ -5,6 +5,8 @@
 * [cat](cat.md)
 * [grep](grep.md)
 * [ssh](ssh.md)
+* [curl](curl.md)
+* [lsof](lsof.md)
 
 :::
 
