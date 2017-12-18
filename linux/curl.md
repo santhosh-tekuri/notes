@@ -25,6 +25,8 @@ $ curl -d @- http://server/widgets
 ^D
 ```
 
+`-F` `--form` can be used to send `Content-Type: multipart/form-data`
+
 ---
 
 ### Save to file
