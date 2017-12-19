@@ -8,6 +8,7 @@
 * [curl](curl.md)
 * [lsof](lsof.md)
 * [screen](screen.md)
+* [sudoers file](sudoers.md)
 
 :::
 
