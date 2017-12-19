@@ -9,11 +9,17 @@ if `x, y, z` is an arithmetic progression:
 so the problem is equivalently:
 > Find whether any element in sorted array `a[n]` is the average of two others ?
 
+$
+[\color{red}1, 7, 10, \color{red}{15}, 27, \color{red}{29}] \\
+[\color{red}1, 7, 10, \color{red}{12}, 22, \color{red}{23}] \\
+[1, 2, 5, 6]
+$
+
 ---
 
 ```java
 int[] arithmeticProgression(int a[n]) {
-    for(int j=2, j<n; j++) { // a[j] is middle element
+    for(int j=2; j<n; j++) { // a[j] is middle element
         int i=j-1, k=j+1;
         while(i>=0 && k<n) {
             if(a[i]+a[k]<2*a[j])
@@ -28,7 +34,9 @@ int[] arithmeticProgression(int a[n]) {
 }
 ```
 
-Running Time: `$O(n^2)$`
+`@src(src/ArithmeticProgression3.java)`
+
+Running Time: $O(n^2)$
 
 ---
 
