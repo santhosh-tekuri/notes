@@ -115,3 +115,18 @@ EOF
 ::: tip
 exit code reflects the command's exit code
 :::
+
+---
+
+## Tunneling Connection
+
+`ProxyCommand` option allows to replace transport with stdin/stdout of given command  
+this is useful to ssh a server via [bastion](https://en.wikipedia.org/wiki/Bastion_host)/[jump](https://en.wikipedia.org/wiki/Jump_server) host
+
+```
+ssh -o ProxyCommand='ssh <bastion-host> nc <target-host> 22' <target-host>
+```
+
+alternative way to achieve same: `ssh -tt <bastion-hot> ssh -tt <target-host>`  
+`-t` forces pseudo-tty allocation  
+`-tt` forces tty allocation, even if ssh has no local tty
