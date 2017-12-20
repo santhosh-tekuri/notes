@@ -1,15 +1,18 @@
 # #Anagrams of word in given text
 
-Given a `word` and `text`, return count of occurrences of anagrams of `word` in `text`.
+Given a `word` and `text`, return count of occurrences of anagrams of `word` in `text`
 
-`word="for"` and `text="forxxorfxdofr"`, there are `3` occurrences
+```
+word="for" text="forxxorfxdofr" ➜  3
+word="for" text="forf" ➜  2
+```
 
 ---
 
 first see, how to check two strings of equal length are anagrams ?
 
 ```java
-boolean areAnagrams(char s1[], char s2) {
+boolean areAnagrams(char s1[], char s2[]) {
     int count[256];
     int nonZeros = 0;
     for(char ch: s1) {
@@ -30,7 +33,7 @@ boolean areAnagrams(char s1[], char s2) {
 }
 ```
 
----
+`@src(src/CheckAnagrams.java)`
 
 to solve original problem: 
 
@@ -41,9 +44,8 @@ moves rightwards by one character.
 keep updating values of `count[]` and `nonZeros` for current window
 as we move rightwards. When `nonZeros==0` then current window is an anagram.
 
-
 ```java
-int countAnagrams(char word[], char text[]){
+int countAnagrams(char word[], char text[]) {
     int count[256];
     int nonZeros = 0;
     for(char ch: word){
@@ -58,18 +60,18 @@ int countAnagrams(char word[], char text[]){
 
         // add ch to sliding window
         if(count[ch]==0) nonZeros++;
-        bin[ch]--;
+        count[ch]--;
         if(count[ch]==0) nonZeros--;
 
-        if(i>=word.length){
+        if(i>=word.length) {
             ch = text[i-word.length];
             // remove ch from sliding window
             if(count[ch]==0) nonZeros++;
-            bin[ch]++;
+            count[ch]++;
             if(count[ch]==0) nonZeros--;
         }
 
-        if(nonZeros==0){
+        if(nonZeros==0) {
             anagrams++;
             println("anagram found at position:", i-word.length+1);
         }
@@ -78,7 +80,11 @@ int countAnagrams(char word[], char text[]){
 }
 ```
 
-Running Time: `$O(n)$` where `n` is length of text
+`@src(src/CountAnagrams.java)`
+
+Running Time: $O(n)$ where `n` is length of text
+
+---
 
 ### References
 

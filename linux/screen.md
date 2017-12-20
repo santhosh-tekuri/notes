@@ -2,7 +2,7 @@
 
 default command key: `C-a`
 
-`?` show key bindings
+`?` show key bindings  
 `a` send command key to window  
 `:` enter command line  
 

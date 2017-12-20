@@ -3,7 +3,7 @@
 Find whether sorted array `a[n]` contains a three-term arithmetic progression ?
 
 if `x, y, z` is an arithmetic progression:
-* `y-x=z-y` → `2y=x+y` → `y=(x+z)/2`
+* `y-x=z-y` → `2y=x+z` → `y=(x+z)/2`
 * i.e, `y` is average of `x` and `y`
 
 so the problem is equivalently:
