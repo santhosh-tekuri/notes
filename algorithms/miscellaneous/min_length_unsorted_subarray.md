@@ -2,9 +2,13 @@
 
 Given unsorted array `a[]`, find minimum length subarray such that sorting that subarray makes the whole array sorted
 
-`$\{10, 12, 20, \color{red}{30, 25, 40, 32, 31, 35}, 50, 60\}$`
-
-`$\{0, 1, \color{red}{15, 25, 6, 7}, 30, 40, 50\}$`
+$
+[10, 12, 20, \color{red}{30, 25, 40, 32, 31, 35}, 50, 60] \\
+[0, 1, \color{red}{15, 25, 6, 7}, 30, 40, 50] \\
+[1, 2, 3, 4, 5] \\
+[1, 2, 3, \color{red}{5, 4}] \\
+[\color{red}{5, 4, 3, 2, 1}]
+$
 
 ---
 
@@ -23,8 +27,8 @@ note that `s<e` always holds
 
 ### step2: grow it to find answer if necessary
 
-min = min in `a[s...e]` // 25  
-max = max in `a[s...e]` // 40
+`min = min(a[s...e]); // 25`  
+`max = max(a[s...e]); // 40`
 
 decrement `s` while `a[s-1]>min`  
 increment `e` while `a[e+1]<max`
@@ -32,9 +36,7 @@ increment `e` while `a[e+1]<max`
 answer is `a[s...e]`
 
 ```java
-int[] minLengthUnsoredSubarray(int a[]) {
-    int n = a.length;
-
+int[] minLengthUnsoredSubarray(int a[n]) {
     int s = 0;
     while(s<n-1 && a[s]<=a[s+1])
         s++;
@@ -44,10 +46,13 @@ int[] minLengthUnsoredSubarray(int a[]) {
     int e = n-1;
     while(e>0 && a[e]>=a[e-1])
         e--;
-    assert e>s
+    assert e>s;
 
-    int min = min(a, s, e);
-    int max = max(a, s, e);
+    int min=a[s], max=a[s];
+    for(int i=s+1; i<=e; i++) {
+        min = min(min, a[i]);
+        max = max(max, a[i]);
+    }
 
     while(s>0 && a[s-1]>min)
         s--;
@@ -57,7 +62,9 @@ int[] minLengthUnsoredSubarray(int a[]) {
 }
 ```
 
-Running Time: `$O(n)$`
+`@src(src/MinLengthUnsortedSubarray.java)`
+
+Running Time: $O(n)$
 
 ---
 

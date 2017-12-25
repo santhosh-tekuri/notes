@@ -14,9 +14,9 @@ a=3 b=4 k=100  ➜ [100, 200, 200, 200, 100] ➜  output=200 (i.e max-value)
 ```
 
 note that, input can be very large:  
-* `$3 \leq n \leq 10^7$`
-* `$1 \leq m \leq 2 \times 10^5$`
-* `$0 \leq k \leq 10^9$`
+* $3 \leq n \leq 10^7$
+* $1 \leq m \leq 2 \times 10^5$
+* $0 \leq k \leq 10^9$
 
 ---
 
@@ -25,9 +25,9 @@ note that, input can be very large:
 ```java
 long maxValue(int n, Update updates[m]) {
     long a[n+1];
-    for(int i=0; i<m; i++) {
-        for(int j=updates[i].a; j<=updates[i].b; j++)
-            a[j] += ops[i].k;
+    for(Update update: updates) {
+        for(int i=update.a; i<=update.b; i++)
+            a[i] += update.k;
     }
 
     long max = 0;
@@ -39,8 +39,8 @@ long maxValue(int n, Update updates[m]) {
 }
 ```
 
-* each update takes `$O(n)$`
-* so total running time is `$O(mn)$`
+* each update takes $O(n)$
+* so total running time is $O(mn)$
 
 ---
 
@@ -49,9 +49,10 @@ long maxValue(int n, Update updates[m]) {
 ```java
 long maxValue(int n, Update updates[m]) {
     long diffs[n+1];
-    for(int i=0; i<m; i++) {
-        diffs[updates[i].a] += updates[i].k;
-        diffs[updates[i].b+1] -= updates[i].k;
+    for(Update update: updates) {
+        diffs[update.a] += update.k;
+        if(update.b!=n)
+            diffs[update.b+1] -= update.k;
     }
 
     long max=0, sum=0;
@@ -65,11 +66,11 @@ long maxValue(int n, Update updates[m]) {
 ```
 
 in this implementation:
-* each update takes `$O(1)$`
+* each update takes $O(1)$
 * we are storing diffs instead of original array: 
     * `diff[i]==a[i]-a[i-1]`
     * prefix-sums of `diffs[]` gives original array
-* so total running time is `$O(m+n)$`
+* so total running time is $O(m+n)$
 
 ---
 
@@ -103,8 +104,8 @@ long maxValue(int n, Update updates[m]) {
 }
 ```
 
-Time Complexity: `$O(m \log_2 m)$`  
-Space Complexity: `$O(m)$`
+Time Complexity: $O(m \log_2 m)$  
+Space Complexity: $O(m)$
 
 ---
 
