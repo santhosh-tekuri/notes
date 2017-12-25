@@ -12,9 +12,9 @@ Example: `{1, 7, 4, 9, 2, 5}`
 
 ### Problem
 
-Given sequence of numbers `$X = x_1, x_2, \dots, x_n$`, find longest zigzag subsequence
+Given sequence of numbers $X = x_1, x_2, \dots, x_n$, find longest zigzag subsequence
 
-`$[\color{red}{4, 7}, 4, 3, \color{red}{1}, 6, \color{red}{7}, 5, \color{red}{1, 7}]$`
+$[\color{red}{4, 7}, 4, 3, \color{red}{1}, 6, \color{red}{7}, 5, \color{red}{1, 7}]$
 
 ---
 
@@ -30,16 +30,16 @@ if we treat subarray that is monotonically increasing or decreasing as *run*,
 then length of longest zigzag subsequence = number of sequential runs + 1
 
 ```java
-int[] lzs(int x[]) {
+int[] lzs(int x[n]) {
     int lzs = [];
     for(int v: x) {
         if(lzs.isEmpty())
-            lzs.append(v);
+            lzs.add(v);
         else if(lzs[-1]!=v) {
             if(lzs.size()==1)
-                lzs.append(v);
+                lzs.add(v);
             else if((v-lzs[-1])*(lzs[-1]-lzs[-2]) < 0)
-                lzs.append(v);
+                lzs.add(v);
             else
                 lzs[-1] = v;
         }
@@ -48,7 +48,9 @@ int[] lzs(int x[]) {
 }
 ```
 
-Running Time: `$O(n)$`
+`@src(src/LongestZigZagSubsequence.java)`
+
+Running Time: $O(n)$
 
 :bulb: this can be also solved by [Dynamic Programming](../dynamic_programming/lzs.md)
 
