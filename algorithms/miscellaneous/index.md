@@ -27,7 +27,7 @@
 * [Smallest Window with all characters in given string](smallest_window_with_all_characters_in_given_string.md)
 * [Subarray with given Sum](subarray_with_given_sum.md)
 * [Sliding Window Maximum](sliding_window_maximum.md)
-* [Subset where every pair has sum >= k](subset_where_every_pair_has_sum_greater_k.md)
+* [Subsequence where every pair has sum >= k](subsequence_where_every_pair_has_sum_greater_k.md)
 * [Distance Maximizing increasing Pair](distance_maximizing_increasing_pair.md)
 * [Regular Expression Matching](regular_expression_matching.md)
 * [Longest ZigZag Subsequence](lzs.md)
