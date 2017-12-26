@@ -6,7 +6,8 @@ Given an array `a[]`, find pair `(i, j)` with maximum `j–i` such that `i<j` an
 {34, **8**, 10, 3, 2, 80, 30, **33**, 1}  
 {**9**, 2, 3, 4, 5, 6, 7, 8, **18**, 0}  
 {**1**, 2, 3, 4, 5, **6**}  
-{6, 5, 4, 3, 2, 1} => none
+{6, 5, 4, 3, 2, 1} => none  
+{6, 5, **4**, 3, 4, **5**}
 
 ---
 
@@ -25,18 +26,18 @@ if `j` can't pair with some possible `i`, then it can't pair with any left value
 ![max_dist_pair3.png](files/max_dist_pair3.png)
 
 ```java
-int[] findPair(int a[]) {
+int[] findPair(int a[n]) {
     // compute possible values for i in pair
-    iValues = new Stack();
-    iValues.push(0)
-    for(int i=1; i<a.length; i++) {
-        if(a[i]<a[iValues.top()])
+    Stack iValues = new Stack();
+    iValues.push(0);
+    for(int i=1; i<n; i++) {
+        if(a[i]<a[iValues.peek()])
             iValues.push(i);
     }
 
     int maxi=0, maxj=0;
-    for(j=a.length-1; j>0; j--) {
-        while(!iValues.isEmpty() && a[j]>a[iValues.top()]) {
+    for(int j=n-1; j>0; j--) {
+        while(!iValues.isEmpty() && a[j]>a[iValues.peek()]) {
             int i = iValues.pop();
             if(j-i > maxj-maxi) {
                 maxi = i;
@@ -49,13 +50,19 @@ int[] findPair(int a[]) {
     
     if(maxj-maxi==0)
         return null;
-    return new int[]{maxi, maxj}
+    return new int[]{maxi, maxj};
 }
 ```
 
-this works even if array contains -ve numbers.
+`@src(src/DistanceMaximizingIncreasingPair.java)`
 
-Running Time: `$O(n)$`
+Running Time: $O(n)$
+
+::: tip
+this works even if array contains -ve numbers.
+:::
+
+---
 
 ### References
 
