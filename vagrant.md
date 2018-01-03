@@ -35,6 +35,10 @@ to export use [vagrant-repackage.sh](files/vagrant-repackage.sh)
 * `Vagrantfile` is looked up from current directory upwards
 
 ```ruby
+# by default host locale environment variable is passed to guest
+# if guest software does not support host locale, do following
+ENV["LC_ALL"] = "en_US.UTF-8"
+
 # use configuration version 2
 Vagrant.configure("2") do |config|
   # what box the machine will be bought up against
@@ -45,6 +49,9 @@ Vagrant.configure("2") do |config|
 
   # update to latest version if available. defaults to true
   config.vm.box_check_update = true
+
+  # if nil, hostname is not managed. defaults to nil
+  config.vm.hostname = "master"
 
   # --------------------[ Providers ] ---------------------
 
@@ -85,6 +92,13 @@ Vagrant.configure("2") do |config|
   # autostart options can be turned to false
   # to start explicitly "vagrant up db_follower"
   config.vm.define "db_follower", autostart: false
+
+  # looping over vm definitions
+  (1..3).each do |i|
+    config.vm.define "node-#{i}" do |node|
+      node.vm.provision "shell", inline: "echo node #{1}"
+    end
+  end
 
   # --------------------[ Networking ] --------------------
   
@@ -185,12 +199,14 @@ end
 
 * `vagnant status` for current environment
 * `vagrant global-status` for all environments
+* `vagrant validate` validates Vagrantfile
 * `vagrant up`
 * `vagrant suspend`
 * `vagrant resume`
 * `vagrant halt` poweroff machines. use `vagrant up` later
 * `vagrant ssh`
 * `vagrant ssh-config`
+* `vagrant port` show port mappings
 
 ---
 
