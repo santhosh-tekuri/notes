@@ -1,8 +1,12 @@
 # TODO
 
+* <http://www.geeksforgeeks.org/shortest-possible-combination-two-strings/>
 * [Red Black Tree]<binary_search_tree/red_black_tree.md>
 * [Order Statistic Tree]<binary_search_tree/order_statistic_tree.md>
 * [Lexicographic Rank]<binary_search_tree/lexicographic_rank.md>
+* Trapping Rain Water 2D
+    * <https://leetcode.com/problems/trapping-rain-water-ii/description/>
+    * <https://stackoverflow.com/questions/21818044/the-maximum-volume-of-trapped-rain-water-in-3d>
 * <http://www.zrzahid.com/patching-array/>
 * Letter Combinations of a Phone Number
     * <http://letstalkalgorithms.com/letter-combinations-of-a-phone-number/>
