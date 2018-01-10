@@ -162,7 +162,7 @@ Vagrant.configure("2") do |config|
   string interpolation supported #{user.name}
   EOF
   $script2 = <<-EOF
-  unintereted content
+  un-interpolated content
   EOF
   config.vm.provision "shell", inline: $script1
   # name: "installs nginx"
