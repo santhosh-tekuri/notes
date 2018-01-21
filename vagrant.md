@@ -1,4 +1,4 @@
-# Vagrant 2.0.1
+# [Vagrant 2.0.1](https://www.vagrantup.com/)
 
 ```bash
 $ vagrant version
@@ -207,6 +207,47 @@ end
 * `vagrant ssh`
 * `vagrant ssh-config`
 * `vagrant port` show port mappings
+
+---
+
+## Arguments to Vagrantfile
+
+<https://stackoverflow.com/a/31070025>
+
+```ruby
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--opt1', GetoptLong::OPTIONAL_ARGUMENT ],
+  [ '--opt2', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--opt3', GetoptLong::NO_ARGUMENT ]
+)
+
+opt1 = 'val1'
+opt2 = 'val2'
+opt3 = false
+
+opts.each do |opt, arg|
+  case opt
+    when '--opt1'
+      opt1 = arg
+    when '--opt2'
+      opt2 = arg
+    when '--opt3'
+      opt3 = true
+  end
+end
+
+Vagrant.configure("2") do |config|
+  # configuration comes here
+end
+```
+
+now use: `vagrant --opt1=val1 --opt2=val2 --opt3 up`
+
+::: note
+custom options must be specified before vagrant command
+:::
 
 ---
 
