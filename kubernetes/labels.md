@@ -12,13 +12,19 @@ metadata:
     tier: frontend
 ```
 
-```
+```bash
 # below commands fail if label already exists, unless --override used
-$ kubectl label <resource-type> <resource-name> env=prod tier=frontend
-$ kubectl label <resource-type> --all env=prod tier=frontend
+$ kubectl label <type> <name> env=prod tier=frontend
+$ kubectl label <type> --all env=prod tier=frontend
 
-# to remove tag if it exists
-$ kubectl label <resource-type> <resource> tier-
+# remove tag, if it exists
+$ kubectl label <type> <name> env- tier-
+
+# show labels column
+$ kubectl get <type> --show-labels
+
+# show given labels as columns
+$ kubectl get <type> -L env -L tier
 ```
 
 ---

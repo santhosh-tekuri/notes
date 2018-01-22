@@ -21,17 +21,35 @@ spec:
 * containers in a Pod are automatically co-located and co-scheduled 
   on the same physical or virtual machine in the cluster
 
+---
+
 ### Networking
 
 * each pod is assigned a unique IP address
 * every container in a Pod shares the network namespace, including the IP address and network ports
 * containers inside a Pod can communicate with one another using `localhost`
 
+---
+
 ### Storage
 
 * Pod can specify a set of shared storage volumes
 * all containers in the Pod can access the shared volumes, allowing those containers to share data 
 * volumes also allow persistent data in a Pod to survive in case one of the containers within needs to be restarted
+
+---
+
+### spec.restartPolicy
+
+* possible values `Always`, `OnFailure` and `Never`
+* default value is `Always`
+* only refers to restarts of containers by kubelet on the same node
+    * note that pods are never rebound to another node
+* restarted with an exponential back-off delay
+    * 10s, 20s, 40s ... capped at five minutes
+    * reset after ten minutes of successful execution
+
+---
 
 ### Memory Resources to Containers
 
@@ -56,8 +74,9 @@ containers:
     * they inherit default memory limit, if specified in namespace
     * it can use all memory availabel on the node
 
-### CPU Resources to Containers
+---
 
+### CPU Resources to Containers
 
 ```yaml
 containers:
