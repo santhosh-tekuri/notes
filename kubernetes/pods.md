@@ -41,6 +41,8 @@ spec:
 
 ### spec.restartPolicy
 
+<https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy>
+
 * possible values `Always`, `OnFailure` and `Never`
 * default value is `Always`
 * only refers to restarts of containers by kubelet on the same node
@@ -52,6 +54,9 @@ spec:
 ---
 
 ### Container Probes
+
+<https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes>  
+<https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/>
 
 Probe is a diagnostic performed periodically by the kubelet on a Container
 
@@ -75,7 +80,7 @@ tcpSocket:                  # Success: connection succeeded
   port: 8080
 ```
 
-two kinds of probes are suppored: `livenessProbe` and `readinessProbe`:
+two kinds of probes are suppored:
 
 livenessProbe:
 * if not specified, treated as `Success`
