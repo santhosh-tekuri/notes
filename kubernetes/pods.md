@@ -51,6 +51,58 @@ spec:
 
 ---
 
+### Container Probes
+
+Probe is a diagnostic performed periodically by the kubelet on a Container
+
+3 types of probe handlers are supported:
+
+```yaml
+exec:                       # Success: exit-code==0
+  command:                  # simply exec'd, it is not run inside a shell
+  - cat
+  - /tmp/healthy
+httpGet:                    # Success: code>=200 && code<400
+  scheme: HTTP              # defaults to HTTP
+  host: myhost              # defaults to pod IP, rather use 'Host' header
+  port: 8080
+  path: /healthz
+  httpHeaders:
+  - name: X-Custom-Header
+    value: Awesome
+tcpSocket:                  # Success: connection succeeded
+  host: myhost              # defaults to pod IP
+  port: 8080
+```
+
+two kinds of probes are suppored: `livenessProbe` and `readinessProbe`:
+
+livenessProbe:
+* if not specified, treated as `Success`
+* on `Failure`, subjected to `restartPolicy`
+
+readinessProbe:
+* if not specified, treated as `Success`, otherwise treated as`Failure` before `initialDelaySeconds`
+* on `Failure`, removes pod’s IP address from the endpoints of all services that match the pod
+
+```yaml
+containers:
+- name: goproxy
+  image: goproxy
+  livenessProbe:
+    initialDelaySeconds: 5 # sec after container has started, probes are initiated
+    periodSeconds: 10      # how often to perform probe. defaults to 10. min is 1
+    timeoutSeconds: 1      # sec after which probe times out. defaults to 1. min is 1
+    successThreshold: 1    # min consecutive successes for probe to be considered success after having failed
+                           # defaults to 1. min is 1. must be 1 for livenessProbe
+    failureThreshold: 1    # min consecutive failures for probe to be considered failed after having succeeded
+                           # defaults to 3. min is 1
+    httpGet:
+      ...
+```
+
+---
+
 ### Memory Resources to Containers
 
 ```yaml
