@@ -6,10 +6,24 @@ Labels are key/value pairs that are attached to objects
 * can be attached to objects at creation time and subsequently added and modified at any time
 
 ```yaml
-labels:
-  env: prod
-  tier: frontend
+metadata:
+  labels:
+    env: prod
+    tier: frontend
 ```
+
+```
+# below commands fail if label already exists, unless --override used
+$ kubectl label <resource-type> <resource-name> env=prod tier=frontend
+$ kubectl label <resource-type> --all env=prod tier=frontend
+
+# to remove tag if it exists
+$ kubectl label <resource-type> <resource> tier-
+```
+
+---
+
+## Constraints
 
 name/value of the label:
 * at most 63 characters
@@ -24,10 +38,10 @@ key can have optional prefix, separated by `/` with name:
 
 ---
 
-## Label Selectors
+## Selectors
 
-`kubectl get all -l <label-selector>`  
-`?labelSelector=<label-selector>`
+`kubectl get all -l <selector>`  
+`?labelSelector=<selector>`
 
 `env=prod` resources with key equal to `env` and value equal to `prod`  
 `env==prod` same as above  
