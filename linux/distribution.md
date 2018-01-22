@@ -7,8 +7,7 @@ Linux master 4.4.0-104-generic #127-Ubuntu SMP Mon Dec 11 12:16:42 UTC 2017 x86_
   |     |           |                              |                          |      |      |       --operating-system
   |     |           |                              |                          |      |      --hardware-platform
   |     |           |                              |                          |      --processor
-  |     |           |                              |                          --machine
-  |     --nodename  --kernel-release               --kernel-version
+  |     --nodename  --kernel-release               --kernel-version           --machine
   --kernel-name
 ```
 
