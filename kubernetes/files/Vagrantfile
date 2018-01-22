@@ -1,0 +1,84 @@
+workers=3
+
+# https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-docker
+$install_docker = <<EOF_SCRIPT
+set -ex
+apt-get update
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+   "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   $(lsb_release -cs) \
+   stable"
+apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
+EOF_SCRIPT
+
+# https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl
+$install_kube_commands = <<EOF_SCRIPT
+set -ex
+apt-get update && apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+apt-get update
+version=1.9
+apt-get install -y kubelet=$(apt-cache madison kubelet | grep $version | head -1 | awk '{print $3}')
+apt-get install -y kubeadm=$(apt-cache madison kubeadm | grep $version | head -1 | awk '{print $3}')
+apt-get install -y kubectl=$(apt-cache madison kubectl | grep $version | head -1 | awk '{print $3}')
+EOF_SCRIPT
+
+# https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#24-initializing-your-master
+$create_cluster = <<EOF_SCRIPT
+set -ex
+ipaddr=`ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
+kubeadm init --apiserver-advertise-address=$ipaddr --pod-network-cidr=10.244.0.0/16
+kubeadm token create --print-join-command > /vagrant/kubeadm-join.sh
+EOF_SCRIPT
+
+# https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network
+$install_pod_network = <<EOF_SCRIPT
+set -ex
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
+for i in {1..100}; do
+  echo iteration $i...
+  sleep 5
+  if kubectl -n kube-system get deployment kube-dns -o 'jsonpath={.status.availableReplicas}' | grep 1; then
+    break
+  fi
+done
+kubectl -n kube-system get deployment kube-dns -o 'jsonpath={.status.availableReplicas}' | grep 1
+EOF_SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+  
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.provision "install_docker", type: "shell", inline: $install_docker
+  config.vm.provision "install_kube_commands", type: "shell", inline: $install_kube_commands
+
+  config.vm.define "master", primary: true do |master|
+    master.vm.hostname = "master"
+    master.vm.provision "create_cluster", type: "shell", inline: $create_cluster
+    master.vm.provision "install_pod_network", type: "shell", inline: $install_pod_network, privileged: false
+  end
+
+  (1..workers).each do |i|
+    config.vm.define "node#{i}" do |node|
+      node.vm.hostname = "node#{i}"
+      node.vm.provision "join_cluster", type: "shell", path: "kubeadm-join.sh"
+    end
+  end
+end
