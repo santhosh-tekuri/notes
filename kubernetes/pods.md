@@ -92,6 +92,30 @@ valueFrom:
     resource: limits.cpu
 ```
 
+from configMap key:
+
+```yaml
+name: LOG_LEVEL
+valueFrom:
+  configMapKeyRef:
+    name: logconfig
+    key: level
+```
+
+can also be declared using `spec.containers[].envFrom[]`:
+
+from configMap keys:
+
+```yaml
+configMapRef:
+  name: logconfig
+  prefix: LOG_      # optional
+  optional: true    # whether the ConfigMap must be defined
+
+# keys that are considered invalid will be skipped
+# invalid names gets recorded in event log as warning 'InvalidEnvironmentVariableNames'
+```
+
 ---
 
 ### Container Probes
