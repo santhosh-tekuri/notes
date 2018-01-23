@@ -108,6 +108,41 @@ containers:
 
 ---
 
+### spec.initContainers[]
+
+<https://kubernetes.io/docs/concepts/workloads/pods/init-containers/>
+
+exactly like `spec.containers[]`, except:
+* they always run to completion
+* if failed to start, or exits with failure, they are retried based on `spec.restartPolicy`
+    * if `spec.restartPolicy: Always`, the Init Containers use `OnFailure`
+* don't support `readinessProbe`
+* are run sequentially, each must complete successfully, before the next one is started
+    * if pod is restarted, all Init Containers must execute again
+    * changes to init container image, restarts the pod
+* see status in `status.initContainerStatuses[]`
+* `containers` are run only after all `initContainers` have run to completion
+
+when to use:
+* to do some setup, before app containers is run
+    * `git cline https://github.com/santhosh-tekuri/www-html`
+    * place values like POD_IP into a configuration file and run a template tool like jinja to dynamically generate main app configuration
+* block/delay startup of app containers, until some preconditions are met:
+    * wait for a service to be created:  
+      `for i in {1..100}; do sleep 1; if dig myservice; then exit 0; fi; done; exit 1`
+    * register this Pod with a remote server from the downward API  
+      `curl -X POST http://$MANAGEMENT_SERVICE_HOST:$MANAGEMENT_SERVICE_PORT/register -d 'instance=$(<POD_NAME>)&ip=$(<POD_IP>)'`
+    * wait for some time before starting the app container:  
+      `sleep 60`
+
+Remember:
+* should be idempotent, because they can be restarted, retried, or re-executed
+* use `spec.activeDeadlineSeconds` to prevent them from failing forever
+* app and init containers cannot share same name
+* if `spec.restartPolicy: Always` and all containers terminate, pod is restarted causing init containers re-execution
+
+---
+
 ### Memory Resources to Containers
 
 ```yaml
