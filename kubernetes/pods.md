@@ -27,6 +27,7 @@ spec:
 
 * each pod is assigned a unique IP address
 * every container in a Pod shares the network namespace, including the IP address and network ports
+* hostname of a container is the name of the pod
 * containers inside a Pod can communicate with one another using `localhost`
 
 ---
@@ -50,6 +51,46 @@ spec:
 * restarted with an exponential back-off delay
     * 10s, 20s, 40s ... capped at five minutes
     * reset after ten minutes of successful execution
+
+---
+
+### Container Environment Variables
+
+<https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/>  
+<https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/>
+
+declared using `spec.containers[].env[]`:
+
+from static values:
+
+```yaml
+name: USER_NAME                # from static values
+value: scott
+```
+
+from pod fields:
+
+```yaml
+name: POD_NAME                 # from pod fields
+valueFrom:
+  fieldRef:
+    fieldPath: metadata.name
+
+# can select fields from:
+# - metadata.name, metadata.namespace, metadata.labels, metadata.annotations
+# - spec.nodeName, spec.serviceAccountName
+# - status.hostIP, status.podIP
+```
+
+from container resources:
+
+```yaml
+name: MEM_LIMIT
+valueFrom:
+  resourceFieldRef:
+    containerName: demo   # optional
+    resource: limits.cpu
+```
 
 ---
 
