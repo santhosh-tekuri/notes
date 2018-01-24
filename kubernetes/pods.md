@@ -208,6 +208,31 @@ Remember:
 
 ---
 
+### Container Lifecycle Hooks
+
+`spec.containers[].lifecycle.postStart`:
+* executes immediately after a container is created
+* no guarantee that the hook will execute before the container ENTRYPOINT
+* hook runs asynchronously relative to the container’s code
+* container status is not set to `RUNNING` until the hook handler completes
+
+`spec.containers[].lifecycle.preStop`:
+* called immediately before a container is terminated
+* useful to save state prior to stopping a Container
+* kubelet waits for handler completion, until `spec.terminationGracePeriodSeconds` expires (defaults to `30`)
+
+supported hook handlers are `exec`, `httpGet` (see [container probes](#containerprobes))
+
+Remember:
+* make hook handlers as lightweight as possible
+* hook is executed at least once, means may be called multiple times:
+    * hook is not called again, if it fails
+    * hook might be called again, in case of kubelet restart in middle of hook
+* hook failures are broadcasted as events `FailedPostStartHook`, `FailedPreStopHook`
+* resources consumed by the command are counted against the container
+
+---
+
 ### Memory Resources to Containers
 
 ```yaml
