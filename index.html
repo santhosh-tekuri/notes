@@ -122,7 +122,11 @@ function renderGraphviz() {
 defaultPage = 'index.md';
 
 function resolve(p1, p2) {
-    p1 = p1.substring(0, p1.lastIndexOf('/')+1)
+    if(p2.startsWith("#")) {
+        return p1+p2;
+    }
+
+    p1 = p1.substring(0, p1.lastIndexOf('/')+1);
     while(p2.startsWith("../")) {
         var index = p1.lastIndexOf("/", p1.length-2);
         if(index==-1)
@@ -190,7 +194,7 @@ function fixLinks(url) {
         var href = link.getAttribute("href");
         if(href.includes("://")) {
             link.target = "_blank";
-        } else if(href.endsWith(".md") || href.includes(".md#")) {
+        } else if(href.endsWith(".md") || href.includes(".md#") || href.startsWith("#")) {
             link.href = "#"+url.resolve(href, true);
         } else {
             link.href = url.resolve(href, false);
