@@ -32,11 +32,61 @@ spec:
 
 ---
 
-### Storage
+### Volumes
 
-* Pod can specify a set of shared storage volumes
-* all containers in the Pod can access the shared volumes, allowing those containers to share data 
-* volumes also allow persistent data in a Pod to survive in case one of the containers within needs to be restarted
+<https://kubernetes.io/docs/concepts/storage/volumes/>
+
+at its core, a volume is just a directory, possibly with some data in it:
+* used to share files between containers
+* volume lifetime is same as its pod
+
+```yaml
+spec:
+  volumes:           # declare volumes
+    - name: volume1
+      <volume-type>:
+         ...
+  containers:
+  - name: demo
+    image: demoimg
+    volumeMounts:   # where to mount volumes in container
+    - name: volume1
+      mountPath: /var/lib/www
+      subPath: ""   # sub-path inside the volume. defaults to ""(volume's root)
+```
+
+volume type determines:
+* how that directory comes to be
+* the medium that backs it
+* the contents of volume
+
+```yaml
+emptyDir:
+  sizeLimit: null # defaults to null i.e. no limit enforced
+  medium: ""      # defaults to "" i.e node's default medium.
+                  # "Memory" to mount tmpfs (RAM-backed filesystem), will count against container's memory limit
+
+configMap:
+  name: logconfig
+  defaultMode : 0644 # mode bits to use on created files. defaults to 0644
+  optional: false    # whether the ConfigMap or it's keys must be defined
+  items:             # if unspecified, all key-value pairs are mounted
+   - key: level
+     mode: 0700      # if unspecified, 'defaultMode' is used
+     path: log_level # mounted into <mountPath>/<path>
+
+hostPath:
+  path: /data # path on the host. if symlink, it is resolved
+  type: ""    # possible values are:
+              #  "":           (default) no checks will be performed before mounting the hostPath volume
+              #  File:         a file must exist  at given path
+              #  FileOrCreate: if needed creates empty file with mode 0644, group and ownership same as kubelet
+              #  Directory:    a directory must exist at given path
+              #  DirectoryOrCreate: if needed creates empty dir with mode 0755, group and owner same as kubelet
+              #  Socket:            a unix socket must exist at given path
+              #  CharDevice:        a character device must exist at given path
+              #  BlockDevice:       a block device must exist at given path
+```
 
 ---
 
@@ -214,6 +264,9 @@ Remember:
 * executes immediately after a container is created
 * no guarantee that the hook will execute before the container ENTRYPOINT
 * hook runs asynchronously relative to the container’s code
+* hook is executed at least once, means may be called multiple times:
+    * hook is not called again, if it fails
+    * hook might be called again, in case of kubelet restart in middle of hook
 * container status is not set to `RUNNING` until the hook handler completes
 
 `spec.containers[].lifecycle.preStop`:
@@ -225,9 +278,6 @@ supported hook handlers are `exec`, `httpGet` (see [container probes](#container
 
 Remember:
 * make hook handlers as lightweight as possible
-* hook is executed at least once, means may be called multiple times:
-    * hook is not called again, if it fails
-    * hook might be called again, in case of kubelet restart in middle of hook
 * hook failures are broadcasted as events `FailedPostStartHook`, `FailedPreStopHook`
 * resources consumed by the command are counted against the container
 

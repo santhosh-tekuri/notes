@@ -33,3 +33,9 @@ $ kubectl create configmap logconfig --from-file=configmaps/logconfig
 don't use configMaps as property files.  
 rather use as reference to property files (such as `\etc` folder in linux)
 :::
+
+---
+
+### References
+
+* <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>
