@@ -3,7 +3,8 @@
 :::toc
 * [Objects](objects.md)
 * [Labels](labels.md)
-* [Pods](pods.md)
 * [ConfigMaps](configmaps.md)
+* [Pods](pods.md)
+* [ReplicationSets](replicationsets.md)
 
 :::
