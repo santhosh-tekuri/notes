@@ -30,6 +30,33 @@ spec:
 * hostname of a container is the name of the pod
 * containers inside a Pod can communicate with one another using `localhost`
 
+```yaml
+spec:
+  containers:
+    ports:                # list of ports to expose from container. cannot be updated
+    - name: http          # optional. must be IANA_SVC_NAME and unique within pod
+      protocol: TCP       # TCP or UDP. defaults to TCP
+      containerPort: 5000 # port to expose
+```
+
+<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward>
+
+to forward one or more local ports to a pod temporarly for debugging:
+```shell
+$ # forward local ports 5000 and 6000, to pod ports 5000 and 6000 
+$ kubectl port-forward mypod 5000 6000
+
+$ # forward local port 8888 to pod port 5000
+$ kubectl port-forward mypod 8888:5000
+
+$ # forward random local port to pod port 5000
+$ kubectl port-forward mypod :5000
+```
+
+::: note
+port forward today only works for TCP protocol
+:::
+
 ---
 
 ### Volumes

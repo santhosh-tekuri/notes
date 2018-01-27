@@ -6,5 +6,6 @@
 * [ConfigMaps](configmaps.md)
 * [Pods](pods.md)
 * [ReplicationSets](replicationsets.md)
+* [Deployments](deployments.md)
 
 :::
