@@ -32,6 +32,7 @@ spec:
 
 ```yaml
 spec:
+  hostname: myhost        # defaults to name of pod
   containers:
     ports:                # list of ports to expose from container. cannot be updated
     - name: http          # optional. must be IANA_SVC_NAME and unique within pod
