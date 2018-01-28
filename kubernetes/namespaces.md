@@ -35,4 +35,4 @@ $ kubectl --all-namespaces get all
 
 ### References
 
-* <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>
+* <https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/>
