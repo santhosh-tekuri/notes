@@ -106,11 +106,42 @@ deployment "nginx-deployment" resumed
 * failure is added to `spec.status.conditions[]` with `{type: Progressing, Status: false, Reason:ProgressDeadlineExceeded}`
 * failed deployments can still be processed, for example scaling up/down, rollback, pause to apply more tweaks
 * paused rollout does not trigger deadline exceeded
+* must be greater than `spec.minReadySeconds`
 
 `spec.revisionHistoryLimit`:
 * number of old replicaSets to retain to allow rollback
 * defaults to 10
 * setting to 0, results in cleaning up all history, thus no way to rollback
+
+`spec.paused`:
+* defaults to false
+* any changes to `template` in paused deployment does not trigger new rollouts
+
+---
+
+### spec.strategy
+
+deployment strategy to use to replace existing pods with new ones
+
+
+```yaml
+strategy:
+  type: Recreate        # all existing pods are killed before new ones are created
+---
+strategy:
+  type: RollingUpdate   # default value
+  rollingUpdate:
+    maxUnavailable: 25% # max num of pods that can be unavailable during the update process
+    maxSurge: 25%       # max num of pods that cab be created above the desired number of pods
+```
+
+`maxUnavailable` and `maxSurge`:
+* if one is zero, other cannot be zero
+* value can be absolute number or pecentage of desired pods
+* absolute value is calculated from percentage by
+	* rounding down for `maxUnavailable`
+	* rounding up for `maxSurge`
+* defaults to 25%
 
 ---
 
