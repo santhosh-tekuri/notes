@@ -20,6 +20,7 @@ spec:
   containers that are tightly coupled and that share resources
 * containers in a Pod are automatically co-located and co-scheduled 
   on the same physical or virtual machine in the cluster
+* pods are mortal. when they die, they are not resurrected
 
 ---
 
