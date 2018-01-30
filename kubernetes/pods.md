@@ -105,6 +105,15 @@ configMap:
      mode: 0700      # if unspecified, 'defaultMode' is used
      path: log_level # mounted into <mountPath>/<path>
 
+secret:
+  secretName: my-secret
+  defaultMode : 0644 # mode bits to use on created files. defaults to 0644
+  optional: false    # whether the Secret or it's keys must be defined
+  items:             # if unspecified, all key-value pairs are mounted
+   - key: passwd
+     mode: 0700      # if unspecified, 'defaultMode' is used
+     path: password  # mounted into <mountPath>/<path>
+
 hostPath:
   path: /data # path on the host. if symlink, it is resolved
   type: ""    # possible values are:
@@ -182,15 +191,28 @@ valueFrom:
     key: level
 ```
 
-can also be declared using `spec.containers[].envFrom[]`:
-
-from configMap keys:
+from secret key:
 
 ```yaml
-configMapRef:
-  name: logconfig
-  prefix: LOG_      # optional
-  optional: true    # whether the ConfigMap must be defined
+name: SECRET_PASSWORD
+valueFrom:
+  secretKeyRef:
+    name: mysecret
+    key: password
+```
+
+can also be declared using `spec.containers[].envFrom[]`:
+
+```yaml
+envFrom:
+- configMapRef:
+    name: logconfig
+    prefix: LOG_      # optional
+    optional: true    # whether the ConfigMap must be defined
+- secretRef:
+    name: mysecret
+    prefix: SECRET_   # optional
+    optional: true    # whether the ConfigMap must be defined
 
 # keys that are considered invalid will be skipped
 # invalid names gets recorded in event log as warning 'InvalidEnvironmentVariableNames'

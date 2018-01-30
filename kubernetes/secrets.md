@@ -108,6 +108,15 @@ $ kubectl create secret docket-registry my-secret -f ~/.dockercfg
 
 ---
 
+### Risks
+
+* secrets are stored as plain text in etcd
+* even if apiserver policy does not allow a user to read secret, he can run
+  a pod that uses the secret and see its value
+* by default, etcd replicas communicate without TLS 
+
+---
+
 ### References
 
 * <https://kubernetes.io/docs/concepts/configuration/secret/>
