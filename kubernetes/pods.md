@@ -78,10 +78,11 @@ spec:
   containers:
   - name: demo
     image: demoimg
-    volumeMounts:   # where to mount volumes in container
+    volumeMounts:      # where to mount volumes in container
     - name: volume1
       mountPath: /var/lib/www
-      subPath: ""   # sub-path inside the volume. defaults to ""(volume's root)
+      readOnly: false  # defaults to false
+      subPath: ""      # sub-path inside the volume. defaults to ""(volume's root)
 ```
 
 volume type determines:
