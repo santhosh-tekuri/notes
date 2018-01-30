@@ -312,6 +312,9 @@ Remember:
 
 ### Container Lifecycle Hooks
 
+<https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/>  
+<https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/>
+
 `spec.containers[].lifecycle.postStart`:
 * executes immediately after a container is created
 * no guarantee that the hook will execute before the container ENTRYPOINT
@@ -374,3 +377,73 @@ containers:
 ```
 
 * the container has a CPU request of `0.5` cpu and a CPU limit of `1` cpu
+
+---
+
+### spec.nodeSelector
+
+<https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector>
+
+a node must match this selector, for pod to be scheduled onto it
+
+nodes have following built-in labels:
+* `kubernetes.io/hostname`
+* `beta.kubernetes.io/os`
+* `beta.kubernetes.io/arch`
+* `beta.kubernetes.io/instance-type`
+* `failure-domain.beta.kubernetes.io/zone`
+* `failure-domain.beta.kubernetes.io/region`
+
+to set label on a node: `kubectl label nodes node1 disktype=ssd`
+
+---
+
+### spec.affinity
+
+<https://kubernetes.io/docs/concepts/configuration/assign-pod-node/>
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:  # hard rule: must be met to schedule onto a node
+      nodeSelectorTerms:                             # termes are ORed
+      - matchExpressions:                            # expressions are ANDed
+          ...
+    preferredDuringSchedulingIgnoredDuringExecution: # soft rule: try to enforce but will not guarantee
+    - weight: 1                                      # prefers node with greatest sum of weights. range 1 to 100
+      preference:
+        matchExpressions:
+          ...
+  podAffinity:                                       # should schedule on node, that has pod(s) matching specified rules 
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+          ...
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 1
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+            ...
+  podAntiAffinity:                                   # shouldn't schedule on node, that has pod(s) matching specified rules 
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+          ...
+      topologyKey: failure-domain.beta.kubernetes.io/zone  # optional. should schedule on a node, with same label-value, that has pod(s) matching above rules
+      namespaces:                                    # optional. list of namespaces which labelSelector should match against
+      - ns1                                          # defaults to pod namespace
+      - ns2                                          # empty means all namespaces
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 1
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+            ...
+        topologyKey: kubernetes.io/hostname
+```
+
+* `IgnoredDuringExecution` means, if labels on a node change at runtime such that affinity rules are
+no longer met, the pod will still continue to run on the node
+* operators supported in `nodeAffinity`: `In`, `NotIn`, `Exists`, `DoesNotExist`, `Gt`, `Lt`
+* operators supported in `podAffinity`, `podAntiAffinity`: `In`, `NotIn`, `Exists`, `DoesNotExist`
