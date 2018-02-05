@@ -7,6 +7,7 @@
 * [Markdown](markdown.md)
 * [Vagrant](vagrant.md)
 * [Kubernetes](kubernetes/index.md)
+* [Contributions](contributions.md)
 
 :::
 
