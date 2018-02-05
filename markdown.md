@@ -4,7 +4,7 @@ Following are some extensions to standard markdown, that can be used in notes
 
 ---
 
-### [Emojis](https://emoji.codes/)
+### [Emojis](https://www.emojicopy.com/)
 
     this is a :smile: smile emoji
 
