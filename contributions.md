@@ -4,6 +4,7 @@
 * [encoding/xml: accepts invalid XML with multiple colons](https://github.com/golang/go/issues/20396)
 * [encoding/xml: StartElement and EndElement should not match if prefix does not match](https://github.com/golang/go/issues/20685)
 * [encoding/xml: add whitespace normalization from spec](https://github.com/golang/go/issues/20614)
+* [encoding/pem: test getLine does not include trailing whitespace](https://go-review.googlesource.com/92295)
 
 [Netflix/denominator](https://github.com/Netflix/denominator/commits?author=santhosh-tekuri)
 * [Changes DynECT to return type-safe rdata](https://github.com/Netflix/denominator/commit/85b665ea9e1f6bd18153c7957f788bd44af3b312)
