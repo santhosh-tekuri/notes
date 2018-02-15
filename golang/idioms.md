@@ -34,6 +34,26 @@ large descriptions deserve its own file `doc.go`:
 
 ---
 
+### commenting sections
+
+sections useful to group related code with comments. see [flag.go](https://golang.org/src/flag/flag.go)
+
+```go
+// -- int64 Value
+type int64Value int64
+...
+
+// -- uint Value
+type uintValue uint
+...
+
+// -- uint64 Value
+type uint64Value uint64
+...
+```
+
+---
+
 checking empty string
 
 ```go
