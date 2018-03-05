@@ -73,6 +73,8 @@ when new node is inserted and colored `RED`, which properties can be violated:
 if new node is colored BLACK, property 5 will be violated which is hard to fix
 
 ```java
+// {X} means X is colored red
+// (X) means X is colored black
 void insertFixup(RBT t, Node z) {
     while(z.parent.color==RED) { // property 4 violated
         if(z.parent==z.parent.parent.left) { // z has left-parent
