@@ -18,8 +18,8 @@
 [msgpack/msgpack-java](https://github.com/msgpack/msgpack-java/commits?author=santhosh-tekuri)
 * [NoSuchMethodException on bigendian system](https://github.com/msgpack/msgpack-java/commit/6d06d14f658744d55cf50c8ea64bd02ccd3f822d)
 
-[json-schema-org/JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite/pulls/santhosh-tekuri)
-* [content: ignore non-strings](https://github.com/json-schema-org/JSON-Schema-Test-Suite/pull/224)
+[json-schema-org/JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite/commits?author=santhosh-tekuri)
+* [content: ignore non-strings](https://github.com/json-schema-org/JSON-Schema-Test-Suite/commit/1507e57e30ebf5e181a08b25e027cfa5908d1382)
 
 [Matthias247/jawampa](https://github.com/Matthias247/jawampa/commits?author=santhosh-tekuri)
 * [name threads created by jawampa](https://github.com/Matthias247/jawampa/commit/bf10c0b9b7f43a06da5e59b1b85125bfae6c2157)
