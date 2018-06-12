@@ -3,7 +3,7 @@
 ## Create Self Signed Certificate
 
 ```shell
-$ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 900000 -nodes
+$ openssl req -x509 -newkey rsa:2048 -keyout key.pem -nodes -out cert.pem -days 900000
 Generating a 2048 bit RSA private key
 ................+++
 .............................+++
@@ -24,7 +24,7 @@ Organizational Unit Name (eg, section) []:MGMT
 Common Name (eg, fully qualified host name) []:www.abc.com
 Email Address []:santhosh@abc.com
 
-$ openssl req -nodes -new -x509  -keyout key.pem -out cert.pem -subj '/C=IN/ST=Karnataka/O=MGMT/CN=www.abc.com'
+$ openssl req -x509 -new -keyout key.pem -nodes -out cert.pem -subj '/C=IN/ST=Karnataka/O=MGMT/CN=www.abc.com'
 Generating a 2048 bit RSA private key
 .............+++
 .................................................+++
@@ -35,10 +35,10 @@ writing new private key to 'server.key'
 - `-x509` output self signed certificate instead of certificate request
 - `-new` generate new
 - `-newkey rsa:2048` generate new RSA key of `2048` size
+- `-nodes` do not encrypt the output key
 - `-keyout` output private key file
 - `-out` output file name
 - `-days` no of days cert valid for. defaults to `30`
-- `-nodes` do not encrypt the output key
 
 ---
 
