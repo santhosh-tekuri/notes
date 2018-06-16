@@ -1,5 +1,39 @@
 # Git
 
+## branch
+
+```shell
+$ git branch    # list only local branches
+* draft07
+  master
+$ git branch -a # list remote branches also
+* draft07
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/draft07
+
+$ git checkout master     # switch to master branch
+$ git checkout -b draft6  # create & switch to draft6 branch
+$ git branch -d hotfix    # delete if merged to upstream
+$ git branch -D hotfix    # force delete branch
+$ git push origin :hotfix # delete remote branch
+
+$ # create branch without history
+$ git checkout --orphan gh-pages
+$ git rm -rf .
+```
+
+---
+
+## diff
+
+```shell
+$ git diff          # show unstaged changes
+$ git diff --cached # show staged changes
+```
+
+---
+
 ## stash
 
 saves uncommitted changes to local repo for later use
