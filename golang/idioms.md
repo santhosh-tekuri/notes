@@ -88,6 +88,8 @@ var DefaultServeMux = &defaultServeMux
 
 ---
 
+### Mutex Hat
+
 put `sync.Mutex` in top of block of fields that the mutex protects
 
 ```go
@@ -126,7 +128,7 @@ func DialTimeout(network, address string, timeout time.Duration) (Conn, error) {
 
 ---
 
-optional function arguments
+### optional function arguments
 
 ```go
 // net/dial.go
@@ -142,3 +144,42 @@ func NewWriter(w io.Writer) *Writer { ... }
 func NewWriterLevel(w io.Writer, level int) (*Writer, error) { ... }
 ```
 
+---
+
+### naming errors
+
+```go
+// error types should be of the form FooError
+type ExitError struct {
+	...
+}
+
+// error values should be of the form ErrFoo
+var ErrFormat = errors.New("image: unknown format")
+```
+
+---
+
+### avoid unused method receiver names
+
+```go
+// net/http/http.go
+type noBody struct{}
+
+func (noBody) Read([]byte) (int, error)         { return 0, io.EOF }
+func (noBody) Close() error                     { return nil }
+func (noBody) WriteTo(io.Writer) (int64, error) { return 0, nil }
+```
+
+---
+
+### check implements at compile time
+
+```go
+// net/http/http.go
+var (
+	// verify that an io.Copy from NoBody won't require a buffer:
+	_ io.WriterTo   = NoBody
+	_ io.ReadCloser = NoBody
+)
+```
