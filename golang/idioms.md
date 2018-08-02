@@ -160,6 +160,18 @@ var ErrFormat = errors.New("image: unknown format")
 
 ---
 
+### prefix error description
+
+```go
+var ErrChecksum  = errors.New("zip: checksum error")
+var ErrInvalidPublicKey = errors.New("crypto/dsa: invalid public key")
+var ErrTooLarge = errors.New("bytes.Buffer: too large")
+
+return nil, errors.New("crypto/sha512: invalid hash function")
+```
+
+---
+
 ### avoid unused method receiver names
 
 ```go
