@@ -5,6 +5,7 @@
 * [Successor & Predecessor](successor_predecessor.md)
 * [Rotations](rotations.md)
 * [Lowest Common Ancestor](lowest_common_ancestor.md)
+* [#Different Binary Trees](different_binary_trees.md)
 * [Mirror Tree](mirror_tree.md)
 * [Fill BFS Successor](fill_bfs_successor.md)
 * [Vertical Sum](vertical_sum.md)
