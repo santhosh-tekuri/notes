@@ -2,16 +2,17 @@
 
 Calculate number of different binary trees with `n` nodes for $n \ge 0$
 
-There are exactly five binary trees with three nodes, namely:
-
 ```
-     o     o     o      o     o
-    /     /     / \      \     \
-   o     o     o   o      o     o
-  /       \              /       \
- o         o            o         o
-```
+n=0 ans=1
+n=3 ans=5
+    o     o     o      o     o
+   /     /     / \      \     \
+  o     o     o   o      o     o
+ /       \              /       \
+o         o            o         o
 
+n=10 ans=16796
+```
 ---
 
 ### recursive
@@ -22,13 +23,15 @@ and a right subtree with `n-1-m` nodes for some $0 \le m \le n-1$
 ```java
 int nTrees(int n) {
     if(n==0)
-        return 0;
+        return 1;
     int s = 0;
     for(int m=0; m<n; m++)
-        s += nTrees(m) * nTrees(n-1-m)
+        s += nTrees(m) * nTrees(n-1-m);
     return s;
 }
 ```
+
+`@src(src/CountBinaryTreesV1.java)`
 
 ---
 
@@ -39,12 +42,15 @@ calculate counts from bottom up
 ```java
 int nTrees(int n) {
     int c[n+1];
+    c[0] = 1;
     for(int i=1; i<=n; i++) {
-        s = 0;
+        int s = 0;
         for(int m=0; m<i; m++)
-            s += c[m] * c[i-1-m]
+            s += c[m] * c[i-1-m];
         c[i] = s;
     }
     return c[n];
 }
 ```
+
+`@src(src/CountBinaryTreesV2.java)`
