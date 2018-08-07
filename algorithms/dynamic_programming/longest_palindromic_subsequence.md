@@ -5,7 +5,8 @@ Given a sequence `$X=x_1,x_2,…,x_n$`, find longest subsequence that is palindr
 `$\begin{array}{l}
 \color{red}{bbb}a\color{red}b \\
 c\color{red}{bb}d \\
-B\color{red}{BABCB}C\color{red}{AB}
+B\color{red}{BABCB}C\color{red}{AB} \\
+\color{red}MA\color{red}HD\color{red}YNA\color{red}MICP\color{red}{RO}G\color{red}RAMZLET\color{red}MESHOW\color{red}YOUT\color{red}HE\color{red}M
 \end{array}$`
 
 ---
@@ -30,8 +31,8 @@ int lps(char s[n]) {
     int L[n][n];
     for(int i=0; i<n; i++)
         L[i][i] = 1;
-    for(int len=2; len<n; len++) {
-        for(int i=0,j=len-1; j<n; i++,j--) {
+    for(int len=2; len<=n; len++) {
+        for(int i=0,j=i+len-1; j<n; i++,j--) {
             if(s[i]==s[j]) {
                 L[i][j] = 2;
                 if(len>2)
@@ -43,6 +44,8 @@ int lps(char s[n]) {
     return L[0][n-1];
 }
 ```
+
+`@src(src/LongestPalindromicSubsequence.java)`
 
 Running Time: `$O(n^2)$`
 
