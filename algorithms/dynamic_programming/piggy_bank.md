@@ -37,7 +37,7 @@ int minAmount(int E, int F, int p[], int w[]) {
     for(int k=1; k<m.length; k++) {
         m[k] = ∞;
         for(int i=0; i<p.length; i++) {
-            if[w[i]<=k)
+            if(w[i]<=k)
                 m[k] = min(m[k], m[k-w[i]]+p[i]);
         }
     }
