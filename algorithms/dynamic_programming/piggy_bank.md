@@ -20,13 +20,13 @@ E=1  F=6   p={10, 20} w={3, 4} ➜ -1 (impossible)
 
 let `m[k]` is minimum amount guaranteed with coins weighing `k`
 
-`$m[k]=\begin{cases}
+$m[k]=\begin{cases}
 0 & \text{if $k=0$} \\
 min( \\
 \;\;\;\;\infty, & \text{// coins weight $k$ is impossible} \\
 \;\;\;\;m[k-w[i]]+p[i] & \text{for $i=1$ to $n$, where $w[i]\leq k$} \\
 ) \\
-\end{cases}$`
+\end{cases}$
 
 answer is `m[F-E]`
 
@@ -45,7 +45,9 @@ int minAmount(int E, int F, int p[], int w[]) {
 }
 ```
 
-Running Time: `$O(n(F-E))$`
+`@src(src/PiggyBank.java)`
+
+Running Time: $O(n(F-E))$
 
 ---
 
