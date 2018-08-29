@@ -3,6 +3,7 @@
 ::: toc
 * [Knapsack Problem](knapsack_problem.md)
 * [Piggy Bank](piggy_bank.md)
+* [Egg Dropping](egg_dropping.md)
 * [Assembly-line Scheduling](assembly_line_scheduling.md)
 * [Matrix-chain multiplication](matrix_chain_multiplication.md)
 * [Counting Boolean Parenthesizations](counting_boolean_parenthesizations.md)
