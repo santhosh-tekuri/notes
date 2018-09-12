@@ -1,6 +1,7 @@
-# Kubernetes
+# Kubernetes 1.11
 
 :::toc
+* [Vagrant Setup](vagrant.md)
 * [Objects](objects.md)
 * [Labels](labels.md)
 * [Namespaces](namespaces.md)
