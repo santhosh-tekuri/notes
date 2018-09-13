@@ -48,6 +48,62 @@ $ kubectl exec my-pod -c my-container -it -- /bin/bash -il
 
 ---
 
+### Container Logs
+
+<https://kubernetes.io/docs/concepts/cluster-administration/logging/>
+
+* everything a containerized application writes to `stdout` and `stderr`
+* if systemd is present, logs are written to journald
+	* otherwise written to `/var/log/containers/<pod>_<namespace>_<container>-<containerID>.log`
+
+```shell
+$ kubectl logs my-pod/my-container
+$ kubectl logs my-pod -c my-container
+
+$ # Display only the most recent 20 lines
+$ kubectl logs --tail=20 my-pod/my-container
+
+$ # follow/stream the logs
+$ kubectl logs -f my-pod/my-container
+
+$ # if pod contains only one container
+$ kubectl logs my-pod
+
+$ # to display logs of all containers
+$ kubectl logs my-pod --all-containers=true
+
+$ # to display logs of containers with specific label
+$  kubectl logs -lapp=nginx --all-containers=true
+```
+
+if a container restarts, the kubelet keeps one terminated container with its logs. to view them use `-p` flag  
+
+logs are not rotate by default. logrotation can be performed by external process. in such case only latest log file will be available with `kubectl logs`
+
+```bash
+# rotate the log file if its size is > 100Mb OR if one day has elapsed
+# keeps only 5 old (rotated) logs
+function setup-logrotate() {
+  mkdir -p /etc/logrotate.d/
+  cat > /etc/logrotate.d/allvarlogs <<EOF
+/var/log/*.log {
+    rotate ${LOGROTATE_FILES_MAX_COUNT:-5}
+    copytruncate
+    missingok
+    notifempty
+    compress
+    maxsize ${LOGROTATE_MAX_SIZE:-100M}
+    daily
+    dateext
+    dateformat -%Y%m%d-%s
+    create 0644 root root
+}
+EOF
+}
+```
+
+---
+
 ### Networking
 
 * each pod is assigned a unique IP address
