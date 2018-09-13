@@ -24,6 +24,30 @@ spec:
 
 ---
 
+### Run Command in Container
+
+<https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/>
+
+```shell
+$ # run command in a container
+$ kubectl exec my-pod -c my-container date
+$ kubectl exec my-pod --container my-container date
+
+$ # if container is omitted, first container in pod is chosen
+$ kubectl exec my-pod date
+
+$ # open shell to a container
+$ # -i pass stdin to container
+$ # -t stdin is a TTY
+$ kubectl exec my-pod -c my-container -it /bin/bash
+
+$ # if command has any flags, do not surround with quotes
+$ # instead use '--' to separate your command
+$ kubectl exec my-pod -c my-container -it -- /bin/bash -il
+```
+
+---
+
 ### Networking
 
 * each pod is assigned a unique IP address
@@ -41,18 +65,22 @@ spec:
       containerPort: 5000 # port to expose
 ```
 
+---
+
+### Port Forward
+
 <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward>
 
 to forward one or more local ports to a pod temporarly for debugging:
 ```shell
 $ # forward local ports 5000 and 6000, to pod ports 5000 and 6000 
-$ kubectl port-forward mypod 5000 6000
+$ kubectl port-forward pod/mypod 5000 6000
 
 $ # forward local port 8888 to pod port 5000
-$ kubectl port-forward mypod 8888:5000
+$ kubectl port-forward pod/mypod 8888:5000
 
 $ # forward random local port to pod port 5000
-$ kubectl port-forward mypod :5000
+$ kubectl port-forward pod/mypod :5000
 ```
 
 ::: note
