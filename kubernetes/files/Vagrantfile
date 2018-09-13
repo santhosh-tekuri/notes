@@ -30,6 +30,10 @@ version=1.11
 apt-get install -y kubelet=$(apt-cache madison kubelet | grep $version | head -1 | awk '{print $3}')
 apt-get install -y kubeadm=$(apt-cache madison kubeadm | grep $version | head -1 | awk '{print $3}')
 apt-get install -y kubectl=$(apt-cache madison kubectl | grep $version | head -1 | awk '{print $3}')
+
+# use non-NAT interface ip-address
+ipaddr=`ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
+sed -i "s/^KUBELET_EXTRA_ARGS=/KUBELET_EXTRA_ARGS=--node-ip=$ipaddr/" /etc/default/kubelet
 EOF_SCRIPT
 
 # https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#24-initializing-your-master
