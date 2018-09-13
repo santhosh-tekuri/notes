@@ -204,6 +204,7 @@ end
 * `vagrant suspend`
 * `vagrant resume`
 * `vagrant halt` poweroff machines. use `vagrant up` later
+* `vagrant destroy -f`, use `-f` for no confirmation
 * `vagrant ssh`
 * `vagrant ssh-config`
 * `vagrant port` show port mappings
