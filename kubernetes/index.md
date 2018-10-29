@@ -10,6 +10,7 @@
 * [Pods](pods.md)
 * [Services](services.md)
 * [ReplicationSets](replicationsets.md)
+* [DaemonSets](daemonsets.md)
 * [Deployments](deployments.md)
 
 :::
