@@ -4,7 +4,7 @@
 * [encoding/xml: accepts invalid XML with multiple colons](https://github.com/golang/go/issues/20396)
 * [encoding/xml: StartElement and EndElement should not match if prefix does not match](https://github.com/golang/go/issues/20685)
 * [encoding/xml: add whitespace normalization from spec](https://github.com/golang/go/issues/20614)
-* [encoding/pem: test getLine does not include trailing whitespace](https://go-review.googlesource.com/92295)
+* [encoding/pem: test getLine does not include trailing whitespace](https://github.com/golang/go/commit/90777a34cf250d2051dc6e4595625933249ca211)
 * [archive/zip: makes receiver name consistent](https://github.com/golang/go/commit/0b30cf534a03618162d3015c8705dd2231e34703)
 
 [Netflix/denominator](https://github.com/Netflix/denominator/commits?author=santhosh-tekuri)
