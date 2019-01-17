@@ -35,7 +35,7 @@ Node findIntersection(Node node1, Node node2) {
         node1 = node1.next;
         node2 = node2.next;
     }
-    return node1;
+    return node1; // will be null if do not merge
 }
 
 int length(Node node) {
