@@ -8,6 +8,7 @@
 * [archive/zip: makes receiver name consistent](https://github.com/golang/go/commit/0b30cf534a03618162d3015c8705dd2231e34703)
 * [nettest: fix doc for testPresentTimeout](https://github.com/golang/net/commit/67f368f454c9c236ca98a1075897e1868af446f7)
 * [nettest: mark test helper functions](https://github.com/golang/net/commit/afe646ca25a4a688bba916cc14caef4b53c0b856)
+* [gotfmt: add missing space if any in beginning of comment](https://github.com/golang/go/issues/30540)
 
 [Netflix/denominator](https://github.com/Netflix/denominator/commits?author=santhosh-tekuri)
 * [Changes DynECT to return type-safe rdata](https://github.com/Netflix/denominator/commit/85b665ea9e1f6bd18153c7957f788bd44af3b312)
