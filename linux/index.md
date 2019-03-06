@@ -11,6 +11,7 @@
 * [lsof](lsof.md)
 * [screen](screen.md)
 * [sudoers file](sudoers.md)
+* [miscellaneous](misc.md)
 
 :::
 
