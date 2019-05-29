@@ -15,7 +15,10 @@
 * [Allows map credentials to be used without regard to iteration order](https://github.com/Netflix/denominator/commit/e6dfb6c175385af900d3a4a012e342ab8030dc71)
 
 [Kubernetes-Website](https://github.com/kubernetes/website/commits?author=santhosh-tekuri)
-* [fix link to aws.go](https://github.com/kubernetes/website/commit/54b4a1f194be2b664dc6e4cf2d277c96e366b799
+* [fix link to aws.go](https://github.com/kubernetes/website/commit/54b4a1f194be2b664dc6e4cf2d277c96e366b799)
+
+[hashicorp/raft](https://github.com/hashicorp/raft)
+* [checkLeaderLease: count only voters into quorum](https://github.com/hashicorp/raft/pull/308)
 
 [OpenFeign/feign](https://github.com/OpenFeign/feign/commits?author=santhosh-tekuri)
 * [Adds deflate encoding support](https://github.com/OpenFeign/feign/commit/2d06330b49c49fe4eed40e82bda80f8c44aa6e52)
