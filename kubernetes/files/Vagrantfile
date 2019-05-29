@@ -1,40 +1,78 @@
+# this vagrant files setups kubernetes 1.14 cluster
+
+# in addition to master, how many worker nodes needed in cluster
 workers=3
+
+# the master will have ip <subnet>.10
+# worker nodes will have ip <subnet>.11, <subnet>.12, ...
 subnet="172.28.128"
 
-# https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-docker
+# https://kubernetes.io/docs/setup/cri/#docker
 $install_docker = <<EOF_SCRIPT
 set -ex
+
+# fix for: dpkg-reconfigure: unable to re-open stdin: No file or directory
+export DEBIAN_FRONTEND=noninteractive
+
+# Install packages to allow apt to use a repository over HTTPS
 apt-get update
-apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+# Add Docker’s official GPG key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+# Add Docker apt repository
 add-apt-repository \
-   "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
    $(lsb_release -cs) \
    stable"
-apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
+
+# Install Docker CE
+apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 18.06.2 | head -1 | awk '{print $3}')
+
+# Setup daemon.
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+mkdir -p /etc/systemd/system/docker.service.d
+
+# Restart docker
+systemctl daemon-reload
+systemctl restart docker
 EOF_SCRIPT
 
 # https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl
 $install_kube_commands = <<EOF_SCRIPT
 set -ex
+
+# fix for: dpkg-reconfigure: unable to re-open stdin: No file or directory
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
-version=1.11
+version=1.14
 apt-get install -y kubelet=$(apt-cache madison kubelet | grep $version | head -1 | awk '{print $3}')
 apt-get install -y kubeadm=$(apt-cache madison kubeadm | grep $version | head -1 | awk '{print $3}')
 apt-get install -y kubectl=$(apt-cache madison kubectl | grep $version | head -1 | awk '{print $3}')
 
 # use non-NAT interface ip-address
 ipaddr=`ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
-sed -i "s/^KUBELET_EXTRA_ARGS=/KUBELET_EXTRA_ARGS=--node-ip=$ipaddr/" /etc/default/kubelet
+if [ -f "/etc/default/kubelet" ]; then
+    sed -i "s/^KUBELET_EXTRA_ARGS=/KUBELET_EXTRA_ARGS=--node-ip=$ipaddr/" /etc/default/kubelet
+else
+    echo "KUBELET_EXTRA_ARGS=--node-ip=$ipaddr" > /etc/default/kubelet
+fi
 EOF_SCRIPT
 
 # https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#24-initializing-your-master
@@ -52,15 +90,16 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
+arch=`kubectl get node master -o 'jsonpath={.metadata.labels.beta\\.kubernetes\\.io/arch}'`
 for i in {1..100}; do
   echo iteration $i...
   sleep 5
-  if kubectl -n kube-system get daemonset kube-flannel-ds -o 'jsonpath={.status.numberAvailable}' | grep 1; then
+  if kubectl -n kube-system get daemonset kube-flannel-ds-${arch} -o 'jsonpath={.status.numberAvailable}' | grep 1; then
     break
   fi
 done
-kubectl -n kube-system get daemonset kube-flannel-ds -o 'jsonpath={.status.numberAvailable}' | grep 1
+kubectl -n kube-system get daemonset kube-flannel-ds-${arch} -o 'jsonpath={.status.numberAvailable}' | grep 1
 EOF_SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -75,7 +114,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "master", primary: true do |master|
     master.vm.hostname = "master"
-	master.vm.network "private_network", ip: "#{subnet}.10"
+    master.vm.network "private_network", ip: "#{subnet}.10"
     master.vm.provision "create_cluster", type: "shell", inline: $create_cluster
     master.vm.provision "install_pod_network", type: "shell", inline: $install_pod_network, privileged: false
   end
