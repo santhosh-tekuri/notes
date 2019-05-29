@@ -13,6 +13,7 @@
 - window:
     - change columns=150 rows=35
 - terminal:
+    - check `Unlimited scrollback`
     - in shell integration, uncheck `Show mark indicators`
 - keys:
     - Alt-Left = send escape sequence b
