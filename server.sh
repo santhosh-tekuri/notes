@@ -1,6 +1,5 @@
-# ensure http-server is installed:
-#    npm install http-server -g
+#!/bin/bash -e
 
-rm -f nohup.out
-nohup http-server -a 127.0.0.1 -p 8080 -c-1 &
-echo open http://localhost:8080/index.html in browser
+openssl req -x509 -new -keyout key.pem -nodes -out cert.pem -subj '/C=IN/ST=Karnataka/O=MGMT/CN=www.abc.com'
+nohup openssl s_server -key key.pem -cert cert.pem -accept 8443 -WWW -quiet &
+echo open https://localhost:8443/index.html in browser
