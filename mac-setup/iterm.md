@@ -16,7 +16,8 @@
     - check `Unlimited scrollback`
     - in shell integration, uncheck `Show mark indicators`
 - keys:
-    - Alt-Left = send escape sequence b
-    - Alt-Right = send escape sequence f
+    - Left Option Key: select `Esc+`
+    - Alt-Left: send escape sequence b
+    - Alt-Right: send escape sequence f
 
 
