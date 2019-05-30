@@ -1,6 +1,7 @@
 # Linux
 
 ::: toc
+* [Command Line](command_line.md)
 * [Introspect Linux Distribution](distribution.md)
 * [I/O Redirection](io_redirection.md)
 * [Parameter Expansion](parameter_expansion.md)
