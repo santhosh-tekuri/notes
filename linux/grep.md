@@ -8,7 +8,11 @@ usage: `grep <options> <pattern> <files>`
 `-i` ignore case while searching  
 `-v` invert match i.e. show lines that do not contain the pattern  
 `-n` show line numbers  
-`-c` show only count of matched lines
+`-c` show only count of matched lines  
+
+`-r` recursively search subdirectories  
+`-l` print file names that include pattern  
+`-L` print file names that do not include pattern
 
 ---
 
