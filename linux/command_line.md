@@ -18,3 +18,4 @@
 `!-2` second command from history  
 `!$` last argument of previous command
 
+`ctrl+x ctrl+e` open command in $EDITOR
