@@ -13,6 +13,7 @@
 
 `ctrl+l` clear terminal  
 `reset` repair terminal
+`clear && printf '\e[3J'` to clear screen and scrollback buffer
 
 `!!` last executed command  
 `!-2` second command from history  
