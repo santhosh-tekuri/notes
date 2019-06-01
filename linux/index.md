@@ -12,6 +12,7 @@
 * [curl](curl.md)
 * [lsof](lsof.md)
 * [screen](screen.md)
+* [expr](expr.md)
 * [sudoers file](sudoers.md)
 * [miscellaneous](misc.md)
 
