@@ -531,3 +531,31 @@ affinity:
 no longer met, the pod will still continue to run on the node
 * operators supported in `nodeAffinity`: `In`, `NotIn`, `Exists`, `DoesNotExist`, `Gt`, `Lt`
 * operators supported in `podAffinity`, `podAntiAffinity`: `In`, `NotIn`, `Exists`, `DoesNotExist`
+
+---
+
+### Access Kubernetes API
+
+<https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/>
+
+* kubernetes has a service named `kubernetes` in `default` namespace. so you can use `kubernetes.default.svc` hostname for api-server
+* by default pod is associated with a service account and you can find credentials in `/var/run/secrets/kubernetes.io/serviceaccount`
+    * this folder contains `ca.crt`, `namespace` and `token` files
+* you can use `kubectl` or `curl` to access the api
+
+```shell
+$ TOKEN=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
+$ curl -k https://kubernetes/api --header "Authorization: Bearer $TOKEN"
+{
+  "kind": "APIVersions",
+  "versions": [
+    "v1"
+  ],
+  "serverAddressByClientCIDRs": [
+    {
+      "clientCIDR": "0.0.0.0/0",
+      "serverAddress": "172.28.128.10:6443"
+    }
+  ]
+} 
+```
