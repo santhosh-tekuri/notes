@@ -8,6 +8,7 @@
 * [OpenSSL](openssl/index.md)
 * [cat](cat.md)
 * [grep](grep.md)
+* [xargs](xargs.md)
 * [ssh](ssh.md)
 * [curl](curl.md)
 * [lsof](lsof.md)
