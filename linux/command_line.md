@@ -20,3 +20,6 @@
 `!$` last argument of previous command
 
 `ctrl+x ctrl+e` open command in $EDITOR
+
+to clear typed password, do `ctrl+u`  
+to mercilessly kill foreground process, do `ctrl+\`
