@@ -503,12 +503,14 @@ affinity:
     - labelSelector:
         matchExpressions:
           ...
+      topologyKey: ...
     preferredDuringSchedulingIgnoredDuringExecution:
     - weight: 1
       podAffinityTerm:
         labelSelector:
           matchExpressions:
             ...
+        topologyKey: ...
   podAntiAffinity:                                   # shouldn't schedule on node, that has pod(s) matching specified rules 
     requiredDuringSchedulingIgnoredDuringExecution:
     - labelSelector:
