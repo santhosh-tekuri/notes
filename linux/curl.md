@@ -2,7 +2,8 @@
 
 `-L` `--location` follow redirects  
 `-f` `--fail` exit code reflecting status code  
-`-s` `--silent` silent mode, do not show progress, error messages
+`-s` `--silent` silent mode, do not show progress, error messages  
+`--retry <num>` defaults to `0` means no retries
 
 ---
 
