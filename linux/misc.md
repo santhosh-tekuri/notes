@@ -23,3 +23,13 @@ fi
 ```
 
 ---
+
+### special parameters
+
+<https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Special-Parameters>
+
+`$$` pid of shell  
+`$!` pid of job most recently placed into background  
+`$?` exit code of most recent foreground pipeline  
+`$#` number of positional parameters  
+`$*` positional parameters starting from one
