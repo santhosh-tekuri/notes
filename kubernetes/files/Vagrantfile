@@ -156,6 +156,9 @@ for i in {1..100}; do
     break
   fi
 done
+
+# mark storage class as default
+kubectl patch storageclass managed-nfs-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 EOF_SCRIPT
 
 Vagrant.configure("2") do |config|
