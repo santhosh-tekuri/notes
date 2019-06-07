@@ -134,8 +134,12 @@ EOF_SCRIPT
 $install_nfs_provisioner = <<'EOF_SCRIPT'
 set -ex
 nfs_server_ip=$1
+
+kubectl create namespace nfs-provisioner
+
 curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/nfs-client/deploy/rbac.yaml
-kubectl create -f rbac.yaml
+sed -i'' "s/namespace:.*/namespace: nfs-provisioner/g" rbac.yaml
+kubectl create -n nfs-provisioner -f rbac.yaml
 rm rbac.yaml
 
 curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/nfs-client/deploy/class.yaml
@@ -146,13 +150,13 @@ curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage
 sed -i s/10.10.10.60/$nfs_server_ip/g deployment.yaml
 sed -i s:/ifs/kubernetes:/kubedata:g deployment.yaml
 sed -i '0,/---$/d' deployment.yaml # remove service-account duplicate defintion
-kubectl create -f deployment.yaml
+kubectl create -n nfs-provisioner -f deployment.yaml
 rm deployment.yaml
 
 for i in {1..100}; do
   echo iteration $i...
   sleep 5
-  if kubectl get deployment nfs-client-provisioner -o 'jsonpath={.status.availableReplicas}' | grep 1; then
+  if kubectl get -n nfs-provisioner deployment nfs-client-provisioner -o 'jsonpath={.status.availableReplicas}' | grep 1; then
     break
   fi
 done
