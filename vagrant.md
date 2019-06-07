@@ -17,6 +17,7 @@ $ vagrant box add ubuntu/xenial64
 $ vagrant box list
 ubuntu/xenial64 (virtualbox, 20171221.0.0)
 $ vagrant box remove ubuntu/xenial64
+$ vagrant box update
 ```
 
 to export use [vagrant-repackage.sh](files/vagrant-repackage.sh)  
