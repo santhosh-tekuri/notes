@@ -46,6 +46,9 @@ mkdir -p /etc/systemd/system/docker.service.d
 # Restart docker
 systemctl daemon-reload
 systemctl restart docker
+
+# add vagrant user to docker group. this is reqd to access docker cli
+usermod -a -G docker vagrant
 EOF_SCRIPT
 
 # https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl
@@ -107,6 +110,54 @@ done
 kubectl -n kube-system get daemonset kube-flannel-ds-${arch} -o 'jsonpath={.status.numberAvailable}' | grep 1
 EOF_SCRIPT
 
+$install_nfs_server = <<'EOF_SCRIPT'
+set -ex
+export DEBIAN_FRONTEND=noninteractive
+apt install -y nfs-kernel-server
+mkdir /kubedata
+chmod 777 /kubedata
+echo "/kubedata *(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)" >> /etc/exports
+exportfs -rav
+
+cp /etc/kubernetes/admin.conf /vagrant
+EOF_SCRIPT
+
+$install_nfs_client = <<'EOF_SCRIPT'
+set -ex
+export DEBIAN_FRONTEND=noninteractive
+apt install -y nfs-common
+mkdir -p /home/vagrant/.kube
+cp /vagrant/admin.conf /home/vagrant/.kube/config
+sudo chown -R vagrant:vagrant /home/vagrant/.kube
+EOF_SCRIPT
+
+$install_nfs_provisioner = <<'EOF_SCRIPT'
+set -ex
+nfs_server_ip=$1
+curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/nfs-client/deploy/rbac.yaml
+kubectl create -f rbac.yaml
+rm rbac.yaml
+
+curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/nfs-client/deploy/class.yaml
+kubectl create -f class.yaml
+rm class.yaml
+
+curl -sO https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/nfs-client/deploy/deployment.yaml
+sed -i s/10.10.10.60/$nfs_server_ip/g deployment.yaml
+sed -i s:/ifs/kubernetes:/kubedata:g deployment.yaml
+sed -i '0,/---$/d' deployment.yaml # remove service-account duplicate defintion
+kubectl create -f deployment.yaml
+rm deployment.yaml
+
+for i in {1..100}; do
+  echo iteration $i...
+  sleep 5
+  if kubectl get deployment nfs-client-provisioner -o 'jsonpath={.status.availableReplicas}' | grep 1; then
+    break
+  fi
+done
+EOF_SCRIPT
+
 Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 2048
@@ -122,13 +173,18 @@ Vagrant.configure("2") do |config|
 	  master.vm.network "private_network", ip: "#{subnet}.10"
     master.vm.provision "create_cluster", type: "shell", inline: $create_cluster
     master.vm.provision "install_pod_network", type: "shell", inline: $install_pod_network, privileged: false
+    master.vm.provision "install_nfs_server", type: "shell", inline: $install_nfs_server
   end
 
   (1..workers).each do |i|
-    config.vm.define "node#{i}" do |node|
-      node.vm.hostname = "node#{i}"
+    config.vm.define "worker#{i}" do |node|
+      node.vm.hostname = "worker#{i}"
       node.vm.network "private_network", ip: "#{subnet}.#{i+10}"
       node.vm.provision "join_cluster", type: "shell", path: "kubeadm-join.sh"
+      node.vm.provision "install_nfs_client", type: "shell", inline: $install_nfs_client
+      if i == workers
+        node.vm.provision "install_nfs_provisioner", type: "shell", inline: $install_nfs_provisioner, args: ["#{subnet}.10"], privileged: false
+      end
     end
   end
 end
