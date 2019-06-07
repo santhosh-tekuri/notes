@@ -14,6 +14,9 @@
 * [Changes DynECT to return type-safe rdata](https://github.com/Netflix/denominator/commit/85b665ea9e1f6bd18153c7957f788bd44af3b312)
 * [Allows map credentials to be used without regard to iteration order](https://github.com/Netflix/denominator/commit/e6dfb6c175385af900d3a4a012e342ab8030dc71)
 
+[kubernetes-incubator](https://github.com/kubernetes-incubator/external-storage)
+* [Remove ServiceAccount from deployment yaml files](https://github.com/kubernetes-incubator/external-storage/pull/1179)
+
 [Kubernetes-Website](https://github.com/kubernetes/website/commits?author=santhosh-tekuri)
 * [fix link to aws.go](https://github.com/kubernetes/website/commit/54b4a1f194be2b664dc6e4cf2d277c96e366b799)
 
