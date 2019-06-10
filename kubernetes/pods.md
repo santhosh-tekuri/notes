@@ -104,6 +104,26 @@ EOF
 
 ---
 
+### Copy files/directories
+
+<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#cp>
+
+```shell
+$ # copy to container
+$ kubectl cp /tmp/foo.txt mypod:/tmp/bar.txt -c mycontainer
+
+$ # copy from container
+$ kubectl cp mypod:/tmp/bar.txt /tmp/foo.txt -c mycontainer
+
+$ # tar binary should be present in container
+$ kubectl cp /tmp/foodir mypod:/tmp/bardir -c mycontainer
+
+$ # for pod in remote namespace
+$ kubectl cp mynamespace/mypod:/tmp/foo tmp/bar
+```
+
+---
+
 ### Networking
 
 * each pod is assigned a unique IP address
@@ -114,11 +134,13 @@ EOF
 ```yaml
 spec:
   hostname: myhost        # defaults to name of pod
+  hostNetwork: false      # use host's network. if true, ports must be specified. defaults to false
   containers:
     ports:                # list of ports to expose from container. cannot be updated
     - name: http          # optional. must be IANA_SVC_NAME and unique within pod
       protocol: TCP       # TCP or UDP. defaults to TCP
       containerPort: 5000 # port to expose
+      hostPort: 6000      # port exposed on host 
 ```
 
 ---
