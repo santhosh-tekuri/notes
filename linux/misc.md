@@ -33,3 +33,11 @@ fi
 `$?` exit code of most recent foreground pipeline  
 `$#` number of positional parameters  
 `$*` positional parameters starting from one
+
+---
+
+### random numbers
+
+`$RANDOM` returns random number between 0 and 32767
+
+if you assign a number to `RANDOM`, the sequence of values generated after that will be consistent
