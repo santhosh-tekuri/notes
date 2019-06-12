@@ -1,5 +1,15 @@
 # miscellaneous
 
+### host aliases
+
+```shell
+export HOSTALIASES=~/.hosts
+echo 'mygoogle www.google.com' > ~/.hosts
+ping mygoogle
+```
+
+---
+
 ### check if command exists
 
 ```shell
