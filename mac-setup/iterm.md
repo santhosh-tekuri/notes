@@ -4,6 +4,7 @@
 - general:
     - set `Working Directory` to `Reuse previous session's directory`
 - colors:
+    - color presets: Tango Dark
     - foreground: 255,255,255
     - background: 37,37,37
     - in cursor colors: check `smart box cursor color`
@@ -19,5 +20,8 @@
     - Left Option Key: select `Esc+`
     - Alt-Left: send escape sequence b
     - Alt-Right: send escape sequence f
+- advanced:
+    - triggers:
+        - Regex: `^\++ .*` Text: `White` Background: `40% Gray`
 
 
