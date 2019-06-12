@@ -167,6 +167,23 @@ port forward today only works for TCP protocol
 
 ---
 
+### /etc/hosts
+
+<https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/>
+
+`/etc/hosts` in pod is managed by kubernetes and should not be modified by other means. To add entries:
+
+```yaml
+spec:
+  hostAliases:
+  - ip: "127.0.0.1"
+    hostnames:
+    - "foo.local"
+    - "bar.local"
+```
+
+---
+
 ### Volumes
 
 <https://kubernetes.io/docs/concepts/storage/volumes/>
