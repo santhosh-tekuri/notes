@@ -2,6 +2,7 @@
 
 :::toc
 * [Vagrant Setup](vagrant.md)
+* [KubeConfig](kubeconfig.md)
 * [Objects](objects.md)
 * [Labels](labels.md)
 * [Namespaces](namespaces.md)

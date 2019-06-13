@@ -25,7 +25,7 @@ $ # to permanently set namespace for all subsequent kubectl commands
 $ kubectl config set-context $(kubectl config current-context) --namespace=myns
 
 $ # to check current namespace
-$ kubectl config view | grep namespace:
+$ kubectl config view --minify --output 'jsonpath={..namespace}'
 
 $ # few commands can be run over all namespaces
 $ kubectl --all-namespaces get all
