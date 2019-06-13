@@ -7,7 +7,7 @@
 `alt+f` move forward by token
 
 `ctrl+k` kill to end of line  
-`ctrl+u` kill complete line  
+`ctrl+u` kill to cursor
 `ctrl+y` yank it back  
 `alt+.` yank last argument of previous command
 
