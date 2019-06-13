@@ -7,12 +7,12 @@
 `alt+f` move forward by token
 
 `ctrl+k` kill to end of line  
-`ctrl+u` kill to cursor
+`ctrl+u` kill to cursor  
 `ctrl+y` yank it back  
 `alt+.` yank last argument of previous command
 
 `ctrl+l` clear terminal  
-`reset` repair terminal
+`reset` repair terminal  
 `clear && printf '\e[3J'` to clear screen and scrollback buffer
 
 `!!` last executed command  
