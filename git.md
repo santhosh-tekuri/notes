@@ -59,3 +59,21 @@ $ git stash apply # keep them in stash, useful to apply to multiple branches
 $ git stash drop stash@{1}
 $ git stash clear
 ```
+
+---
+
+## clean
+
+`-n` do dry-run  
+`-f` force to remove  
+`-X` include untracked files  
+`-d` include untracked dirs  
+`-i` to interactivly remove
+
+```shell
+$ # to see what files are cleaned
+$ git clean -nXd
+
+$ # to clean 
+$ get clean -fXd
+```
