@@ -1,5 +1,17 @@
 # Git
 
+## clone
+
+```shell
+$ git clone <repo>
+$ git clone <repo> myfolder
+
+$ # shallow clone
+$ git clone --depth=1 <repo>
+```
+
+---
+
 ## branch
 
 ```shell
