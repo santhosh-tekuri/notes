@@ -22,6 +22,6 @@
     - Alt-Right: send escape sequence f
 - advanced:
     - triggers:
-        - Regex: `^\++ .*` Text: `White` Background: `40% Gray`
+        - Regex: `^\++ [^ ].*` Text: `White` Background: `40% Gray`
 
 
