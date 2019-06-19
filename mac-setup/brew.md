@@ -2,3 +2,4 @@
 
 * tmux
 * gnu-sed
+* coreutils
