@@ -8,7 +8,7 @@ each open file gets assigned a file descriptor
 
 file descriptors are not unique across processes. they are just indices of process's own file descriptor table
 
-![filedescriptors.npg](files/filedescriptors.jpg)
+![filedescriptors.jpg](files/filedescriptors.jpg)
 
 ---
 
