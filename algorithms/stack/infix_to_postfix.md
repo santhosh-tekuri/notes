@@ -6,7 +6,7 @@
     * if we see operator
         * pop operators from stack that have higher precedence and append to postfix string
         * push operator into stack
-    * pop remaining operators from stack and append to postfix string
+* pop remaining operators from stack and append to postfix string
 
 ```java
 String toPostfix(String infix) {
