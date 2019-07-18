@@ -87,5 +87,5 @@ $ # to see what files are cleaned
 $ git clean -nXd
 
 $ # to clean 
-$ get clean -fXd
+$ git clean -fXd
 ```
