@@ -194,4 +194,8 @@ var (
 	_ io.WriterTo   = NoBody
 	_ io.ReadCloser = NoBody
 )
+
+// testing/testing.go
+var _ TB = (*T)(nil)
+var _ TB = (*B)(nil)
 ```
