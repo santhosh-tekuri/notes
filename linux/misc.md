@@ -59,3 +59,19 @@ if you assign a number to `RANDOM`, the sequence of values generated after that 
 `SECONDS` returns #sec since shell started
 
 after assigning `SECONDS` to zero, it returns #sec since the assignment
+
+---
+
+### add ca cert
+
+```shell
+$ domain=myregistry.com
+
+$ # ubuntu
+$ cp domain.crt /usr/local/share/ca-certificates/${domain}.crt
+$ update-ca-certificates
+
+$ # redhat
+$ cp domain.crt /etc/pki/ca-trust/source/anchors/${domain}.crt
+$ update-ca-trust
+```
