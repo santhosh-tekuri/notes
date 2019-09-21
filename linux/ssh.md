@@ -5,6 +5,15 @@
 
 ---
 
+## options
+
+`-o <option>` this flag can be used multiple times
+
+- `StrictHostKeyChecking=no`  disable the host key check
+- `UserKnownHostsFile=/dev/null` do not add host to known hosts file
+
+---
+
 ## Escape Sequences
 
 used to interact with ssh command from within a session  
