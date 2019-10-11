@@ -24,7 +24,7 @@ Organizational Unit Name (eg, section) []:MGMT
 Common Name (eg, fully qualified host name) []:www.abc.com
 Email Address []:santhosh@abc.com
 
-$ openssl req -x509 -new -keyout key.pem -nodes -out cert.pem -subj '/C=IN/ST=Karnataka/O=MGMT/CN=www.abc.com'
+$ openssl req -x509 -new -keyout key.pem -nodes -out cert.pem -subj '/C=IN/ST=Karnataka/O=MGMT/CN=www.abc.com' -days 900000
 Generating a 2048 bit RSA private key
 .............+++
 .................................................+++
