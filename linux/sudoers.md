@@ -86,3 +86,11 @@ advantages:
 use `visudo -f <file>` to edit files in directory  
 create self-contained files by not using definitions from sudoers file
 :::
+
+---
+
+to give sudo access to an user with no password:
+
+```
+echo "$username ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$username
+```
