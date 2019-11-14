@@ -82,8 +82,8 @@ there are 4 tables
 * `59.45.175.0/24` cidr notation
 * `10.10.10.0/255.255.255.0` cidr notation
 
-`-i <input-interface>` used in INPUT chain  
-`-o <output-interface>` used in OUTPUT chain
+`-i <input-interface>` used in PREROUTING, INPUT, FORWARD chains
+`-o <output-interface>` used in OUTPUT, FORWARD, POSTROUTING chains
 
 `-j <target>` jump target  
 `-p <tcp|udp|icmp>` protocol
@@ -133,7 +133,21 @@ $ ip6tables-save > /etc/iptables/rules.v6
 ```
 
 ---
+
+## Port Forwarding
+
+```
+# to enable port forwarding, use one of following two commands
+$ sysctl net.ipv4.ip_forward=1
+$ echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# X.X.X.X:80 => Y.Y.Y.Y:8080
+$ iptables -t nat -A PREROUTING -p tcp -d X.X.X.X --dport 80 -j DNAT --to Y.Y.Y.Y:8080
+```
+
+---
 ### References
 
 * <https://www.booleanworld.com/depth-guide-iptables-linux-firewall/>
 * <https://linuxconfig.org/how-to-make-iptables-rules-persistent-after-reboot-on-linux>
+* <https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands>
