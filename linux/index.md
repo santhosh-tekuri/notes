@@ -17,6 +17,7 @@
 * [expr](expr.md)
 * [iptables](iptables.md)
 * [sudoers file](sudoers.md)
+* [auditd](auditd.md)
 * [miscellaneous](misc.md)
 
 :::
