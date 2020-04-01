@@ -52,7 +52,7 @@ var=abcdef
 
 ${var#abc} # def (delete matching prefix)
 ${var%def} # abc (delete matching suffix)
-${a/bc/BC} # aBCdef (replace matching)
+${var/bc/BC} # aBCdef (replace matching)
 ```
 
 ---
