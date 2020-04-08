@@ -2,10 +2,12 @@
 
 `$
 \color{red}{()()}) \to 4 \\
-\color{red}{()}(((((\color{red}{()} \to 4
+\color{red}{()}(((((\color{red}{()} \to 4 \\
+))\color{red}{(()(()))})\color{red}{(())} \to 12
 $`
 
 ---
+scan the array, for each `)`, if there is matching `(`, increment ans by `2`
 
 ```java
 int lbs(char s[]) {
@@ -14,7 +16,7 @@ int lbs(char s[]) {
     for(char ch: s) {
         if(ch=='(')
             open++;
-        else {
+        else if(open>0) {
             open--;
             len += 2;
         }
@@ -22,6 +24,7 @@ int lbs(char s[]) {
     return len;
 }
 ```
+`@src(src/LBS.java)`
 
 Running Time: `$O(n)$`
 
