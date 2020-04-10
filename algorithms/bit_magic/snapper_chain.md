@@ -29,19 +29,28 @@ Output: `ON/OFF` state of the light bulb after `K` finger snaps
 
 ---
 
-consider ON=1, OFF=0:
+- each snapper can be in one of two states -- on or off. Also, each snapper can either be powered or unpowered
+- first snapper is always powered because it is plugged into the power socket in the wall. 
+- i-th snapper is powered if and only if the (i-1)-th Snapper is powered and on
+- snapping your fingers changes the state of each powered snapper (from on to off, or from off to on)
 
-K | State
---|-----
-0 | 00000
-1 | 10000
-2 | 01000
-3 | 11000
-4 | 00100
-5 | 10100
-6 | 01100
-7 | 11100
-8 | 00010
+consider ON=1, OFF=0, Powered are shown in red color:
+
+$
+\begin{array}{c|l}
+  \text{K} & \text{State} \\ 
+\hline
+   0 & \color{red}{0}0000 \\
+   1 & \color{red}{10}000 \\
+   2 & \color{red}{0}1000 \\
+   3 & \color{red}{110}00 \\
+   4 & \color{red}{0}0100 \\
+   5 & \color{red}{10}100 \\
+   6 & \color{red}{0}1100 \\
+   7 & \color{red}{1110}0 \\
+   8 & \color{red}{0}0010 \\
+\end{array}
+$
 
 if we notice, we will find pattern: state is reverse of `k`'s binary representation
 
