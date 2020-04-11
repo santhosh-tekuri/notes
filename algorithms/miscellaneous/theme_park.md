@@ -159,7 +159,8 @@ in above example:
 `$\begin{array}{c|cc}
 index & 0 & 1 & 2 & 3 \\
 \hline
-people & 5 & 4 & 6 & 6 \\
+groups & 1 & 4 & 2 & 1 \\
+people & 5 & 6 & 4 & 6 \\
 newHead & 2 & 3 & 1 & 2
 \end{array}\;\;\;
 \begin{array}{c|cc}
