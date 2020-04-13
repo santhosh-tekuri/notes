@@ -56,6 +56,7 @@ instead of moving contents of `g[]` after each ride, we can use it as circular a
     return (people, newHead);
 }
 ```
+`@src(src/ThemeParkRide1.java)`
 
 Running Time: `$O(n)$`
 
@@ -76,6 +77,7 @@ to fix this, instead of counting #people, count space left in roller coaster:
     return (k-space, newHead);
 }
 ```
+`@src(src/ThemeParkRide2.java)`
 
 ```java
 long findMoney(long R, long k, long g[n]) {
@@ -89,6 +91,7 @@ long findMoney(long R, long k, long g[n]) {
     return money;
 }
 ```
+`@src(src/ThemePark0.java)`
 
 Running Time: `$O(Rn)$`
 
@@ -118,6 +121,7 @@ long findMoney(long R, long k, long g[n]) {
     return money;
 }
 ```
+`@src(src/ThemePark1.java)`
 
 pre-processing: `$O(n^2)$`  
 main-computation: `$O(R)$`
@@ -147,6 +151,7 @@ for(int head=0; head<n; head++) {
     newHead[head] = hNext;
 }
 ```
+`@src(src/ThemePark2.java)`
 
 ---
 
@@ -176,7 +181,7 @@ It turns out that a cycle must show up within the first `n+1` rides, because the
 for `R=102`:
 * cycle starts after first round, and `101` rounds are remaining
 * cycle contains `3` rounds. now there are `101/3=33` cycles
-* `101` rounds = `33` cycles + `101-33*3=1` round
+* remaining rounds = `101-33*3=2` rounds
 * money earned in per cycle: `6+4+6=16`
 * so total money = money earned in before cycle + (#cycles * money per cycle) + money earning last remaining rounds
 * money = `5 + 33*16 + (6+4) = 543`
