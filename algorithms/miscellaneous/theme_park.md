@@ -249,6 +249,7 @@ while(r<R) {
 
 return money;
 ```
+`@src(src/ThemePark3.java)`
 
 we can merge all the following into single loop:
 * finding cycle
@@ -264,11 +265,11 @@ int head = 0;
 // ride until cycle detected
 boolean visited[n];
 long moneyBeforeRound[n];
-int ridesBeforeRound[n];
+int ridesBeforeHead[n];
 while(r<R && !visited[head]) {
     visited[head] = true;
     moneyBeforeRound[(int)r] = money;
-    ridesBeforeRound[head] = (int)r;
+    ridesBeforeHead[head] = (int)r;
 
     money += people[head];
     head = newHead[head];
@@ -278,7 +279,7 @@ if(r==R)
 	return money;
 
 int cycleHead = head;
-int ridesBeforeCycle = ridesBeforeRound[cycleHead];
+int ridesBeforeCycle = ridesBeforeHead[cycleHead];
 long ridesInCycle = r - ridesBeforeCycle;
 long moneyInCycle = money - moneyBeforeRound[ridesBeforeCycle];
 
@@ -296,6 +297,7 @@ while(r<R) {
 
 return money;
 ```
+`@src(src/ThemePark4.java)`
 
 Running Time: `$O(n)$`
 
