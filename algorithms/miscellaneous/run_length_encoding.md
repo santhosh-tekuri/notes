@@ -9,7 +9,7 @@ than as the original run.
 
 ```java
 String runLengthEncode(String s){
-    // max encoded size is when a has no duplicates
+    // max encoded size is when s has no duplicates
     StringBuilder dest = new StringBuilder(s.length*2);
 
     for(int i=0; i<s.length; i++){
