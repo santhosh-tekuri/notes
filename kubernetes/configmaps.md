@@ -25,12 +25,18 @@ creating explicitly with kubectl:
 $ # from literals
 $ kubectl create configmap logconfig --from-literal=level=warning --from-literal=target=stdout
 
-$ # from files: key defaults to file name, value is file content
+$ # from files: key defaults to file basename, value is file content
 $ # if file contains non-UTF8 data, it is stored under 'binaryData' field
 $ kubectl create configmap logconfig --from-file=data/level --from-file=target=data/target.txt
 
-$ # from dir: each file in dir becomes an entry
+$ # from dir: each file in dir becomes an entry. file basename is key.
+$ # files whose basename is not valid key are ignored
+$ # subdirectories, symlinks, devices, pipes are ignored
 $ kubectl create configmap logconfig --from-file=configmaps/logconfig
+
+$ # from env file
+$ # caution: if multiple --from-env-file specified, only last one is used
+$ kubectl create configmap gameenv --from-env-file=game-env-file.properties
 ```
 
 ::: tip
