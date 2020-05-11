@@ -26,5 +26,6 @@ three
 use `-I` to position argument at any place or place multiple times.  
 `xargs -I % echo sh -c 'echo %; mv % destdir'`
 
-`-0` splits input by NULL character. used with `find -print0`
+`-0` splits input by NULL character. used with `find -print0`  
+`-d` to change delimiter. supports C sytle escape
 
