@@ -193,6 +193,25 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
+---
+
+## DiskSize
+
+Vagrant boxes by default has only 10GB. to change disksize:
+
+```bash
+$ vagrant plugin install vagrant-disksize
+
+# to make sure disksize plugin installed
+unless Vagrant.has_plugin?("vagrant-disksize")
+    raise Vagrant::Errors::VagrantError.new, "vagrant-disksize plugin is missing. Please install it using 'vagrant plugin install vagrant-disksize' and rerun 'vagrant up'"
+end
+
+# to specify disksize
+vagrant.configure('2') do |config|
+    config.disksize.size = '50GB'
+end
+```
 
 ---
 
