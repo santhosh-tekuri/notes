@@ -1,5 +1,8 @@
 # curl
 
+`-v` `--verbose` for verbose output  
+`-X <method>` defaults to `GET`  
+`-H '<HEADER>: <VALUE>'` pass headers  
 `-L` `--location` follow redirects  
 `-f` `--fail` exit code reflecting status code  
 `-s` `--silent` silent mode, do not show progress, error messages  
@@ -16,6 +19,8 @@
 unless explicitly set:
 * method will be `POST`
 * `Content-Type` will be `application/x-www-form-urlencoded`
+
+`-G` constructs query string from `-d` parameters and makes `GET`
 
 ```
 $ curl -d 'name=tom' -d 'friend=jerry' http://disney.com
