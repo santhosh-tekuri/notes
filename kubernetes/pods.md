@@ -335,7 +335,7 @@ envFrom:
 - secretRef:
     name: mysecret
     prefix: SECRET_   # optional
-    optional: true    # whether the ConfigMap must be defined
+    optional: true    # whether the Secret must be defined
 
 # keys that are considered invalid will be skipped
 # invalid names gets recorded in event log as warning 'InvalidEnvironmentVariableNames'
