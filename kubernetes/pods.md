@@ -328,14 +328,15 @@ can also be declared using `spec.containers[].envFrom[]`:
 
 ```yaml
 envFrom:
+prefix
 - configMapRef:
     name: logconfig
-    prefix: LOG_      # optional
     optional: true    # whether the ConfigMap must be defined
+  prefix: LOG_      # optional
 - secretRef:
     name: mysecret
-    prefix: SECRET_   # optional
     optional: true    # whether the Secret must be defined
+  prefix: SECRET_   # optional
 
 # keys that are considered invalid will be skipped
 # invalid names gets recorded in event log as warning 'InvalidEnvironmentVariableNames'
