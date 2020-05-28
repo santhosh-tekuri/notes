@@ -57,6 +57,18 @@ ${var/bc/BC} # aBCdef (replace matching)
 
 ---
 
+## case conversion
+
+```
+var=abcdef
+${var^}  # Abcdef (first letter to upper)
+${var^^} # ABCDEF (all letters to upper)
+
+var=ABCDEF
+${var,}  # aBCDEF (first letter to lower)
+${var,,} # abcdef (all letters to lower)
+```
+
 ### References
 
 * <http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html> 
