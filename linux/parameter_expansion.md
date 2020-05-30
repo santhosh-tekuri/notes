@@ -12,6 +12,16 @@ when variable name includes `}`:
 
 ---
 
+## string expansion
+
+```
+$ echo $'line1\nline2\tend'
+line1
+line2   end
+```
+
+---
+
 ## defaults
 ```
 ${var:-default} # if var is unset/empty, replaced by default
@@ -69,6 +79,21 @@ ${var,}  # aBCDEF (first letter to lower)
 ${var,,} # abcdef (all letters to lower)
 ```
 
+---
+
+## indirect variable referencing
+
+```
+a=letter
+letter=z
+
+v1=${!a}      # v1=z
+eval v2=\$$a  # v2=z
+```
+
+---
+
 ### References
 
 * <http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html> 
+* <http://tldp.org/LDP/abs/html/bashver2.html>
