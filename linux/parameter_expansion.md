@@ -93,6 +93,22 @@ eval v2=\$$a  # v2=z
 
 ---
 
+## names with dot
+
+bash does not understand environment variables with dot
+
+```
+$ # pass variable with dot in name
+$ env cluster.name=redis <command>
+
+$ # to get value
+$ printenv cluster.name
+$ awk 'BEGIN {print ENVIRON["cluster.name"]}'
+$ echo cluster.name | awk '{print ENVIRON[$1]}'
+```
+
+---
+
 ### References
 
 * <http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html> 
