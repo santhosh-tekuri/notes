@@ -487,6 +487,7 @@ containers:
 
 ---
 
+
 ### CPU Resources to Containers
 
 ```yaml
@@ -501,6 +502,32 @@ containers:
 ```
 
 * the container has a CPU request of `0.5` cpu and a CPU limit of `1` cpu
+
+---
+
+### Extended Resources to Containers
+
+<https://kubernetes.io/docs/tasks/administer-cluster/extended-resource-node/>
+
+to advertise four dongles `example.com/dongle` on a node:
+```
+$ kubectl proxy &
+$ pid=$!
+$ nodename=worker1
+$ curl --request PATCH \
+       --header "Content-Type: application/json-patch+json" \
+       --data '[{
+         "op": "add",
+         "path": "/status/capacity/example.com~1dongle",
+         "value": "4"
+       }]' \
+       http://localhost:8001/api/v1/nodes/$nodename/status
+$ kill $pid
+```
+
+NOTE: `/` has to be encoded as `~1` in jsonpath
+
+now you can use `example.com/dongle` in `limits`/`requests`
 
 ---
 
