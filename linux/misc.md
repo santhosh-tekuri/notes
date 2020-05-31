@@ -75,3 +75,4 @@ $ # redhat
 $ cp domain.crt /etc/pki/ca-trust/source/anchors/${domain}.crt
 $ update-ca-trust
 ```
+make sure any folder created should be 755 and for file 644
