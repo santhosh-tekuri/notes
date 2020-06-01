@@ -63,13 +63,27 @@ ${#var} # 3
 
 ## pattern matching
 
+`${var/pattern/string}` longest match of `pattern` is replaced with `string`
+
+if pattern begins with:
+- `/` replace all matches, otherwise only first match
+- `#` match at beginning
+- `%` match at end
+- if `string` is not specifed, delete match (`/` following pattern can be omitted)
+
 ```
 var=abcdef
 
-${var#abc} # def (delete matching prefix)
-${var%def} # abc (delete matching suffix)
-${var/bc/BC} # aBCdef (replace matching)
+${var#abc}    # def (delete matching prefix)
+${var%def}    # abc (delete matching suffix)
+${var/bc/BC}  # aBCdef (replace first matching)
+${var/#ab/AB} # ABcdef (repace matching prefix)
+${var/%ef/EF} # abcdEF (replace matching suffix)
+${var//bc/BC} # replace all matchings
+${var/bc}     # adef (remove pattern)
 ```
+
+<https://www.shellscript.sh/tips/pattern-substitution/>
 
 ---
 
