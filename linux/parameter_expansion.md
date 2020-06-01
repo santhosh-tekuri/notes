@@ -22,6 +22,12 @@ line2   end
 
 ---
 
+## special parameters
+
+`$_` final argument of last command
+
+---
+
 ## defaults
 ```
 ${var:-default} # if var is unset/empty, replaced by default
