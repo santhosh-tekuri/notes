@@ -12,8 +12,10 @@
 `alt+.` yank last argument of previous command
 
 `ctrl+l` clear terminal  
-`reset` repair terminal  
-`clear && printf '\e[3J'` to clear screen and scrollback buffer
+`clear && printf '\e[3J'` to clear screen and scrollback buffer  
+`ctrl+s` to pause output  
+`ctrl+q` to resume output  
+`reset` repair terminal 
 
 `!!` last executed command  
 `!-2` second command from history  
