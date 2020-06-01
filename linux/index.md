@@ -5,6 +5,7 @@
 * [Introspect Linux Distribution](distribution.md)
 * [I/O Redirection](io_redirection.md)
 * [Parameter Expansion](parameter_expansion.md)
+* [trap](trap.md)
 * [OpenSSL](openssl/index.md)
 * [cat](cat.md)
 * [grep](grep.md)
