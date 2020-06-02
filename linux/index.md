@@ -6,6 +6,7 @@
 * [I/O Redirection](io_redirection.md)
 * [Parameter Expansion](parameter_expansion.md)
 * [trap](trap.md)
+* [arrays](arrays.md)
 * [OpenSSL](openssl/index.md)
 * [cat](cat.md)
 * [grep](grep.md)
