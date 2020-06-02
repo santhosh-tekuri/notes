@@ -34,6 +34,9 @@ ${#arr[0]}    # length of item 0
 arr+=(4)      # append value
 ${arr[@]:5:2} # get 2 elements starting at index 5
 
+# read array
+read -r -a arr <<< "$var"
+IFS=',' read -r -a arr <<< "$var"
 ```
 
 ---
