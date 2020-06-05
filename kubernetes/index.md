@@ -13,5 +13,6 @@
 * [ReplicationSets](replicationsets.md)
 * [DaemonSets](daemonsets.md)
 * [Deployments](deployments.md)
+* [Jobs](jobs.md)
 
 :::
