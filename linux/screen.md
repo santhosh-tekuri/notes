@@ -12,6 +12,7 @@ default command key: `C-a`
 
 `-ls` list sessions  
 `-r` resume session  
+`-x` attach to non-detatched session  
 `-S <name>` name this session `<pid>.<name>`
 
 `d` detach  
