@@ -8,6 +8,9 @@ $ git clone <repo> myfolder
 
 $ # shallow clone
 $ git clone --depth=1 <repo>
+
+$ # clone with specific ssh key
+$ GIT_SSH_COMMAND='ssh -i /path/to/privatekey' git clone <repo>
 ```
 
 ---
