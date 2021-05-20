@@ -76,3 +76,12 @@ $ cp domain.crt /etc/pki/ca-trust/source/anchors/${domain}.crt
 $ update-ca-trust
 ```
 make sure any folder created should be 755 and for file 644
+
+---
+
+### ensure only one instance of script running at a time
+
+```shell
+exec 4<>"$BASH_SOURCE".lock
+flock -n 4 || (echo cannot flock. aborting; exit 1)
+```
