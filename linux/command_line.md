@@ -26,6 +26,7 @@
 to clear typed password, do `ctrl+u`  
 to mercilessly kill foreground process, do `ctrl+\`
 
+<https://invisible-island.net/xterm/xterm.faq.html#xterm_tite>
 <https://stackoverflow.com/a/11024208>  
 create altscreen: `tput smcup` or `echo -e "\e[?1049h""`  
 close altscreen: `tput rmcup` or `echo -e "\e[?1049l"`
