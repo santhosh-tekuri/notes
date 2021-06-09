@@ -85,3 +85,13 @@ make sure any folder created should be 755 and for file 644
 exec 4<>"$BASH_SOURCE".lock
 flock -n 4 || (echo cannot flock. aborting; exit 1)
 ```
+
+---
+
+### open secondary screen like vi and git
+
+```shell
+tput smcup # switch to secondary screen
+...
+tput rmcup # switch back to primary screen
+```
