@@ -88,10 +88,17 @@ flock -n 4 || (echo cannot flock. aborting; exit 1)
 
 ---
 
-### open secondary screen like vi and git
+### open alternate screen
 
 ```shell
 tput smcup # switch to secondary screen
 ...
 tput rmcup # switch back to primary screen
+
+# less elegant but portable
+echo -e "\e[?1049h"
+...
+echo -e "\e[?1049l"
 ```
+
+
