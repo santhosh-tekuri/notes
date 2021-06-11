@@ -13,27 +13,38 @@ traps the specified signals and executes the command
 when bash receives a signal, where a command is running, trap is executed only after the command completed. 
 but `wait` built-in, returs immediately with exitcode >128, if trap is set on that signal.
 
+to clean temp file on exit:
 ```
 trap "rm -f tempfile" EXIT
 
+# can call function on trap
 cleanup(){
-    ...
+    rm -f tempfile
 }
 trap cleanup EXIT
+```
 
+to prevent Ctrl-C to exit in critical section of script:
+```
 # Run something important, no Ctrl-C allowed.
 trap "" SIGINT
 important_command
 # Less important stuff from here on out, Ctrl-C allowed.
 trap - SIGINT
 not_so_important_command
+```
 
-# equivalent to `set -e`
-die(){
-    echo failed at line $BASH_LINENO
-    exit 1
+to print script success/failure always:
+```
+set -e
+show_status(){
+    if [ $? -eq 0 ]; then
+        echo 'script succeeded'
+    else
+        echo "script failed at line $BASH_LINENO"
+    fi
 }
-trap die ERR
+trap show_status EXIT
 ```
 
 ---
