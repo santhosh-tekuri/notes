@@ -104,6 +104,40 @@ EOF
 
 ---
 
+### Termination Message
+
+<https://kubernetes.io/docs/tasks/debug-application-cluster/determine-reason-pod-failure/>
+
+helps in determining the reason for pod failure
+
+```yaml
+spec:
+  containers:
+  - name: c1
+    terminationMessagePath: /dev/termination-log # defaults to /dev/termination-log
+    terminationMessagePolicy: File               # File or FallbackToLogsOnError. defaults to File
+```
+
+`FallbackToLogsOnError` will show last chunk of log output, 2048 bytes or 80 lines whichever is smaller
+
+you can check termination message in pod yaml output:
+
+```yaml
+ apiVersion: v1
+ kind: Pod
+ ...
+     lastState:
+       terminated:
+         containerID: ...
+         exitCode: 0
+         finishedAt: ...
+         message: |
+           Sleep expired
+         ...
+```
+
+---
+
 ### Copy files/directories
 
 <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#cp>
