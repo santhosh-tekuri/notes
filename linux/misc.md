@@ -1,5 +1,34 @@
 # miscellaneous
 
+### cd to script dir
+
+```shell
+cd $(dirname "$BASH_SOURCE")
+```
+
+---
+
+### echo to stderr
+
+```shell
+>&2 echo "error"
+```
+
+---
+
+### multiline comment
+
+```shell
+: <<'COMMENT'
+echo inside comment line1
+echo inside comment line2
+echo inside comment line3
+COMMENT
+echo this is after comment
+```
+
+---
+
 ### host aliases
 
 ```shell
