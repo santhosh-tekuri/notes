@@ -70,6 +70,8 @@ $ kubectl create secret generic mysecrets --from-file=secrets/creadentials
 
 ### from public/private key pair
 
+<https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets>
+
 ```shell
 $ openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
 $ kubectl create secret tls tls-secret --cert=cert.pem --key=key.pem
@@ -77,29 +79,33 @@ $ kubectl create secret tls tls-secret --cert=cert.pem --key=key.pem
 
 * uses `tls.crt` and `tls.key` as keys
 * `type` is set to `kubernetes.io/tls`
+* files must be .PEM encoded, unencrypted
 
 ---
 
 ### for use with docker registries
 
+<https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets>
+<https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/>
+
 ```shell
 $ # email is optional
 $ kubectl create secret docker-registry my-secret \
---docker-server=DOCKER_REGISTRY_SERVER \
---docker-username=DOCKER_USER \
---docker-password=DOCKER_PASSWORD \
---docker-email=DOCKER_EMAIL
+    --docker-server=DOCKER_REGISTRY_SERVER \
+    --docker-username=DOCKER_USER \
+    --docker-password=DOCKER_PASSWORD \
+    --docker-email=DOCKER_EMAIL
 ```
 
-alternatively, you can use `~/.dockercfg` created by docker:
+alternatively, you can use `~/.docker/config.json` created by docker:
 ```shell
-$ # produces ~/.dockercfg file
+$ # produces ~/.docker/config.json file
 $ docker login DOCKER_REGISTRY_SERVER \
---username=DOCKER USER \
---password=DOCKER PASSWORD \
---email=DOCKER _EMAIL
+    --username=DOCKER USER \
+    --password=DOCKER PASSWORD \
+    --email=DOCKER _EMAIL
 
-$ kubectl create secret docket-registry my-secret -f ~/.dockercfg
+$ kubectl create secret docket-registry my-secret -f ~/.docker/config.json
 ```
 
 * used for authentication to pull images from docker registry
