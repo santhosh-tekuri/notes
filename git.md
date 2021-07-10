@@ -79,16 +79,19 @@ $ git stash clear
 
 ## clean
 
+requires one the following:  
 `-n` do dry-run  
 `-f` force to remove  
-`-X` include untracked files  
-`-d` include untracked dirs  
 `-i` to interactivly remove
+
+by default it removes only untracted files  
+`-d` include untracked dirs  
+`-x` include ignored files  
 
 ```shell
 $ # to see what files are cleaned
-$ git clean -nXd
+$ git clean -nxd
 
 $ # to clean 
-$ git clean -fXd
+$ git clean -fxd
 ```
