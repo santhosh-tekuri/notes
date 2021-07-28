@@ -37,14 +37,15 @@ not_so_important_command
 to print script success/failure always:
 ```
 set -e
-show_status(){
-    if [ $? -eq 0 ]; then
-        echo 'script succeeded'
+on_exit(){
+    exit_code=$?
+    if [ $exit_code -eq 0 ]; then
+        echo 'script succeeded' >&2
     else
-        echo "script failed at line $BASH_LINENO"
+        echo "script failed at line $BASH_LINENO (exit code $exit_code)" >&2
     fi
 }
-trap show_status EXIT
+trap on_exit EXIT
 ```
 
 ---
