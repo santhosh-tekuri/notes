@@ -5,7 +5,8 @@
 `vim -p file1 file2` open files in tabs  
 `:tabedit existing_file`  
 `:tabnew new_file`  
-`:tab terminal`
+`:tab terminal`  
+`:qa` to exit vim
 
 ---
 
