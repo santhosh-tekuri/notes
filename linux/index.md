@@ -1,6 +1,7 @@
 # Linux
 
 ::: toc
+* [Vim](vim.md)
 * [Command Line](command_line.md)
 * [Introspect Linux Distribution](distribution.md)
 * [I/O Redirection](io_redirection.md)
