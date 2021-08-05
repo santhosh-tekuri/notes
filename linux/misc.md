@@ -29,6 +29,21 @@ echo this is after comment
 
 ---
 
+### default variable values
+
+```shell
+# if VARIABLE is not set use 'default'
+FOO="${VARIABLE:-default}"
+
+# if argument is not passed use $DEFAULT
+VARIABLE="${1:-$DEFAULT}"
+
+# if VARIABLE is not uset, set its value to 'default'
+: "${VARIABLE:=default}"
+```
+
+---
+
 ### host aliases
 
 ```shell
