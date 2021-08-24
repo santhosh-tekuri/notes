@@ -1,14 +1,19 @@
 # Contributions
 
 [golang/go](https://github.com/golang/go/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3Asanthosh-tekuri+)
-* [encoding/xml: accepts invalid XML with multiple colons](https://github.com/golang/go/issues/20396)
-* [encoding/xml: StartElement and EndElement should not match if prefix does not match](https://github.com/golang/go/issues/20685)
-* [encoding/xml: add whitespace normalization from spec](https://github.com/golang/go/issues/20614)
-* [encoding/pem: test getLine does not include trailing whitespace](https://github.com/golang/go/commit/90777a34cf250d2051dc6e4595625933249ca211)
-* [archive/zip: makes receiver name consistent](https://github.com/golang/go/commit/0b30cf534a03618162d3015c8705dd2231e34703)
-* [nettest: fix doc for testPresentTimeout](https://github.com/golang/net/commit/67f368f454c9c236ca98a1075897e1868af446f7)
-* [nettest: mark test helper functions](https://github.com/golang/net/commit/afe646ca25a4a688bba916cc14caef4b53c0b856)
-* [gotfmt: add missing space if any in beginning of comment](https://github.com/golang/go/issues/30540)
+* [0b30cf5](https://github.com/golang/go/commit/0b30cf534a03618162d3015c8705dd2231e34703) archive/zip: makes receiver name consistent
+* [67f368f](https://github.com/golang/net/commit/67f368f454c9c236ca98a1075897e1868af446f7) nettest: fix doc for testPresentTimeout
+* [afe646c](https://github.com/golang/net/commit/afe646ca25a4a688bba916cc14caef4b53c0b856) nettest: mark test helper functions
+* [90777a3](https://github.com/golang/go/commit/90777a34cf250d2051dc6e4595625933249ca211) encoding/pem: test getLine does not include trailing whitespace
+* [#31280](https://github.com/golang/go/issues/31280) testing: exclude unreachable code in test coverage
+* [#20396](https://github.com/golang/go/issues/20396) encoding/xml: accepts invalid XML with multiple colons
+* [#20685](https://github.com/golang/go/issues/20685) encoding/xml: StartElement and EndElement should not match if prefix does not match
+* [#20614](https://github.com/golang/go/issues/20614) encoding/xml: add whitespace normalization from spec
+* [#44811](https://github.com/golang/go/issues/44811) encoding/json: SyntaxError.Offset is wrong when decoding stream
+* [#28914](https://github.com/golang/go/issues/28914) encoding/pem: fix #bytes lineBreaker.Write returns
+
+[go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)
+* [a5bb807](https://github.com/go-sql-driver/mysql/commit/a5bb8074f2718b6f49530d588c5ee8649cf0a58a) Fix sha256_password auth plugin on unix transport
 
 [Netflix/denominator](https://github.com/Netflix/denominator/commits?author=santhosh-tekuri)
 * [Changes DynECT to return type-safe rdata](https://github.com/Netflix/denominator/commit/85b665ea9e1f6bd18153c7957f788bd44af3b312)
