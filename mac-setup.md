@@ -47,6 +47,7 @@
     - File download location `Ask for each download`
     - uncheck `Open "safe" files after downloading`
 - Advanced
+    - check "Show full website address"
     - check `Show Develop menu in menu bar`
 
 ---
