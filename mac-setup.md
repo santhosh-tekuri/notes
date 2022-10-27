@@ -20,6 +20,8 @@
             - Dragging Style `Without Drag Lock`
 - Siri & Spotlight
     - uncheck `Ask Siri`
+    - Spotlight Privary
+        - add santhosh and backup
 - Desktop & Dock
     - check `Automatically hide and show the Dock`
     - uncheck `Show recent applications in Dock`
