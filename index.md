@@ -11,7 +11,7 @@
 * [Kubernetes](kubernetes/index.md)
 * [Contributions](contributions.md)
 * [Markdown](markdown.md)
-* [Mac-Setup](mac-setup/index.md)
+* [Mac-Setup](mac-setup.md)
 
 :::
 
