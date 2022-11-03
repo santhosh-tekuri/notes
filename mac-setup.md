@@ -1,7 +1,7 @@
 # Mac Setup
 
 - Removed unused applications from Dock
-- install [Anonymous Pro font](https://www.fontsquirrel.com/fonts/anonymous-pro)
+- install [Anonymous Pro font](https://www.marksimonson.com/fonts/view/anonymous-pro)
 - Install git from terminal
 - install [dotfiles](https://github.com/santhosh-tekuri/dotfiles) in home dir
 
