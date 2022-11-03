@@ -18,6 +18,16 @@
         - Trackpad Options
             - check `Use Trackpad for dragging`
             - Dragging Style `Without Drag Lock`
+- Control Center
+    - Battery
+        - check `Show Percentage`
+    - Menu Bar Only
+        - Clock
+            - Show date `Always`
+            - check `Show the day of the week`
+            - check `Show am/pm`
+            - check `Announce the time`
+            - interval `on the half hour`
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
@@ -95,6 +105,8 @@
     - Advanced
         - Triggers
             - Regex: `^\++ [^ ].*` Action: `Highlight Text` Text: `White` Background: `40% Gray`
+- Advanced
+    - Disable the Tip of the Day ? `Yes`
 
 ---
 
