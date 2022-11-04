@@ -11,6 +11,8 @@
 
 - Sign In
     - Enter Credentials
+- Blootooth
+    - uncheck
 - Accessibility
     - Zoom
         - check `Use scroll gesture with modifier keys to zoom`
@@ -31,6 +33,7 @@
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
+        - uncheck all except Applications, Calculator, System Preferences
         - add santhosh and backup
 - Desktop & Dock
     - check `Automatically hide and show the Dock`
