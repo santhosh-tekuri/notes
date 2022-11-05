@@ -11,6 +11,8 @@
 
 - Sign In
     - Enter Credentials
+    - iCloud
+        - uncheck Contacts, Stocks, Home, Wallet, Siri
 - Blootooth
     - uncheck
 - General
@@ -34,6 +36,7 @@
             - check `Show am/pm`
             - check `Announce the time`
             - interval `on the half hour`
+        - Spotlight `Don't Show in Menu Bar`
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
