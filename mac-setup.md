@@ -97,8 +97,8 @@
         - background: `37,37,37`
         - Cursor Colors
             - check `Smart box cursor colorr`
-    - Font
-        - anonymous pro size: 18 vertical spacing: 120
+    - Text
+        - Font: anonymous pro size: 18 vertical spacing: 120
     - Window
         - columns: 150 rows: 35
     - Terminal
