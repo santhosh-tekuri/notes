@@ -13,6 +13,10 @@
     - Enter Credentials
 - Blootooth
     - uncheck
+- General
+    - Software Update
+        - Automatic Updates
+            - uncheck `Download new updates when available`
 - Accessibility
     - Zoom
         - check `Use scroll gesture with modifier keys to zoom`
