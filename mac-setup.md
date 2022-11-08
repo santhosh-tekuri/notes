@@ -11,6 +11,8 @@
 
 - Sign In
     - Enter Credentials
+    - iCloud
+        - uncheck Contacts, Stocks, Home, Wallet, Siri
 - Blootooth
     - uncheck
 - General
@@ -34,6 +36,7 @@
             - check `Show am/pm`
             - check `Announce the time`
             - interval `on the half hour`
+        - Spotlight `Don't Show in Menu Bar`
 - Private & Security
     - Location Services
         - uncheck `Location Services`
@@ -100,8 +103,8 @@
         - background: `37,37,37`
         - Cursor Colors
             - check `Smart box cursor colorr`
-    - Font
-        - anonymous pro size: 18 vertical spacing: 120
+    - Text
+        - Font: anonymous pro size: 18 vertical spacing: 120
     - Window
         - columns: 150 rows: 35
     - Terminal
