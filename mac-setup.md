@@ -34,6 +34,9 @@
             - check `Show am/pm`
             - check `Announce the time`
             - interval `on the half hour`
+- Private & Security
+    - Location Services
+        - uncheck `Location Services`
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
@@ -114,6 +117,17 @@
             - Regex: `^\++ [^ ].*` Action: `Highlight Text` Text: `White` Background: `40% Gray`
 - Advanced
     - Disable the Tip of the Day ? `Yes`
+
+---
+
+## Terminal
+
+- Profiles/Basic
+    - Text
+        - Background: `37,37,37`
+        - Font anonymous pro size 18
+    - Window
+        - columns: 150 rows: 35
 
 ---
 
