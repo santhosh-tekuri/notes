@@ -2,6 +2,7 @@
 
 - Removed unused applications from Dock
 - install [Anonymous Pro font](https://www.marksimonson.com/fonts/view/anonymous-pro)
+- install [Cascadia Pro font](https://github.com/microsoft/cascadia-code/releases)
 - Install git from terminal
 - install [dotfiles](https://github.com/santhosh-tekuri/dotfiles) in home dir
 
@@ -137,3 +138,7 @@
 ## [Homebrew](https://brew.sh)
 
 - tmux
+- wezterm
+- helix
+- gitui
+- git-delta
