@@ -38,17 +38,17 @@
             - check `Announce the time`
             - interval `on the half hour`
         - Spotlight `Don't Show in Menu Bar`
-- Private & Security
-    - Location Services
-        - uncheck `Location Services`
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
         - uncheck all except Applications, Calculator, System Preferences
         - add santhosh and backup
+- Private & Security
+    - Location Services
+        - uncheck `Location Services`
 - Desktop & Dock
     - check `Automatically hide and show the Dock`
-    - uncheck `Show recent applications in Dock`
+    - uncheck `Show suggested and recent apps in Dock`
 - Displays
     - select `More Space`
 - Lock Screen
@@ -73,8 +73,8 @@
     - File download location `Ask for each download`
     - uncheck `Open "safe" files after downloading`
 - Advanced
-    - check "Show full website address"
-    - check `Show Develop menu in menu bar`
+    - check `Show full website address`
+    - check `Show features for web developers`
 
 ---
 
@@ -142,3 +142,9 @@
 - helix
 - gitui
 - git-delta
+
+--
+
+## Rust
+
+- [rustup](https://www.rust-lang.org/tools/install)
