@@ -23,6 +23,8 @@
 - Accessibility
     - Zoom
         - check `Use scroll gesture with modifier keys to zoom`
+    - Spoken Content
+        - check `Speak Selection`
     - Pointer Control
         - Trackpad Options
             - check `Use Trackpad for dragging`
@@ -142,6 +144,9 @@
 - helix
 - gitui
 - git-delta
+- fzf
+- fd
+- rg
 
 --
 
