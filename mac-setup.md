@@ -141,6 +141,7 @@
 
 - tmux
 - wezterm
+    - [enable undercurl](https://wezfurlong.org/wezterm/faq.html#how-do-i-enable-undercurl-curly-underlines)
 - helix
 - gitui
 - git-delta
