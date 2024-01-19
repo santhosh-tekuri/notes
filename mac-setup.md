@@ -154,3 +154,7 @@
 ## Rust
 
 - [rustup](https://www.rust-lang.org/tools/install)
+
+## Go
+
+- `go install github.com/cortesi/devd/cmd/devd@latest`
