@@ -59,6 +59,8 @@
     - add left and right finger prints
 - Keyboard
     - Keyboard Shortcuts
+        - Mission Control
+            - uncheck first and second `Mission Control`
         - Function Keys
             - check `Use F1, F2, etc. keys as standard function keys`
 - Trackpad
