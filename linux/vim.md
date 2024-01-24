@@ -1,5 +1,7 @@
 # vim
 
+# NORMAL
+
 ## character navigation
 
 ```java
@@ -14,11 +16,11 @@ gk      up in soft-wrapped line
 ## word navigation
 
 ```java
-w       move to beginning of next word  
-b       move to beginning of previous word  
+w       move to start of next word
+b       move to start of previous word
 
-W       move to beginning of next WORD  
-B       move to beginning of previous WORD
+W       move to start of next WORD
+B       move to start of previous WORD
 
 e       move to end of next word  
 ge      move to end of previous word
@@ -60,7 +62,9 @@ T{char}     go till prev occurence of char in current line
 
 ## match navigation
 
+```java
 `%` find paranthesis/bracket under or next to cursor and go to its match
+```
 
 ## line number navigation
 
@@ -115,6 +119,67 @@ N       repeat last search in opposite direction
 g*      search forward for word under cursor  
 g#      search backward for word under cursor
 ```
+
+## delete
+
+```java
+d{motion}   delete text
+dd          delete current line
+D           delete to end of line (same as d$)
+```
+
+# INSERT
+
+## enter
+
+```java
+i   insert text before cursor
+a   append text after cursor
+o   insert newline below cursor
+s   delete char under cursor
+c   delete motion
+cc  delete current line
+
+I   insert before first non-blank char of line
+A   append text at end of line
+O   insert newline above cursor
+S   delete current line (same as cc)
+C   delete from curosr to end of line
+
+{n}{any-of-above}   repeat insert n times
+```
+
+## exit
+
+```java
+<Esc>
+Ctrl-[
+Ctrl-C
+```
+
+## backspace alternative
+
+```java
+Ctrl-H  delete char before cursor
+Ctrl-W  delete word before cursor
+Ctrl-U  delete all before cursor in current line
+```
+
+## scroll
+
+```java
+Ctrl-X          enter submode
+    Ctrl-Y      scroll up a line
+    Ctrl-E      scroll down a line
+```
+
+## misc
+
+```java
+Ctrl-O <NORMAL-CMD>     execute normal mode command
+```
+
+# Misc
 
 ## tabs
 
