@@ -141,6 +141,8 @@
 
 ## [Homebrew](https://brew.sh)
 
+- wget
+- tree
 - tmux
 - wezterm
     - [enable undercurl](https://wezfurlong.org/wezterm/faq.html#how-do-i-enable-undercurl-curly-underlines)
@@ -156,6 +158,7 @@
 ## Rust
 
 - [rustup](https://www.rust-lang.org/tools/install)
+- cargo-outdated
 
 ## Go
 
