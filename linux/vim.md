@@ -128,6 +128,33 @@ dd          delete current line
 D           delete to end of line (same as d$)
 ```
 
+## change case
+
+```java
+~           switch case of char under cursor
+g~{motion}  switch case
+gu{motion}  to lowercase
+gU{motion}  to uppercase
+
+{visual}~   switch case
+{visual}u   to lowercase
+{visual}U   to uppercase
+
+g~~         switch case of current line
+guu         current line to lowercase 
+gUU         current line to uppercase
+```
+
+## increment/decrement
+
+```java
+CTRL-A      add one to number at or after cursor
+CTRL-X      substract one to number at or after cursor
+
+{n}CTRL-A   add n to number at or after cursor
+{n}CTRL-X   substract n to number at or after cursor
+```
+
 # INSERT
 
 ## enter
@@ -165,6 +192,12 @@ Ctrl-W  delete word before cursor
 Ctrl-U  delete all before cursor in current line
 ```
 
+## indent current line
+
+```java
+Ctrl-T  indent current line
+Ctrl-D  outdent current line
+```
 ## scroll
 
 ```java
