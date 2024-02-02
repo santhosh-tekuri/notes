@@ -152,6 +152,8 @@
 - fzf
 - fd
 - rg
+- npm
+- neovim
 
 --
 
