@@ -210,6 +210,8 @@ Ctrl-X          enter submode
 
 ```java
 Ctrl-O <NORMAL-CMD>     execute normal mode command
+Ctrl-R {register}       paste from register
+Ctrl-R ={expression}    paste result of expression
 ```
 
 # Misc
