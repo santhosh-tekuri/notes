@@ -160,7 +160,9 @@
 ## Rust
 
 - [rustup](https://www.rust-lang.org/tools/install)
+- bacon
 - cargo-outdated
+- cargo-expand
 
 ## Go
 
