@@ -1,6 +1,7 @@
 # Mac Setup
 
 - Removed unused applications from Dock
+- install [0xProto font](https://github.com/0xType/0xProto)
 - install [Anonymous Pro font](https://www.marksimonson.com/fonts/view/anonymous-pro)
 - install [Cascadia Pro font](https://github.com/microsoft/cascadia-code/releases)
 - Install git from terminal
@@ -40,21 +41,22 @@
             - check `Announce the time`
             - interval `on the half hour`
         - Spotlight `Don't Show in Menu Bar`
+- Desktop & Dock
+    - check `Automatically hide and show the Dock`
+    - uncheck `Show suggested and recent apps in Dock`
+    - uncheck `Tiled windows have margins`
+- Displays
+    - select `More Space`
 - Siri & Spotlight
     - uncheck `Ask Siri`
     - Spotlight Privary
         - uncheck all except Applications, Calculator, System Preferences
         - add santhosh and backup
+- Lock Screen
+    - Require password after screen saver begins or display is turned off `immediately`
 - Private & Security
     - Location Services
         - uncheck `Location Services`
-- Desktop & Dock
-    - check `Automatically hide and show the Dock`
-    - uncheck `Show suggested and recent apps in Dock`
-- Displays
-    - select `More Space`
-- Lock Screen
-    - Require password after screen saver begins or display is turned off `immediately`
 - TouchID & Password
     - add left and right finger prints
 - Keyboard
@@ -139,14 +141,25 @@
 
 ---
 
+## Rust
+
+- [rustup](https://www.rust-lang.org/tools/install)
+- `cargo install --locked bacon`
+- `cargo install --locked cargo-outdated`
+- `cargo install --locked cargo-expand`
+
+## Go
+
+- `go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest`
+- `go install github.com/cortesi/devd/cmd/devd@latest`
+
 ## [Homebrew](https://brew.sh)
 
 - wget
 - tree
 - tmux
 - wezterm
-    - [enable undercurl](https://wezfurlong.org/wezterm/faq.html#how-do-i-enable-undercurl-curly-underlines)
-- helix
+    - [install TERM](https://wezfurlong.org/wezterm/config/lua/config/term.html?h=term)
 - gitui
 - git-delta
 - fzf
@@ -157,13 +170,3 @@
 
 --
 
-## Rust
-
-- [rustup](https://www.rust-lang.org/tools/install)
-- bacon
-- cargo-outdated
-- cargo-expand
-
-## Go
-
-- `go install github.com/cortesi/devd/cmd/devd@latest`

@@ -40,6 +40,9 @@ g_          go to last non-blank char in current line
 
 <n>|        go to column `n` in current line
 
+<cr>        go to first char of next line
+-           go to first char of previous line
+
 f{char}     go to next occurence of char in current line  
 t{char}     go till next occurence of char in current line
 
@@ -69,12 +72,12 @@ T{char}     go till prev occurence of char in current line
 ## line number navigation
 
 ```java
-gg          go to first line in file  
-G           go to last line in file   
-{n}G        go to n-th line file  
-{n}%        go to n-percent in file
+gg              go to first line in file  
+G               go to last line in file   
+{n}G or {n}gg   go to n-th line file  
+{n}%            go to n-percent in file
 
-Ctrl-G      show no of lines in file
+Ctrl-G          show no of lines in file
 ```
 
 ## window navigation
@@ -189,7 +192,7 @@ Ctrl-C
 ```java
 Ctrl-H  delete char before cursor
 Ctrl-W  delete word before cursor
-Ctrl-U  delete all before cursor in current line
+Ctrl-U  delete all text inserted before cursor in current line
 ```
 
 ## indent current line
