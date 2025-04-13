@@ -22,27 +22,30 @@ async function loadPage() {
     document.body.innerHTML = marked.parse(text);
 }
 
-const walkTokens = (token) => {
-    if (token.type != 'link') {
-        return
-    }
-    if(token.href.includes("://")) {
-        return
-    }
-    if (token.href.endsWith(".md")) {
-        var url = URL.parse(window.location.href)
-        url = new URL(token.href, "http://dummy.com/"+url.hash.substring(1))
-        token.href = "#"+url.pathname.substring(1)
-    } else {
-        var url = URL.parse(window.location.href)
-        let hash = url.hash.substring(1)
-        url.hash = ""
-        url = new URL(hash, url.toString())
-        url = new URL(token.href, url.toString())
-        token.href = url.toString()
+const fixLinks = {
+    name: "fixLinks",
+    walkTokens(token) {
+        if (token.type != 'link') {
+            return
+        }
+        if(token.href.includes("://")) {
+            return
+        }
+        if (token.href.endsWith(".md")) {
+            var url = URL.parse(window.location.href)
+            url = new URL(token.href, "http://dummy.com/"+url.hash.substring(1))
+            token.href = "#"+url.pathname.substring(1)
+        } else {
+            var url = URL.parse(window.location.href)
+            let hash = url.hash.substring(1)
+            url.hash = ""
+            url = new URL(hash, url.toString())
+            url = new URL(token.href, url.toString())
+            token.href = url.toString()
+        }
     }
 }
-marked.use({walkTokens})
+marked.use(fixLinks)
 
 window.onload = loadPage;
 window.onhashchange = loadPage;
