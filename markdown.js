@@ -64,5 +64,13 @@ marked.use(markedHighlight({
     }
 }))
 
+// render math using katex ---
+
+import markedKatex from "https://cdn.jsdelivr.net/npm/marked-katex-extension@5.1.4/+esm";
+const options = {
+  throwOnError: false
+};
+marked.use(markedKatex(options));
+
 window.onload = loadPage;
 window.onhashchange = loadPage;
