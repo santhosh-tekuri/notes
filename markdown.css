@@ -5,23 +5,46 @@
 /**/
 /* @import url(https://fonts.googleapis.com/css?family=Open+Sans); */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
-
-html {
-    background: #2d333b;
-    color: #acbac7;
-    padding-bottom: 100vh; /* allow scrolling past end of page */
-}
+@import url(https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Playpen+Sans:wght@100..800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Playpen+Sans:wght@100..800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Itim&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Itim&display=swap);
 
 body {
-    background: #1c2128;
-    font-family: "Open Sans";
-    line-height: 1.6;
+    background: #1c1c1e;
+}
+
+h1 {
+    margin-bottom: 60px;
+    margin-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Playpen Sans";
+    font-weight: 400;
+    color: white;
+}
+
+hr { 
+    color: rgba(255, 85, 34, 0.5);
+}
+
+strong {
+    color: white;
+    font-weight: normal;
+}
+
+#content {
+    background: #100b0c;
+    color: #a6a19f;
+    font-family: "Geist", "Playpen Sans", cursive;
+    font-weight: 300;
+    line-height: 150%;
+    padding: 50px;
     max-width: 900px;
-    margin: auto;
-    margin-top: 20px;
-    padding: 100px;
-    min-height: ~"calc(100vh - 240px)";
-    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto; 
 }
 
 a {
@@ -33,14 +56,14 @@ a {
 }
 
 code {
-    line-height: 150%;
-    background: #2d333b;
+    font-family: "Geist Mono", monospace;
+    font-size: .875em;
+    background: rgba(45, 165, 233, 0.2);
     border-radius: 3px;
-    border: 1px solid #2d333b;
-    padding: 1px 3px 1px 3px;
+    padding: 0px 8px 0px 8px;
 }
 
 .hljs {
-    border-left: solid 5px #b3b3b3;
-    background: #2d333b;
+    border-left: solid 5px #2d333b;
+    background: rgba(45,51, 59, 0.3);
 }
