@@ -1,29 +1,5 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked@15.0.8/+esm'
 
-// page loading ---
-
-async function fetchURL() {
-    let url = URL.parse(window.location.href)
-    if (url.hash == "") {
-        return "# no markdown file specified"
-    }
-    var hash = url.hash.substring(1)
-    url.hash = ""
-    url = new URL(hash, url.toString())
-
-    const resp = await fetch(url)
-    if (!resp.ok) {
-        return "# "+resp.status+" "+resp.statusText
-    } else {
-        return resp.text()
-    }
-}
-
-async function loadPage() {
-    var text = await fetchURL()
-    document.getElementById('content').innerHTML = marked.parse(text);
-}
-
 // fixHRefs ---
 
 const fixHRefs = {
@@ -71,6 +47,32 @@ const options = {
   throwOnError: false
 };
 marked.use(markedKatex(options));
+
+// page loading ---
+
+async function loadPage() {
+    let content = document.getElementById('content');
+
+    let url = URL.parse(window.location.href)
+    if (url.hash == "") {
+        content.innerHTML = marked.parse("# no markdown file specified")
+        return
+    }
+    var hash = url.hash.substring(1)
+    url.hash = ""
+    url = new URL(hash, url.toString())
+
+    try {
+        const resp = await fetch(url)
+        if (!resp.ok) {
+            content.innerHTML = marked.parse("# "+resp.status+" "+resp.statusText)
+            return
+        }
+        content.innerHTML = marked.parse(await resp.text())
+    } catch (err) {
+        content.innerHTML = marked.parse("# "+e)
+    }
+}
 
 window.onload = loadPage;
 window.onhashchange = loadPage;
