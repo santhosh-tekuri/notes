@@ -21,7 +21,7 @@ async function fetchURL() {
 
 async function loadPage() {
     var text = await fetchURL()
-    document.body.innerHTML = marked.parse(text);
+    document.getElementById('content').innerHTML = marked.parse(text);
 }
 
 // fixHRefs ---

@@ -1,0 +1,46 @@
+/* @font-face { */
+/*     font-family: OpenSans;  */
+/*     src: url("") */
+/* } */
+/**/
+/* @import url(https://fonts.googleapis.com/css?family=Open+Sans); */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    background: #2d333b;
+    color: #acbac7;
+    padding-bottom: 100vh; /* allow scrolling past end of page */
+}
+
+body {
+    background: #1c2128;
+    font-family: "Open Sans";
+    line-height: 1.6;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 100px;
+    min-height: ~"calc(100vh - 240px)";
+    border-radius: 6px;
+}
+
+a {
+    color: #4183C4;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+code {
+    line-height: 150%;
+    background: #2d333b;
+    border-radius: 3px;
+    border: 1px solid #2d333b;
+    padding: 1px 3px 1px 3px;
+}
+
+.hljs {
+    border-left: solid 5px #b3b3b3;
+    background: #2d333b;
+}
