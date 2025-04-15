@@ -124,6 +124,7 @@ async function loadPage() {
     let url = URL.parse(window.location.href)
     if (url.hash == "") {
         content.innerHTML = marked.parse("# no markdown file specified")
+        document.title = "error"
         return
     }
     var hash = url.hash.substring(1)
@@ -137,8 +138,11 @@ async function loadPage() {
             return
         }
         content.innerHTML = marked.parse(await resp.text())
+        let h1Elements = document.body.getElementsByTagName('h1');
+        document.title = h1Elements.length>0 ? h1Elements[0].innerText : "untitled";
     } catch (err) {
         content.innerHTML = marked.parse("# "+err)
+        document.title = "error"
     }
 }
 
