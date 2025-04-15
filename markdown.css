@@ -51,12 +51,12 @@ a {
 code {
     font-family: "Geist Mono", monospace;
     font-size: .875em;
-    background: rgba(45, 165, 233, 0.2);
+    background: #22272e;
     border-radius: 3px;
     padding: 0px 8px 0px 8px;
 }
 
 .hljs {
-    border-left: solid 5px #2d333b;
-    background: rgba(45,51, 59, 0.3);
+    border-left: solid 5px #283553;
+    /* background: rgba(45,51, 59, 0.3); */
 }
