@@ -41,12 +41,83 @@ marked.use(markedHighlight({
 }))
 
 // render math using katex ---
+import katex from 'https://cdn.jsdelivr.net/npm/katex@0.16.22/+esm'
 
-import markedKatex from "https://cdn.jsdelivr.net/npm/marked-katex-extension@5.1.4/+esm";
-const options = {
-  throwOnError: false
+// copied from https://github.com/KaTeX/KaTeX/blob/main/contrib/auto-render/splitAtDelimiters.js
+const findEndOfMath = function(delimiter, text, startIndex) {
+    // Adapted from
+    // https://github.com/Khan/perseus/blob/master/src/perseus-markdown.jsx
+    let index = startIndex;
+    let braceLevel = 0;
+
+    const delimLength = delimiter.length;
+
+    while (index < text.length) {
+        const character = text[index];
+
+        if (braceLevel <= 0 &&
+            text.slice(index, index + delimLength) === delimiter) {
+            return index;
+        } else if (character === "\\") {
+            index++;
+        } else if (character === "{") {
+            braceLevel++;
+        } else if (character === "}") {
+            braceLevel--;
+        }
+
+        index++;
+    }
+
+    return -1;
 };
-marked.use(markedKatex(options));
+
+const katexExt = {
+    name: "katex",
+    level: "inline",
+    start(src) {
+        let index = 0;
+        while (src) {
+            let i = src.indexOf('$')
+            if (i==-1) {
+                return;
+            }
+            if (i==0 || src.charAt(i-1)!='\\') {
+                return index+i
+            }
+            src = src.substring(i+1)
+            index += i
+        }
+    },
+    tokenizer(src, tokens) {
+        if (!src.startsWith("$")) {
+            return;
+        }
+        let delimiter = "$";
+        if (src.startsWith("$$")) {
+            delimiter = "$$";
+        }
+        let i = findEndOfMath(delimiter, src, delimiter.length)
+        if (i==-1) {
+            return;
+        }
+        // console.log("src: "+src)
+        // console.log("delimiter: "+delimiter)
+        return {
+            "type": "katex",
+            "raw": src.substring(0, i+delimiter.length),
+            "text": src.substring(delimiter.length, i),
+            "displayMode": delimiter.length==2,
+        }
+    },
+    renderer(token) {
+        return katex.renderToString(token.text, {
+            displayMode: token.displayMode,
+            throwOnError: false,
+        })
+    }
+}
+marked.use({extensions: [katexExt]})
 
 // page loading ---
 
