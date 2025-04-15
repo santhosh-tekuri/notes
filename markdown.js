@@ -76,17 +76,16 @@ const katexExt = {
     name: "katex",
     level: "inline",
     start(src) {
-        let index = 0;
+        let pos = 0;
         while (src) {
-            let i = src.indexOf('$')
-            if (i==-1) {
+            pos = src.indexOf('$', pos)
+            if (pos==-1) {
                 return;
             }
-            if (i==0 || src.charAt(i-1)!='\\') {
-                return index+i
+            if (pos==0 || src.charAt(pos-1)!='\\') {
+                return pos
             }
-            src = src.substring(i+1)
-            index += i
+            pos += 1
         }
     },
     tokenizer(src, tokens) {
@@ -101,8 +100,6 @@ const katexExt = {
         if (i==-1) {
             return;
         }
-        // console.log("src: "+src)
-        // console.log("delimiter: "+delimiter)
         return {
             "type": "katex",
             "raw": src.substring(0, i+delimiter.length),
@@ -141,7 +138,7 @@ async function loadPage() {
         }
         content.innerHTML = marked.parse(await resp.text())
     } catch (err) {
-        content.innerHTML = marked.parse("# "+e)
+        content.innerHTML = marked.parse("# "+err)
     }
 }
 
