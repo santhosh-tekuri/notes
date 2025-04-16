@@ -116,6 +116,37 @@ const katexExt = {
 }
 marked.use({extensions: [katexExt]})
 
+// embed youtube video ---
+
+var youtubePrefix = "https://www.youtube.com/watch?v=";
+const embedYoutube = {
+    walkTokens(token) {
+        if (token.type!="image")
+            return
+        if (!token.href.startsWith(youtubePrefix))
+            return
+        Object.assign(token, {
+            type: "youtube",
+            raw: token.raw,
+            text: token.text,
+            href: token.href.substring(youtubePrefix.length)
+
+        })
+    },
+    extensions: [{
+        name: "youtube",
+        level: "inline",
+        renderer(token){
+            return `<iframe 
+                width=600 height=300
+                src="https://www.youtube.com/embed/${token.href}?rel=0"
+                frameborder=0 allowfullscreen=true>
+            </iframe>`
+        }
+    }]
+}
+marked.use(embedYoutube)
+
 // page loading ---
 
 async function loadPage() {
