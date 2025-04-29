@@ -99,48 +99,6 @@
 
 ---
 
-## ITerm
-
-- Profiles
-    - General
-        - set `Working Directory` to `Reuse previous session's directory`
-    - Colors
-        - Color Presets `Tango Dark`
-        - foreground: `255,255,255`
-        - background: `37,37,37`
-        - Cursor Colors
-            - check `Smart box cursor colorr`
-    - Text
-        - Font: anonymous pro size: 18 vertical spacing: 120
-    - Window
-        - columns: 150 rows: 35
-    - Terminal
-        - check `Unlimited scrollback`
-    - Keys
-        - General
-            - Left Opton Key: `Esc+`
-        - Keymappings
-            - Alt-Left: send escape sequence b
-            - Alt-Right: send escape sequence f
-    - Advanced
-        - Triggers
-            - Regex: `^\++ [^ ].*` Action: `Highlight Text` Text: `White` Background: `40% Gray`
-- Advanced
-    - Disable the Tip of the Day ? `Yes`
-
----
-
-## Terminal
-
-- Profiles/Basic
-    - Text
-        - Background: `37,37,37`
-        - Font anonymous pro size 18
-    - Window
-        - columns: 150 rows: 35
-
----
-
 ## Rust
 
 - [rustup](https://www.rust-lang.org/tools/install)
@@ -158,8 +116,10 @@
 - wget
 - tree
 - tmux
+- ghostty
 - wezterm
     - [install TERM](https://wezfurlong.org/wezterm/config/lua/config/term.html?h=term)
+- tig
 - gitui
 - git-delta
 - fzf
