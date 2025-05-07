@@ -2,7 +2,7 @@
 
 ### cd to script dir
 
-```shell
+```bash
 cd $(dirname "$BASH_SOURCE")
 ```
 
@@ -10,7 +10,7 @@ cd $(dirname "$BASH_SOURCE")
 
 ### echo to stderr
 
-```shell
+```bash
 >&2 echo "error"
 ```
 
@@ -18,7 +18,7 @@ cd $(dirname "$BASH_SOURCE")
 
 ### multiline comment
 
-```shell
+```bash
 : <<'COMMENT'
 echo inside comment line1
 echo inside comment line2
@@ -31,14 +31,14 @@ echo this is after comment
 
 ### default variable values
 
-```shell
+```bash
 # if VARIABLE is not set use 'default'
 FOO="${VARIABLE:-default}"
 
 # if argument is not passed use $DEFAULT
 VARIABLE="${1:-$DEFAULT}"
 
-# if VARIABLE is not uset, set its value to 'default'
+# if VARIABLE is not set, set its value to 'default'
 : "${VARIABLE:=default}"
 ```
 
@@ -46,7 +46,7 @@ VARIABLE="${1:-$DEFAULT}"
 
 ### host aliases
 
-```shell
+```bash
 export HOSTALIASES=~/.hosts
 echo 'mygoogle www.google.com' > ~/.hosts
 ping mygoogle
@@ -56,7 +56,7 @@ ping mygoogle
 
 ### check if command exists
 
-```shell
+```bash
 if [ -x "$(command -v git)" ]; then
     echo git is installed
 fi
@@ -69,7 +69,7 @@ fi
 
 ### check if run as root
 
-```shell
+```bash
 if [ $(id -u) -ne 0 ]; then
     echo "Please run as root"
     exit 1
@@ -108,7 +108,7 @@ after assigning `SECONDS` to zero, it returns #sec since the assignment
 
 ### add ca cert
 
-```shell
+```bash
 $ domain=myregistry.com
 
 $ # ubuntu
@@ -125,7 +125,7 @@ make sure any folder created should be 755 and for file 644
 
 ### ensure only one instance of script running at a time
 
-```shell
+```bash
 exec 4<>"$BASH_SOURCE".lock
 flock -n 4 || (echo cannot flock. aborting; exit 1)
 ```
@@ -134,7 +134,7 @@ flock -n 4 || (echo cannot flock. aborting; exit 1)
 
 ### open alternate screen
 
-```shell
+```bash
 tput smcup # switch to secondary screen
 ...
 tput rmcup # switch back to primary screen
