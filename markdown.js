@@ -35,8 +35,9 @@ marked.use(markedHighlight({
     emptyLangClass: 'hljs',
     langPrefix: 'hljs language-',
     highlight(code, lang, info) {
-      const language = HighlightJS.getLanguage(lang) ? lang : 'plaintext';
-      return HighlightJS.highlight(code, { language }).value;
+        const language = HighlightJS.getLanguage(lang) ? lang : 'plaintext';
+        code = code.replace(/\t/g, "    ") // replace tab with 4 spaces
+        return HighlightJS.highlight(code, { language }).value;
     }
 }))
 
