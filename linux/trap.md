@@ -5,16 +5,16 @@
 traps the specified signals and executes the command
 
 `SIGNALS` signal names with or without `SIG` prefix or signal numbers
-- `EXIT`: when shel exits
-- `DEBUG`: after every simple command
-- `ERR`: after every command with non-zero status
-- `INT`: trap ctrl+c
+- `EXIT` when shell exits
+- `DEBUG` after every simple command
+- `ERR` after every command with non-zero status
+- `INT` trap ctrl+c
 
-when bash receives a signal, where a command is running, trap is executed only after the command completed. 
+when bash receives a signal, where a command is running, trap is executed only after the command completed.   
 but `wait` built-in, returs immediately with exitcode >128, if trap is set on that signal.
 
 to clean temp file on exit:
-```
+```bash
 trap "rm -f tempfile" EXIT
 
 # can call function on trap
@@ -25,7 +25,7 @@ trap cleanup EXIT
 ```
 
 to prevent Ctrl-C to exit in critical section of script:
-```
+```bash
 # Run something important, no Ctrl-C allowed.
 trap "" SIGINT
 important_command
@@ -35,7 +35,7 @@ not_so_important_command
 ```
 
 to print script success/failure always:
-```
+```bash
 set -e
 on_exit(){
     exit_code=$?
@@ -48,10 +48,8 @@ on_exit(){
 trap on_exit EXIT
 ```
 
----
-
 trap replaces any previous ones on same signal:
-```
+```bash
 trap foo EXIT
 trap bar EXIT
 # here bar is called on exit, foo is never called
