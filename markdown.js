@@ -175,6 +175,18 @@ async function loadPage() {
         content.innerHTML = marked.parse("# "+err)
         document.title = "error"
     }
+
+    // open external links in new tab
+    var links = document.getElementsByTagName('a');
+    for(var i=0; i<links.length; i++) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if(href.includes("://")) {
+            link.target = "_blank";
+        } else if(!href.endsWith(".md") && !href.includes(".md#") && !href.startsWith("#")) {
+            link.target = "_blank";
+        }
+    }
 }
 
 window.onload = loadPage;
