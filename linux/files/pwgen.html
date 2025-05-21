@@ -1,0 +1,52 @@
+<html>
+    <script>
+        function calculate(event) {
+            event.preventDefault();
+            map = {
+                "a": "abcdefghijklmnopqrstuvwxyz",
+                "A": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "d": "0123456789",
+                "s": "`~!@#$%^&*()-_=+[{}]\\|;:'\",<.>/?",
+            }
+            text = document.getElementById("input")
+            line = text.value
+            let input = [];
+            for (let c = 0; c < line.length; c += 2)
+                input.push(parseInt(line.substr(c, 2), 16));
+
+            spec = document.getElementById("spec").value
+            let [n, allowed] = spec.split(":", 2)
+            n = parseInt(n)
+
+            arr = allowed.repeat(Math.ceil(n/allowed.length)).slice(0, n).split("")
+            for (let j=n; j<input.length; j++) {
+                for (let i=0; i<n; i++)
+                    input[i] = (input[i] + input[j]) % 256
+            }
+            input = input.slice(0, n)
+
+            // shuffle
+            for (let i=n-1; i>0; i--) {
+                j = input[i] % i
+                t = arr[i]
+                arr[i] = arr[j]
+                arr[j] = t
+            }
+
+            for (let i=0; i<arr.length; i++) {
+                chars = map[arr[i]]
+                arr[i] = chars[input[i] % chars.length]
+            }
+
+            text.value = arr.join("")
+        }
+
+    </script>
+<body>
+    <form autocomplete="off" onsubmit="calculate(event)" >
+        <input type="text" id="input" size="50" value="7aac1af0053c25f365787d715e2afbae2e98e9b6" autocomplete="off"/>
+        <input type="text" id="spec" size="50" value="15:aAds" autocomplete="off"/>
+        <input type="submit" name="Submit" value="Submit"/>
+    </form>
+</body>
+</html>
