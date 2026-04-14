@@ -1,5 +1,32 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked@15.0.8/+esm'
 
+const emojis = {
+    name: "emoji",
+    level: "inline",
+    start(src) {
+        return src.match(/:([a-zA-Z,-]+):/)?.index;
+    },
+    tokenizer(src, tokens) {
+        const rule = /^(:[a-zA-Z,-]+:)/;
+        const match = rule.exec(src)
+        if (match) {
+            return {
+                type: "emoji",
+                raw: match[0],
+            }
+        }
+    },
+    renderer(token) {
+        var arr = token.raw.slice(1, -1).split(",");
+        arr = arr.map(item  => {
+            return item.startsWith("fa-") ? item : "fa-"+item
+        })
+        var s = arr.join(" ")
+        return `<i class="fa-regular ${s}"></i>`
+    }
+}
+marked.use({extensions: [emojis]})
+
 // fixHRefs ---
 
 const fixHRefs = {
