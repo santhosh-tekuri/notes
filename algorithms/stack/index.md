@@ -1,6 +1,5 @@
 # Stack
 
-::: toc
 * [Size](size.md)
 * [Copy](copy.md)
 * [Sort](sort.md)
@@ -16,4 +15,3 @@
 * [Stock Span Problem](stock_span_problem.md)
 * [Trapping Rain Water](trapping_rain_water.md)
 
-:::
